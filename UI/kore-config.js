@@ -20,7 +20,7 @@
         } 
     }
 
-    botOptions.JWTUrl = "https://back-end-1-zvp2.onrender.com";
+    botOptions.JWTUrl = "https://back-end-1-zvp2.onrender.com/get-token";
     userId = Math.floor(100000 + Math.random() * 900000);
     botOptions.userIdentity = userId;// Provide users email id here
     // botOptions.botInfo = { name: "RGI_Development", "_id": "st-fae378c6-7f93-5d38-9dcb-76dc9ec96f4e" }; // bot name is case sensitive
