@@ -10,6 +10,8 @@ var port=8080;
 //App directories
 var PROJECT_DIR = path.normalize(__dirname);
 
+app.use(require('./UI/app'));
+
 app.use('/',express.static(path.join(PROJECT_DIR, '')));
 
 http.listen(port, function(){
