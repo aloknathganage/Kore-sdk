@@ -12,7 +12,7 @@
         let sdcVal= Number(sessionStorage.getItem('sdc'))
         var checkboxes = document.querySelectorAll('.checkInput');
 	const noneOfTheAboveValue = "None of the Above";
-        var checkedCount = Array.prototype.filter.call(checkboxes, function(checkbox) {
+        var checkedValues = Array.prototype.filter.call(checkboxes, function(checkbox) {
             return checkbox.checked;
         }).map(function(checkedCheckbox) {
             return checkedCheckbox.value; // Get the value of the checked checkbox
