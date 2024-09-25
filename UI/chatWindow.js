@@ -11,9 +11,31 @@
     $(document).on('click', '.fromOtherUsers.with-icon', function() {
         let sdcVal= Number(sessionStorage.getItem('sdc'))
         var checkboxes = document.querySelectorAll('.checkInput');
+	const noneOfTheAboveValue = "None of the Above";
         var checkedCount = Array.prototype.filter.call(checkboxes, function(checkbox) {
             return checkbox.checked;
-        }).length;
+        }).map(function(checkedCheckbox) {
+            return checkedCheckbox.value; // Get the value of the checked checkbox
+        });
+	    // Validation Logic for "None of the above" checkboxxx
+	if (checkedValues.includes(noneOfTheAboveValue)) {
+        // If "None of the Above" is selected, disable and uncheck all other checkboxes
+        checkboxes.forEach(checkbox => {
+            if (checkbox.value !== noneOfTheAboveValue) {
+                checkbox.checked = false; // Uncheck other checkboxes
+                checkbox.disabled = true;  // Disable other checkboxes
+                checkbox.style.pointerEvents = 'none'; // Prevent interaction
+            }
+        });
+    } else {
+        // Enable all checkboxes since "None of the Above" is not selected
+        checkboxes.forEach(checkbox => {
+            checkbox.disabled = false; // Enable all checkboxes
+            checkbox.style.pointerEvents = 'auto'; // Reset pointer events
+        });
+    }
+
+	var checkedCount = checkedValues.length;
         if(sdcVal){
             checkedCount = checkedCount - sdcVal
         }
