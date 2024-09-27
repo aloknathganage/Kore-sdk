@@ -70,6 +70,68 @@
         });
 	
     // kore customization ends Done : button and for None of the above
+	
+// kore customization starts for the health template None of the above
+    $(document).on('click', '.insurance-options-container', function() {
+        let sdcVal = Number(sessionStorage.getItem('sdc')) || 0;  // Get the value from sessionStorage, default to 0 if not set
+        var checkboxes = document.querySelectorAll('.insurance-option-checkbox');
+        const noneOfTheAboveValue = "None of the Above";
+    
+        // Get the checked checkboxes and their values
+        var checkedValues = Array.prototype.filter.call(checkboxes, function(checkbox) {
+            return checkbox.checked;
+        }).map(function(checkedCheckbox) {
+            return checkedCheckbox.value;  // Get the value of the checked checkbox
+        });
+    
+        // Calculate the number of checked checkboxes
+        var checkedCount = checkedValues.length;
+        console.log("Checked checkbox values: " + checkedValues);
+        console.log("Initial checkedCount before sdcVal adjustment: " + checkedCount);
+    
+        // Mutual Exclusivity Check: If "None of the Above" is selected, disable all other checkboxes
+        if (checkedValues.includes(noneOfTheAboveValue)) {
+            checkboxes.forEach(checkbox => {
+                if (checkbox.value !== noneOfTheAboveValue) {
+                    checkbox.checked = false;  // Uncheck other checkboxes
+                    checkbox.disabled = true;  // Disable other checkboxes
+                    checkbox.style.pointerEvents = 'none';  // Prevent interaction
+                }
+            });
+        } else {
+            // Enable all checkboxes since "None of the Above" is not selected
+            checkboxes.forEach(checkbox => {
+                checkbox.disabled = false;  // Enable all checkboxes
+                checkbox.style.pointerEvents = 'auto';  // Reset pointer events
+            });
+        }
+    
+        // Adjust `checkedCount` only once and ensure `sdcVal` does not cause repeated subtractions
+        if (sdcVal > 0 && checkedCount >= sdcVal) {
+            console.log(`Adjusting checkedCount with sdcVal: ${sdcVal}`);
+            checkedCount -= sdcVal;  // Subtract `sdcVal` from `checkedCount`
+            sessionStorage.removeItem('sdc');  // Remove the `sdc` value after first adjustment
+            sdcVal = 0;  // Reset `sdcVal` to prevent further adjustments
+        }
+    
+        // Ensure checkedCount does not go negative
+        checkedCount = Math.max(0, checkedCount);
+    
+        // Control the pointer events for ".checkboxBtn" based on the count of checked checkboxes
+        if (checkedCount > 0) {
+            document.querySelectorAll('.done-button').forEach(function(checkbox) {
+                checkbox.style.pointerEvents = 'auto';
+            });
+        } else {
+            document.querySelectorAll('.done-button').forEach(function(checkbox) {
+                checkbox.style.pointerEvents = 'none';
+            });
+        }
+    
+
+        console.log('Number of checked checkboxes after adjustment: ' + checkedCount);
+    });
+    // kore customization ends for the health template None of the above
 
     return function koreBotChat() {
 
@@ -1654,7 +1716,8 @@
                         me.openExternalLink(a_link)
                     }
                 });
-                _chatContainer.off('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn,.viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply').on('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn, .viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply', function (e) {
+		    // hoonartek customization for health discount template done-button
+                _chatContainer.off('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn,.viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply, .done-button').on('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn, .viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply,.done-button', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     var type = $(this).attr('type');
@@ -1710,6 +1773,48 @@
                         $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString());
                         me.sendMessage($('.chatInputBox'),toShowText.toString());
                     }
+			// hoonartek customization for health discount template done button
+                    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'done-button') {
+                        var checkboxSelection = $(e.currentTarget.parentElement.parentElement).find('.insurance-option-checkbox:checked')
+                        console.log('Checked checkboxes:', checkboxSelection);
+                        
+                        var selectedValue = [];
+                        var toShowText = [];
+                        console.log('in if of list done buuton')
+
+                        for (var i = 0; i < checkboxSelection.length; i++) {
+                            // Capture the value of the checkbox
+                            var value = $(checkboxSelection[i]).attr('value');
+                            var checkboxText = $(checkboxSelection[i]).attr('text') || value;  // Use 'text' if available, otherwise the value
+                            // selectedValue.push(value);
+                            // selectedValue.push($(checkboxSelection[i]).attr('value'));
+                            
+
+                            //add the insurance-limit-select   dropdown
+                            var limitSelect = $(checkboxSelection[i]).closest('.insurance-option-card').find('.insurance-limit-select');
+                            if (limitSelect && limitSelect.length > 0) {
+                                var selectedLimitValue = limitSelect.val();  // Get the selected dropdown value
+                                checkboxText += ` (Limit: ${selectedLimitValue})`;  // Format text as "CheckboxValue (Limit: ₹500)"
+                            }
+
+                            selectedValue.push(value);
+                            toShowText.push(checkboxText);
+                            console.log('selectedValue,,,,', selectedValue.toString())
+
+                        }
+                        console.log('selectedValue.toString() ----',selectedValue.toString())
+
+                        // $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString()); //to display in textinput msg area 
+                        // $('.chatInputBox').text(selectedValue.toString());
+                        // me.sendMessage($('.chatInputBox'),toShowText.toString());    //to send to chat bot
+
+                        $('.chatInputBox').text(toShowText.length > 0 ? toShowText.join(', ') : 'No option selected');
+                        // $('.chatInputBox').text(toShowText.length > 0 ? toShowText.join(', ') : selectedValue);
+
+                        // Send the message to the chat with the updated text
+                        me.sendMessage($('.chatInputBox'), toShowText.toString());
+                    }
+                    // ends
                     if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'quickReply') {
                         var _parentQuikReplyEle = e.currentTarget.parentElement.parentElement;
                         var _leftIcon = _parentQuikReplyEle.parentElement.parentElement.querySelectorAll('.quickreplyLeftIcon');
