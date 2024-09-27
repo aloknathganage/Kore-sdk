@@ -246,6 +246,19 @@
                 'extension': this.extension
 			});
 		}
+
+		// hoonartek customization for insurance template health discount fetch the data from payload
+		else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "insuranceTemplate") {
+			messageHtml = $(this.getChatTemplate("insuranceTemplate")).tmpl({
+				'msgData': msgData,
+				// 'msgData': msgData.message[0].component.payload.insuranceOptions,
+				'helpers': this.helpers,
+				'extension': this.extension
+				
+			});
+			// console.log('Option Values:', "msgData", msgData.message[0].component.payload.insuranceOptions, "helpers", this.helpers, "extension",  this.extension);
+		}
+			// ends
 		else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "otpValidationTemplate") {
             messageHtml = $(this.getChatTemplate("otpValidationTemplate")).tmpl({
                 'msgData': msgData,
@@ -3266,7 +3279,40 @@ var url_button_template = '<script id="chat_message_tmpl" type="text/x-jquery-tm
 {{/if}} \
 </script>';
 
-
+// hoonartek customization for health discount template
+var insuranceTemplate = '<script id="insurance-options-template" type="text/x-jquery-tmpl">\
+	        {{if msgData.message && msgData.message[0].component.payload}}\
+	        <div class="insurance-options-container">\
+	            {{each(key, option) msgData.message[0].component.payload.insuranceOptions}}\
+	            <div class="insurance-option-card">\
+	                <!-- Checkbox or other input for selecting an option -->\
+	                <div class="insurance-checkbox">\
+	                    <input type="checkbox" id="insurance_${option.id}" value="${option.value}" class="insurance-option-checkbox">\
+	                    <label for="insurance_${option.id}"></label>\
+	                </div>\
+	                <!-- Insurance cover title and description -->\
+	                <div class="insurance-option-content">\
+	                    <h3 class="insurance-title">{{= option.title || "Default Title"}}</h3>\
+	                    <p class="insurance-description">{{= option.description || "Default Description"}}</p>\
+	                </div>\
+	                <!-- Select dropdown for price/limit -->\
+	                {{if option.limitOptions && option.limitOptions.length}}\
+	                <div class="insurance-option-select">\
+	                    <select id="select_${option.id}" class="insurance-limit-select">\
+	                        {{each(limitKey, limitOption) option.limitOptions}}\
+	                        <option value="${limitOption.value}">${limitOption.text}</option>\
+	                        {{/each}}\
+	                    </select>\
+	                </div>\
+	                {{/if}}\
+	            </div>\
+	            {{/each}}\
+					<div class="done-button-container">\
+						<div class="done-button"  id="donebtn" value="payload" title="Done" style="pointer-events: auto;">Done</div>\
+					</div>\
+				</div>\
+	        {{/if}}\
+	</script>';
 
 
 		if (tempType === "dropdown_template") {
@@ -3276,7 +3322,13 @@ var url_button_template = '<script id="chat_message_tmpl" type="text/x-jquery-tm
 			return checkBoxesTemplate;
 		} else if (tempType === "likeDislikeTemplate") {
 			return likeDislikeTemplate;
-		}else if(tempType === "formTemplate"){
+		}
+		// hoonartek customization for health discount template
+		else if (tempType === "insuranceTemplate") {
+			return insuranceTemplate;
+		} 
+		// ends
+		else if(tempType === "formTemplate"){
             return formTemplate;
 		} else if (tempType === "advancedMultiSelect") {
 			return advancedMultiSelect;
