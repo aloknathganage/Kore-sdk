@@ -1772,6 +1772,12 @@
                         }
                         $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString());
                         me.sendMessage($('.chatInputBox'),toShowText.toString());
+			// hoonartek customization for disable the Done button after submission
+                        $(e.currentTarget).prop('disabled', true);
+                        $(e.currentTarget).css('pointer-events', 'none'); // Optionally disable pointer events
+                        $(e.currentTarget).css('opacity', '0.8'); // Change opacity for visual feedback
+                    	// hoonartek customization ends
+                        // console.log('Done button disabled successfully after submission.');
                     }
 			// hoonartek customization for health discount template done button
                     if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'done-button') {
