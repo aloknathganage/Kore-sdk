@@ -1819,8 +1819,13 @@
 
                         // Send the message to the chat with the updated text
                         me.sendMessage($('.chatInputBox'), toShowText.toString());
+			    // hoonartek customization for disable the Done button after submission health template
+                        $(e.currentTarget).prop('disabled', true);
+                        $(e.currentTarget).css('pointer-events', 'none'); // Optionally disable pointer events
+                        $(e.currentTarget).css('opacity', '0.8'); // Change opacity for visual feedback
                     }
-                    // ends
+                    // hoonartek customization ends for health tmeplate
+			
                     if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'quickReply') {
                         var _parentQuikReplyEle = e.currentTarget.parentElement.parentElement;
                         var _leftIcon = _parentQuikReplyEle.parentElement.parentElement.querySelectorAll('.quickreplyLeftIcon');
