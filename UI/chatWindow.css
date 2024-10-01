@@ -727,7 +727,6 @@
 
 .kore-chat-window .kore-chat-header .header-title.ui-draggable-handle {
     cursor: move;
-    margin-left: -18px;
 }
 
 .kore-chat-window .kore-chat-header .chat-box-controls {
