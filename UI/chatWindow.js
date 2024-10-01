@@ -12,7 +12,7 @@
         $(document).on('click', '.fromOtherUsers.with-icon', function() {
             let sdcVal = Number(sessionStorage.getItem('sdc')) || 0;  // Get the value from sessionStorage, default to 0 if not set
             var checkboxes = document.querySelectorAll('.checkInput');
-            const noneOfTheAboveValue = "None of the Above";
+            const noneOfTheAboveValue = "None of the above";
         
             // Get the checked checkboxes and their values
             var checkedValues = Array.prototype.filter.call(checkboxes, function(checkbox) {
