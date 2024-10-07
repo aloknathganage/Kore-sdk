@@ -3368,7 +3368,7 @@ var insuranceTemplate = '<script id="insurance-options-template" type="text/x-jq
 	            <div class="insurance-option-card">\
 	                <!-- Checkbox or other input for selecting an option -->\
 	                <div class="insurance-checkbox">\
-	                    <input type="checkbox" id="insurance_${option.id}" value="${option.value}" class="insurance-option-checkbox">\
+	                    <input type="checkbox" id="insurance_${option.id}" value="${option.value}" text="${option.title}" class="insurance-option-checkbox">\
 	                    <label for="insurance_${option.id}"></label>\
 	                </div>\
 	                <!-- Insurance cover title and description -->\
