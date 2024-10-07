@@ -7443,10 +7443,6 @@
  }
  /* System Template css ends here for done button */
  
- /* kore customization for done: issue */
- .checkboxButtons .checkboxBtn {
-	pointer-events: none;
-}
 
 
 .done-button-container {
@@ -7572,4 +7568,16 @@
     font-weight: bold;
     color: #333;
 }
+
+
+ /* kore customization for done: issue for checkbox list */
+ .checkboxButtons .checkboxBtn {
+	pointer-events: none;
+}
+
+ /* hoonartek customization for done: issue for health addons  */
+.done-button-container .done-button {
+	pointer-events: none;
+}
+
 
