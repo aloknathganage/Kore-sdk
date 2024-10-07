@@ -32,53 +32,16 @@
 	
     // kore customization ends Done : button and for None of the above
 	
-// kore customization starts for the health template None of the above
+// hoonartek customization starts for the health template Done : issue
     $(document).on('click', '.insurance-options-container', function() {
-        let sdcVal = Number(sessionStorage.getItem('sdc')) || 0;  // Get the value from sessionStorage, default to 0 if not set
+        let sdcVal= Number(sessionStorage.getItem('sdc'))
         var checkboxes = document.querySelectorAll('.insurance-option-checkbox');
-        const noneOfTheAboveValue = "None of the Above";
-    
-        // Get the checked checkboxes and their values
-        var checkedValues = Array.prototype.filter.call(checkboxes, function(checkbox) {
+        var checkedCount = Array.prototype.filter.call(checkboxes, function(checkbox) {
             return checkbox.checked;
-        }).map(function(checkedCheckbox) {
-            return checkedCheckbox.value;  // Get the value of the checked checkbox
-        });
-    
-        // Calculate the number of checked checkboxes
-        var checkedCount = checkedValues.length;
-        console.log("Checked checkbox values: " + checkedValues);
-        console.log("Initial checkedCount before sdcVal adjustment: " + checkedCount);
-    
-        // Mutual Exclusivity Check: If "None of the Above" is selected, disable all other checkboxes
-        if (checkedValues.includes(noneOfTheAboveValue)) {
-            checkboxes.forEach(checkbox => {
-                if (checkbox.value !== noneOfTheAboveValue) {
-                    checkbox.checked = false;  // Uncheck other checkboxes
-                    checkbox.disabled = true;  // Disable other checkboxes
-                    checkbox.style.pointerEvents = 'none';  // Prevent interaction
-                }
-            });
-        } else {
-            // Enable all checkboxes since "None of the Above" is not selected
-            checkboxes.forEach(checkbox => {
-                checkbox.disabled = false;  // Enable all checkboxes
-                checkbox.style.pointerEvents = 'auto';  // Reset pointer events
-            });
+        }).length;
+        if(sdcVal){
+            checkedCount = checkedCount - sdcVal
         }
-    
-        // Adjust `checkedCount` only once and ensure `sdcVal` does not cause repeated subtractions
-        if (sdcVal > 0 && checkedCount >= sdcVal) {
-            console.log(`Adjusting checkedCount with sdcVal: ${sdcVal}`);
-            checkedCount -= sdcVal;  // Subtract `sdcVal` from `checkedCount`
-            sessionStorage.removeItem('sdc');  // Remove the `sdc` value after first adjustment
-            sdcVal = 0;  // Reset `sdcVal` to prevent further adjustments
-        }
-    
-        // Ensure checkedCount does not go negative
-        checkedCount = Math.max(0, checkedCount);
-    
-        // Control the pointer events for ".checkboxBtn" based on the count of checked checkboxes
         if (checkedCount > 0) {
             document.querySelectorAll('.done-button').forEach(function(checkbox) {
                 checkbox.style.pointerEvents = 'auto';
@@ -88,10 +51,9 @@
                 checkbox.style.pointerEvents = 'none';
             });
         }
-    
-
-        console.log('Number of checked checkboxes after adjustment: ' + checkedCount);
+        console.log('Number of checked checkboxes: ' + checkedCount);
     });
+
     // kore customization ends for the health template None of the above
 
     return function koreBotChat() {
