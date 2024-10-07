@@ -1,5 +1,15 @@
 (function($){
 
+     // hoonartek customization for iframe issue
+    $(document).on('click', '.minimize-btn, .close-btn', function() {
+        window.parent.postMessage('closeButtonClicked', '*');
+    });
+
+   $(document).on('click', '.minimized', function() {
+        window.parent.postMessage('expandBtn', '*');
+    });
+    // hoonartek customization for iframe issue ends
+    
     $(document).ready(function () {
         function assertion(options, callback) {
             //kore customization
