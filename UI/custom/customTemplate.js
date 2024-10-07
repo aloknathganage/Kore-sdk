@@ -3389,7 +3389,7 @@ var insuranceTemplate = '<script id="insurance-options-template" type="text/x-jq
 	            </div>\
 	            {{/each}}\
 					<div class="done-button-container">\
-						<div class="done-button"  id="donebtn" value="payload" title="Done" style="pointer-events: auto;">Done</div>\
+						<div class="done-button"  id="donebtn" value="payload" title="Done">Done</div>\
 					</div>\
 				</div>\
 	        {{/if}}\
