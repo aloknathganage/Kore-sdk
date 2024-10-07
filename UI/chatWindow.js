@@ -1714,9 +1714,8 @@
                         for (var i = 0; i < checkboxSelection.length; i++) {
                             // Capture the value of the checkbox
                             var value = $(checkboxSelection[i]).attr('value');
-                            var checkboxText = $(checkboxSelection[i]).attr('text') || value;  // Use 'text' if available, otherwise the value
-                            // selectedValue.push(value);
-                            // selectedValue.push($(checkboxSelection[i]).attr('value'));
+                            var checkboxText = $(checkboxSelection[i]).attr('text');  // Use 'text' if available, otherwise the value
+
                             
 
                             //add the insurance-limit-select   dropdown
@@ -1728,21 +1727,21 @@
 
                             selectedValue.push(value);
                             toShowText.push(checkboxText);
-                            console.log('selectedValue,,,,', selectedValue.toString())
+                            // console.log('selectedValue,,,,', selectedValue.toString())
 
                         }
-                        console.log('selectedValue.toString() ----',selectedValue.toString())
+                        // console.log('selectedValue.toString() ----',selectedValue.toString())
 
                         // $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString()); //to display in textinput msg area 
                         // $('.chatInputBox').text(selectedValue.toString());
                         // me.sendMessage($('.chatInputBox'),toShowText.toString());    //to send to chat bot
 
-                        $('.chatInputBox').text(toShowText.length > 0 ? toShowText.join(', ') : 'No option selected');
+                        $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString());
                         // $('.chatInputBox').text(toShowText.length > 0 ? toShowText.join(', ') : selectedValue);
 
                         // Send the message to the chat with the updated text
                         me.sendMessage($('.chatInputBox'), toShowText.toString());
-			    // hoonartek customization for disable the Done button after submission health template
+				// hoonartek customization for disable the Done button after submission health template
                         $(e.currentTarget).prop('disabled', true);
                         $(e.currentTarget).css('pointer-events', 'none'); // Optionally disable pointer events
                         $(e.currentTarget).css('opacity', '0.8'); // Change opacity for visual feedback
