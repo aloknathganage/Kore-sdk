@@ -1836,6 +1836,8 @@
     white-space: nowrap;
     overflow: hidden;
     margin: 8px 0px 0px 11px;
+    /* hoonartek customization for text alignment */
+    text-wrap: balance;
 }
 
 .kore-chat-window .carouselTitleBox .carouselDescription {
