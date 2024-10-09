@@ -258,7 +258,18 @@
 			});
 			// console.log('Option Values:', "msgData", msgData.message[0].component.payload.insuranceOptions, "helpers", this.helpers, "extension",  this.extension);
 		}
-			// ends
+		// ends
+			
+		// hoonartek customization for travel country selection starts start
+		else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "countryDropdownTemplate") {
+			messageHtml = $(this.getChatTemplate("countryDropdownTemplate")).tmpl({
+				'msgData': msgData,
+				'helpers': this.helpers,
+				'extension': this.extension	
+			});
+		}
+		// hoonartek customization for travel country selection ends end
+			
 		else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "otpValidationTemplate") {
             messageHtml = $(this.getChatTemplate("otpValidationTemplate")).tmpl({
                 'msgData': msgData,
@@ -3396,6 +3407,42 @@ var insuranceTemplate = '<script id="insurance-options-template" type="text/x-jq
 	</script>';
 
 
+// hoonartek customization for travel country selection template starts start
+var countryDropdownTemplate = '<script id="chat_message_multiselect_tmpl" type="text/x-jquery-tmpl">\
+		{{if msgData.message}} \
+		<li {{if msgData.type !== "bot_response"}} id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon"> \
+			<div class="buttonTmplContent"> \
+				{{if msgData.createdOn}}<div class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
+				{{if msgData.icon}}<div class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
+				<div class="{{if msgData.message[0].component.payload.fromHistory}} dummy messageBubble {{else}}messageBubble{{/if}}"> \
+					{{if msgData.message[0].component.payload.heading}}<div class="templateHeading">${msgData.message[0].component.payload.heading}</div>{{/if}} \
+					<!-- Search Input --> \
+					<div class="multiSelectContainer"> \
+						<input type="text" class="searchInput" placeholder="Search for countries..." /> \
+						<!-- Checkbox Options --> \
+						<div class="checkboxOptions"> \
+							{{each(key, msgItem) msgData.message[0].component.payload.elements}} \
+								<div class="multiSelectOption"> \
+									<input type="checkbox" class="dropdownTemplatesValues" value="${msgItem.value}" id="checkbox_${key}" \
+									{{if msgData.message[0].component.selectedValues && msgData.message[0].component.selectedValues.indexOf(msgItem.value) !== -1}}checked{{/if}} /> \
+									<label for="checkbox_${key}" title="${msgItem.title}"> \
+										{{if msgItem.title.length > 32}}${msgItem.title.substr(0, 32)}...{{else}}${msgItem.title}{{/if}} \
+									</label> \
+								</div> \
+							{{/each}} \
+						</div> \
+					</div> \
+					<!-- Done Button --> \
+					<div class="doneButtonContainer"> \
+						<div class="doneBtn" value="done" title="Done">Done</div> \
+					</div> \
+				</div> \
+			</div> \
+		</li> \
+	{{/if}} \
+</script>;'
+// hoonartek customization for travel country selection template ends end
+
 		if (tempType === "dropdown_template") {
 			return dropdownTemplate;
 		}
@@ -3409,8 +3456,13 @@ var insuranceTemplate = '<script id="insurance-options-template" type="text/x-jq
 			return insuranceTemplate;
 		} 
 		// ends
+		// hoonartek customization for travel countries starts start
+		else if(tempType === "countryDropdownTemplate"){
+            		return countryDropdownTemplate;
+		}
+		// hoonartek customization for travel countries ends end
 		else if(tempType === "formTemplate"){
-            return formTemplate;
+            		return formTemplate;
 		} else if (tempType === "advancedMultiSelect") {
 			return advancedMultiSelect;
 		}else if (tempType === "templatelistView") {
