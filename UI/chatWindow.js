@@ -89,8 +89,32 @@
         // console.log('Number of checked checkboxes: ' + checkedCount);
         // console.log('checkedValuess - : ' + checkedValues);
     });
-
     // kore customization ends for the health template None of the above
+
+// hoonartek customization starts for the country selection template for enable done after any one checkbox selected
+    $(document).on('click', '.fromOtherUsers.with-icon', function() {
+        let sdcVal= Number(sessionStorage.getItem('sdc'))
+        var checkboxes = document.querySelectorAll('.dropdownTemplatesValues');
+        var checkedCount = Array.prototype.filter.call(checkboxes, function(checkbox) {
+            return checkbox.checked;
+        }).length;
+        if(sdcVal){
+            checkedCount = checkedCount - sdcVal
+        }
+        if (checkedCount > 0) {
+            document.querySelectorAll('.doneBtn').forEach(function(checkbox) {
+                checkbox.style.pointerEvents = 'auto';
+                
+            });
+        } else {
+            document.querySelectorAll('.doneBtn').forEach(function(checkbox) {
+                checkbox.style.pointerEvents = 'none';
+            });
+        }
+        console.log('Number of checked checkboxes: ' + checkedCount);
+    });
+// hoonartek customization starts for country selection template for enable done after any one checkbox selected ends
+
 
     return function koreBotChat() {
 
@@ -1675,8 +1699,27 @@
                         me.openExternalLink(a_link)
                     }
                 });
-		    // hoonartek customization for health discount template done-button
-                _chatContainer.off('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn,.viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply, .done-button').on('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn, .viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply,.done-button', function (e) {
+
+		//hoonartek customization for country selection template for travel - search functionality
+                _chatContainer.off('input', '.searchInput').on('input', '.searchInput', function () {
+                    const filter = $(this).val().toLowerCase();
+                    const $optionsContainer = $(this).next('.checkboxOptions'); // Select the sibling div with checkbox options
+                
+                    // Loop through all options and hide/show based on the search term
+                    $optionsContainer.find('.multiSelectOption').each(function () {
+                        const labelText = $(this).find("label").text().toLowerCase();
+                
+                        if (labelText.includes(filter)) {
+                            $(this).show(); // Show option
+                        } else {
+                            $(this).hide(); // Hide option
+                        }
+                    });
+                });
+                //hoonartek customization for country selection template for travel - search functionality ends
+		    
+		// hoonartek customization for health discount template & country selection template done-button
+                _chatContainer.off('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn,.viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply, .done-button, .doneBtn').on('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn, .viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply,.done-button, .doneBtn', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
                     var type = $(this).attr('type');
@@ -1783,6 +1826,32 @@
                         $(e.currentTarget).css('opacity', '0.8'); // Change opacity for visual feedback
                     }
                     // hoonartek customization ends for health tmeplate
+
+		 // kore customization starts for the travel country selection template 
+                    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'doneBtn') {
+                        var checkboxSelection = $(e.currentTarget.parentElement.parentElement).find('.dropdownTemplatesValues:checked')
+                        var selectedValue = [];
+                        var toShowText = [];
+        
+                        for (var i = 0; i < checkboxSelection.length; i++) {
+                            selectedValue.push($(checkboxSelection[i]).attr('value'));
+                            toShowText.push($(checkboxSelection[i]).attr('text'));
+                            // hoonartek
+                            console.log("selectedValue........",selectedValue.toString())
+                            console.log("toShowText........",toShowText.toString())
+                        }
+                        
+                        $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString());
+                        me.sendMessage($('.chatInputBox'),selectedValue.toString());
+
+                        // hoonartek customization for disable the Done button after submission
+                        $(e.currentTarget).prop('disabled', true);
+                        $(e.currentTarget).css('pointer-events', 'none'); // Optionally disable pointer events
+                        $(e.currentTarget).css('opacity', '0.8'); // Change opacity for visual feedback
+                    
+                        console.log('Done button disabled successfully after submission.');
+                    }
+                     // kore customization ends for the travel country selection template ends	
 			
                     if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'quickReply') {
                         var _parentQuikReplyEle = e.currentTarget.parentElement.parentElement;
