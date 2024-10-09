@@ -7569,6 +7569,67 @@
     color: #333;
 }
 
+/* hoonartek customization for country selection template drop down */
+/* Search Input Styling */
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Multi-Select Container */
+.multiSelectContainer {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+/* Checkbox Options Container */
+.checkboxOptions {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+/* Checkbox Option Styling */
+.multiSelectOption {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.multiSelectOption:hover {
+    background-color: #f9f9f9;
+}
+
+/* Selected Checkbox Styles */
+.multiSelectOption input:checked + label {
+    font-weight: bold;
+}
+
+/* Done Button */
+.doneBtn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.doneBtn:hover {
+    background-color: #0056b3;
+}
+
+/* hoonartek customization ends for country drop down ends */
+
 
  /* kore customization for done: issue for checkbox list */
  .checkboxButtons .checkboxBtn {
@@ -7580,4 +7641,8 @@
 	pointer-events: none;
 }
 
+/* hoonartek customization for country drop down disbale done issue just after rendering */
+  .doneButtonContainer .doneBtn {
+	pointer-events: none;
+}
 
