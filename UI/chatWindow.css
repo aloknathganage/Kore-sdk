@@ -741,6 +741,8 @@
     padding-top: 0;
     color: var(--sdk-chat-window-header-font-clr);
     margin-top: 0px;
+/* hoonartek customization for control button into white */
+    filter: brightness(100);
 }
 
 .kore-chat-window .kore-chat-header .chat-box-controls button {
