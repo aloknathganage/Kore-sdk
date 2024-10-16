@@ -3064,3 +3064,37 @@
     /* cursor: not-allowed;
 } */
 /* .kore-chat-window .buttonTmplContent .buttonTmplContentChild  */
+
+
+/* hoonartek customization Add the send button with the image here  */
+.sdkFooterIcon.sendButtonContainer {
+    display: flex;
+    justify-content: flex-end; /* Align the button to the right */
+    align-items: center; /* Center the button vertically */
+    position: absolute;
+    right: 20px;
+    bottom: 10px; /* Adjust position as needed */
+}
+
+.sdkFooterIcon.sendButtonContainer .sendMessageButton {
+    background-color: transparent; /* No background */
+    border: none; /* Remove default border */
+    cursor: pointer;
+    padding: 0; /* Remove default padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Adjust button size */
+    height: 40px;
+}
+
+.sdkFooterIcon.sendButtonContainer .sendMessageButton img {
+    width: 24px; /* Set image width */
+    height: 24px; /* Set image height */
+    object-fit: scale-down;
+    margin-top: -24px;
+    margin-left: 29px; /* Keep image aspect ratio */
+}
+
+
+
