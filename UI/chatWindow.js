@@ -1359,7 +1359,7 @@
                     rtlLanguages:[],//loads from i18n config
                     langFiles:{
                         en: {
-                            message: "Message...",
+                            message: "Type Here",
                             connecting: "Connecting...",
                             reconnecting: "Reconnecting...",
                             entertosend: "Press enter to send",
