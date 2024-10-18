@@ -92,7 +92,7 @@
     // kore customization ends for the health template None of the above
 
 // hoonartek customization starts for the country selection template for enable done after any one checkbox selected
-    $(document).on('click', '.fromOtherUsers.with-icon', function() {
+    $(document).on('click', '.buttonTmplContent', function() {
         let sdcVal= Number(sessionStorage.getItem('sdc'))
         var checkboxes = document.querySelectorAll('.dropdownTemplatesValues');
         var checkedCount = Array.prototype.filter.call(checkboxes, function(checkbox) {
