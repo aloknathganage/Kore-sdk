@@ -7,17 +7,51 @@
     window.koreBotChat = factory();
     //}
 })(function () {
-    //kore customization starts for Done : button enable after atleast one option select
-    //2nd new
-       $(document).on('click', '.fromOtherUsers.with-icon', function() {
+    // hoonartek customization starts Done : button and for checkboxes template None of the above - ALok
+     $(document).on('click', '.listTmplContent', function() {
         let sdcVal= Number(sessionStorage.getItem('sdc'))
         var checkboxes = document.querySelectorAll('.checkInput');
-        var checkedCount = Array.prototype.filter.call(checkboxes, function(checkbox) {
+        const noneOfTheAboveValue = "None of the above";
+        // Get the checked checkboxes and their values
+        var checkedValues = Array.prototype.filter.call(checkboxes, function(checkbox) {
             return checkbox.checked;
-        }).length;
+        }).map(function(checkedCheckbox) {
+            return checkedCheckbox.getAttribute('text');  //customization  // Get the value of the checked checkbox
+        });
+        console.log('checkedValuess at begining - : ' + checkedValues);
+
         if(sdcVal){
             checkedCount = checkedCount - sdcVal
         }
+        // customization
+        if (checkedValues.includes(noneOfTheAboveValue)) {
+            // "None of the Above" is selected, disable all other checkboxes
+            checkboxes.forEach(checkbox => {
+                if (checkbox.value !== noneOfTheAboveValue) {
+                    checkbox.checked = false;  // Uncheck other checkboxes
+                    checkbox.disabled = true;  // Disable other checkboxes
+                    // checkbox.style.pointerEvents = 'none';  // Prevent interaction
+                }
+            });
+            // Recalculate `checkedValues` after unchecking other checkboxes
+                checkedValues = [noneOfTheAboveValue];  // Set checkedValues to only include "None of the Above"
+                checkedCount = 1;  // Update checkedCount accordingly
+
+            // Disable the Done button if "None of the Above" is selected
+            document.querySelectorAll('.checkboxBtn').forEach(function(button) {
+                button.style.pointerEvents = 'none';
+            });
+        } else {
+            // "None of the Above" is not selected, enable all other checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.disabled = false;  // Enable all checkboxes
+                checkbox.style.pointerEvents = 'auto';  // Reset pointer events
+            });
+        }
+        // customization
+         // Calculate the number of checked checkboxes
+         var checkedCount = checkedValues.length;
+
         if (checkedCount > 0) {
             document.querySelectorAll('.checkboxBtn').forEach(function(checkbox) {
                 checkbox.style.pointerEvents = 'auto';
@@ -28,8 +62,9 @@
             });
         }
         console.log('Number of checked checkboxes: ' + checkedCount);
-    });	
-    // kore customization ends Done : button and for None of the above
+        console.log('checkedValuess - : ' + checkedValues);
+    });
+// hoonartek customization starts Done : button and for checkboxes template None of the above - ends
 	
 // hoonartek customization starts for the health template Done : and for None of the above
     $(document).on('click', '.insurance-options-container', function() {
