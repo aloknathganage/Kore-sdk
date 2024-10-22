@@ -2604,6 +2604,13 @@
                         }).length;
                         sessionStorage.setItem('sdc', checkedCount);
                     }
+			if(msgData.message[0]?.component?.payload?.template_type == 'countryDropdownTemplate'){
+                        var checkboxes = document.querySelectorAll('.dropdownTemplatesValues');
+                        var checkedCount = Array.prototype.filter.call(checkboxes, function(checkbox) {
+                            return checkbox.checked;
+                        }).length;
+                        sessionStorage.setItem('sdc', checkedCount);
+                    }
                     if(msgData.message[0]?.component?.payload?.template_type == 'table'){
                         let plainObj=JSON.stringify(msgData.message[0].component.payload.elements);
                         plainObj = plainObj.replaceAll(null,'""');
