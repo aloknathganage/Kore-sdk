@@ -3456,6 +3456,7 @@ var countryDropdownTemplate = '<script id="chat_message_multiselect_tmpl" type="
 				}).map(function(checkedCheckbox) {
 					return checkedCheckbox.getAttribute('text');  //customization  // Get the value of the checked checkbox
 				});
+			console.log("before iffffffffffffffffffffffffffffffffff", checkedValues)
 				if (checkedValues.includes(noneOfTheAboveValue)) {
 					checkboxes.forEach(checkbox => {
 						if (checkbox.value == noneOfTheAboveValue) {
