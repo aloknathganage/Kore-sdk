@@ -2617,7 +2617,16 @@
                         msgData.message[0].component.payload.elements = JSON.parse(plainObj)
                     }
                     // Kore customization ends
-
+			
+		   // hoonartek customization starts (disable carousel) disable carousel after click
+                    if(msgData.message[0]?.component?.payload?.template_type == 'carousel'){
+                        $(".listItemPath.carouselButton").prop("disabled", false);
+                    }
+                    else{
+                        $(".listItemPath.carouselButton").prop("disabled", true);
+                    }
+                    // hoonartek customization ends (disable carousel) disable carousel after click
+			
                     // Kore customization starts (disable dropdown)
                     if(msgData.message[0]?.component?.payload?.template_type == 'dropdown_template'){
                         $(".selectTemplateDropdowm").prop("disabled", false);
