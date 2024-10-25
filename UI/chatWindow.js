@@ -1497,7 +1497,7 @@
             chatWindow.prototype.resetWindow = function () {
                 var me = this;
                 me.config.chatContainer.find('.kore-chat-header .header-title').html(me.config.botMessages.reconnecting);
-                //me.config.chatContainer.find('.chat-container').html("");
+                me.config.chatContainer.find('.chat-container').html("");        // hoonartek customization for clear history after reconnect uncommented
                 me.bot.close();
                 me.config.botOptions.maintainContext = false
                 me.setLocalStoreItem('kr-cw-uid',me.config.botOptions.userIdentity);
@@ -1931,6 +1931,11 @@
                         me.config.botOptions.maintainContext = false;
                     }
                     chatInitialize.stopSpeaking();
+		// hoonartek customization for clear history starts after cross button close button
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 100); // Delay of 100ms before refresh, adjust if needed
+                // hoonartek customization for clear history ends after cross button
                 });
 
                 _chatContainer.off('click', '.minimize-btn').on('click', '.minimize-btn', function (event) {
@@ -2127,9 +2132,12 @@
                     }
                     $(this).addClass("disabled").prop('disabled', true);
                     $(".close-btn").addClass("disabled").prop('disabled', true);
-                    setTimeout(function () {
-                        me.resetWindow();
-                    });
+                // hoonartek customization for clear history after reconnect starts
+                    // setTimeout(function () {
+                    //     me.resetWindow();
+                    // });
+                    me.resetWindow();
+                // hoonartek customization for clear history ends
                     $('.recordingMicrophone').trigger('click');
                     if (ttsAudioSource) {
                         ttsAudioSource.stop();
