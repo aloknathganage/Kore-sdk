@@ -4107,32 +4107,33 @@
             // Wait for the button template to be rendered
             setTimeout(function() {
                 // Add a click event listener to each button
+		var clickType=''; 
                 document.querySelectorAll('.buttonTmplContentChild').forEach(button => {
-                    button.addEventListener('click', function() {
+                    button.addEventListener('click', function(e) {
                         // Check if any button has already been clicked
                         if (!button.getAttribute('data-clicked')) {
-                            console.log("A button was clicked: " + button.textContent);
-                            
-                            // Disable all buttons
-                            // document.querySelectorAll('.buttonTmplContentChild').forEach(b => {
-                            //     b.style.pointerEvents = 'none'; // Disable further clicks
-                            //     b.style.cursor = 'default';
-                            //     b.style.backgroundColor = '#0D6EFD'; // Change background to indicate disabled state
-                            //     b.style.opacity = '0.8';  // Adjust opacity for visual feedback
-                            //     b.setAttribute('data-clicked', true); // Mark button as clicked
-                            // });
-
-                            // console.log("All buttons are now disabled.");
-
+				if (clickType == 'web_url') {   // for button which have type = weburl
+	                                button.style.pointerEvents = 'none'; // Disable this button
+	                                button.style.cursor = 'default'; // Change cursor to indicate disabled state
+	                                button.style.backgroundColor = '#0D6EFD'; // Change background to indicate disabled state
+	                                button.style.opacity = '0.8'; // Adjust opacity for visual feedback
+                            } 
+                            else {
                             document.querySelectorAll('.buttonTmplContentChild').forEach(b => {
                                 // Disable only if the button does not have the class 'quickReplyDiv'
                                 if (!b.classList.contains('quickReplyDiv')) {
+                                    if (clickType !== 'web_url'){
                                     b.style.pointerEvents = 'none'; // Disable further clicks
                                     b.style.cursor = 'default'; // Change cursor to indicate disabled state
                                     b.style.backgroundColor = '#0D6EFD'; // Change background to indicate disabled state
                                     b.style.opacity = '0.8';  // Adjust opacity for visual feedback
-                                }
+                                    }
+                                    
+                                
+                                }   
                             });
+                            
+                        } 
                 
                             // Mark this specific button as clicked to avoid future clicks
                             this.setAttribute('data-clicked', true);
