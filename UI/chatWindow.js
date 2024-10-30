@@ -3584,7 +3584,6 @@
                             {{if msgItem.cInfo && msgItem.type === "text"}} \
                                 <li data-time="${msgData.createdOnTimemillis}" id="${msgData.messageId || msgItem.clientMessageId}"\
                                      class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}}\ {{if msgData.icon}}with-icon{{/if}} {{if msgData.fromAgent}}from-agent{{/if}}"> \
-                                    {{if msgData.createdOn}}<div aria-hidden="true" aria-live="off" class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
                                     {{if msgData.icon}}<div aria-hidden="true"  aria-live="off" class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})" title="User Avatar"></div> </div> {{/if}} \
                                     <div class="messageBubble" aria-live="assertive">\
                                         <div> \
@@ -3652,6 +3651,15 @@
                             {{/if}} \
                         {{/each}} \
                     {{/if}} \
+		    {{if msgData.createdOn}}\
+                                {{if msgData.type === "bot_response"}}\
+                                    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+                                    ${helpers.formatDate(msgData.createdOn)}</div>\
+                                {{else}}\
+                                    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 258px; font-size: 12px; color: #8a959f;">\
+                                    ${helpers.formatDate(msgData.createdOn)}</div> \
+                                {{/if}}\
+                   {{/if}} \
                 </scipt>';
                     var templateAttachment = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
                 {{if msgData.message}} \
@@ -3701,7 +3709,6 @@
                     <li data-time="${msgData.createdOnTimemillis}" id="${msgData.messageId || msgItem.clientMessageId}"\
                         class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} {{if msgData.icon}}with-icon{{/if}}"> \
                         <div class="buttonTmplContent"> \
-                            {{if msgData.createdOn}}<div aria-live="off" class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
                             {{if msgData.icon}}<div aria-live="off" class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
                             <ul class="buttonTmplContentBox">\
                                 <li class="buttonTmplContentHeading"> \
@@ -3728,6 +3735,10 @@
                         </div>\
                     </li> \
                 {{/if}} \
+	    {{if msgData.createdOn}}\
+		    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 42px; font-size: 12px; color: #8a959f;">\
+		    ${helpers.formatDate(msgData.createdOn)} </div>\
+	    {{/if}} \
             </scipt>';
 
             var pieChartTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
@@ -3908,7 +3919,6 @@
                 {{if msgData.message}} \
                     <li data-time="${msgData.createdOnTimemillis}" id="${msgData.messageId || msgItem.clientMessageId}"\
                         class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon"> \
-                        {{if msgData.createdOn}}<div aria-live="off" class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
                         {{if msgData.icon}}<div aria-live="off" class="profile-photo extraBottom"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
                         {{if msgData.message[0].component.payload.text}}<div class="messageBubble tableChart">\
                             <span>{{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "bot")}}</span>\
@@ -3938,6 +3948,10 @@
                         </div>\
                     </li> \
                 {{/if}}\
+	    {{if msgData.createdOn}}\
+		    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+		    ${helpers.formatDate(msgData.createdOn)}</div>\
+	    {{/if}} \
             </scipt>';
 
             var quickReplyTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
@@ -3945,7 +3959,6 @@
                     <li data-time="${msgData.createdOnTimemillis}" id="${msgData.messageId || msgItem.clientMessageId}"\
                         class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon quickReplies"> \
                         <div class="buttonTmplContent"> \
-                            {{if msgData.createdOn}}<div aria-live="off" class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
                             {{if msgData.icon}}<div aria-live="off" class="profile-photo"> <div class="user-account avtar marginT50" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
                             {{if msgData.message[0].component.payload.text}} \
                                 <div class="buttonTmplContentHeading quickReply"> \
@@ -3969,6 +3982,10 @@
                         </div>\
                     </li> \
                 {{/if}} \
+	    {{if msgData.createdOn}}\
+		    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+		    ${helpers.formatDate(msgData.createdOn)}</div>\
+		{{/if}} \
             </scipt>';
             var listTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
                 {{if msgData.message}} \
