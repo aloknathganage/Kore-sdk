@@ -494,7 +494,6 @@
             {{if msgData.message}} \
             <li {{if msgData.type !== "bot_response"}}id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon"> \
                     <div class = "listTmplContent"> \
-                        {{if msgData.createdOn}}<div aria-live="off" class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
                         {{if msgData.icon}}<div aria-live="off" class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
                         <ul class="{{if msgData.message[0].component.payload.fromHistory}} dummy listTmplContentBox  {{else}} listTmplContentBox{{/if}} "> \
                             {{if msgData.message[0].component.payload.title || msgData.message[0].component.payload.heading}} \
@@ -527,6 +526,10 @@
                     </div> \
                 </li> \
             {{/if}} \
+	{{if msgData.createdOn}}\
+		    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+		    ${helpers.formatDate(msgData.createdOn)}</div>\
+	{{/if}} \
         </script>';
 		
 	
@@ -3404,6 +3407,10 @@ var insuranceTemplate = '<script id="insurance-options-template" type="text/x-jq
 					</div>\
 				</div>\
 	        {{/if}}\
+	{{if msgData.createdOn}}\
+                            <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+                            ${helpers.formatDate(msgData.createdOn)}</div>\
+                        {{/if}} \
 	</script>';
 
 
@@ -3412,7 +3419,6 @@ var countryDropdownTemplate = '<script id="chat_message_multiselect_tmpl" type="
 		{{if msgData.message}} \
 		<li {{if msgData.type !== "bot_response"}} id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon"> \
 			<div class="buttonTmplContent"> \
-				{{if msgData.createdOn}}<div class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
 				{{if msgData.icon}}<div class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
 				<div class="{{if msgData.message[0].component.payload.fromHistory}} dummy messageBubble {{else}}messageBubble{{/if}}"> \
 					{{if msgData.message[0].component.payload.heading}}<div class="templateHeading">${msgData.message[0].component.payload.heading}</div>{{/if}} \
@@ -3439,6 +3445,10 @@ var countryDropdownTemplate = '<script id="chat_message_multiselect_tmpl" type="
 				</div> \
 			</div> \
 		</li> \
+	{{/if}} \
+	{{if msgData.createdOn}}\
+                            <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+                            ${helpers.formatDate(msgData.createdOn)}</div>\
 	{{/if}} \
 </script>;'
 // hoonartek customization for travel country selection template ends end
