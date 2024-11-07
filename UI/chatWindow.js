@@ -3793,7 +3793,6 @@
                 {{if msgData.message}} \
                     <li data-time="${msgData.createdOnTimemillis}" id="${msgData.messageId || msgItem.clientMessageId}"\
                         class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon tablechart"> \
-                        {{if msgData.createdOn}}<div aria-live="off" class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
                         {{if msgData.icon}}<div aria-live="off" class="profile-photo extraBottom"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
                         {{if msgData.message[0].component.payload.text}}<div class="messageBubble tableChart">\
                             <span>{{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "bot")}}</span>\
@@ -3819,6 +3818,10 @@
                             </div>\
                         {{/each}}\
                     </li> \
+                {{/if}} \
+		    {{if msgData.createdOn}}\
+                    <div aria-live="off" class="extra-info" style="margin-right: 199px; margin-top: -10px; margin-bottom: 3px; margin-left: 42px; font-size: 12px; color: #8a959f;">\
+                    ${helpers.formatDate(msgData.createdOn)} </div>\
                 {{/if}} \
             </scipt>';
             var miniTableHorizontalTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
@@ -3861,7 +3864,6 @@
                 {{if msgData.message}} \
                     <li data-time="${msgData.createdOnTimemillis}" id="${msgData.messageId || msgItem.clientMessageId}"\
                         class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon tablechart"> \
-                        {{if msgData.createdOn}}<div aria-live="off" class="extra-info">${helpers.formatDate(msgData.createdOn)}</div>{{/if}} \
                         {{if msgData.icon}}<div aria-live="off" class="profile-photo extraBottom"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
                         {{if msgData.message[0].component.payload.text}}<div class="messageBubble tableChart">\
                             <span>{{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "bot")}}</span>\
@@ -3911,6 +3913,10 @@
                             <div class="showMore">Show more</div>\
                         </div>\
                     </li> \
+                {{/if}} \
+		    {{if msgData.createdOn}}\
+                    <div aria-live="off" class="extra-info" style="margin-right: 199px; margin-top: -10px; margin-bottom: 3px; margin-left: 42px; font-size: 12px; color: #8a959f;">\
+                    ${helpers.formatDate(msgData.createdOn)} </div>\
                 {{/if}} \
             </scipt>';
 
