@@ -4133,6 +4133,7 @@
 		var clickType=''; 
                 document.querySelectorAll('.buttonTmplContentChild').forEach(button => {
                     button.addEventListener('click', function(e) {
+			clickType = e.target.type;
                         // Check if any button has already been clicked
                         if (!button.getAttribute('data-clicked')) {
 				if (clickType == 'web_url') {   // for button which have type = weburl
