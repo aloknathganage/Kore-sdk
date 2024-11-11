@@ -1378,6 +1378,10 @@ var ratingTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
 	</div>\
 	</li>\
 {{/if}} \
+	{{if msgData.createdOn}}\
+                            <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+                            ${helpers.formatDate(msgData.createdOn)}</div>\
+    {{/if}} \
 </script>';
 
 /* Sample template structure for List Widget Template 
