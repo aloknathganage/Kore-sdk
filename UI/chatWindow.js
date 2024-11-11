@@ -3915,7 +3915,7 @@
                     </li> \
                 {{/if}} \
 		    {{if msgData.createdOn}}\
-                    <div aria-live="off" class="extra-info" style="margin-right: 199px; margin-top: -10px; margin-bottom: 3px; margin-left: 42px; font-size: 12px; color: #8a959f;">\
+                    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -4px; margin-bottom: 3px; margin-left: 18px; font-size: 12px; color: #8a959f;">\
                     ${helpers.formatDate(msgData.createdOn)} </div>\
                 {{/if}} \
             </scipt>';
