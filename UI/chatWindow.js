@@ -1394,7 +1394,7 @@
                     rtlLanguages:[],//loads from i18n config
                     langFiles:{
                         en: {
-                            message: "Type Here",
+                            message: "Type Here",	//hoonartek customization
                             connecting: "Connecting...",
                             reconnecting: "Reconnecting...",
                             entertosend: "",
@@ -1404,7 +1404,7 @@
                             closeText:"Close",
                             expandText:"Expand",
                             minimizeText:"Minimize",
-                            reconnectText:"Reconnect",
+                            reconnectText:"Refresh",	//hoonartek customization
                             attachmentText:"Attachment"
                         }
                     }
