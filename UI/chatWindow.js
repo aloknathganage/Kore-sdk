@@ -371,6 +371,9 @@
 		if(pincodeRegex.test(removeSpaces)){
                     return removeSpaces
                 }
+		if(panNumberRegex.test(removeSpaces)){
+                    return removeSpaces
+                }
                 return text.replace(/\.$/, '');
               }
             //hoonartek kore customization for mic on off ends
@@ -4977,10 +4980,22 @@
                     }
                     //console.log('Interm: ',interim_transcript);
                     //console.log('final: ',final_transcript);
-                    if (recognizing) {
+	// hoonartek Kore customization for mic on off - Navya
+                    if (recognizing && sessionStorage.getItem("mic")== 'true') {
                         $('.chatInputBox').html(prevStr + "" + interim_transcript);
                         $('.sendButton').removeClass('disabled');
+			micEnable();
                     }
+		// Hoonartek kore customization starts
+                    if (final_transcript !== "") {
+                        var me = window.chatContainerConfig;
+                        me.sendMessage($('.chatInputBox'));
+                        final_transcript = "";  // hoonartek Kore customization for mic on off - Navya
+                        prevStr ="";
+                        // recognition.stop()  //for turn off mic after send 
+
+                    }
+                 // Hoonartek customization ends
 
                     setTimeout(function () {
                         setCaretEnd(document.getElementsByClassName("chatInputBox"));
@@ -5336,7 +5351,7 @@
 
             function playMessageSequence() {
 	// hoonartek kore customization for mic on off (stop the recognization while message playing through speaker)
-                if(recognizing){
+                if(recognizing && audioPlaying){	//hoonartek kore customization for mic on off
                     recognition.stop();
                 }
         // hoonartek kore customization for mic on off
