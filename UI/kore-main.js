@@ -12,7 +12,7 @@
 
 //hoonartek kore customization for mic on off
          $(document).on('click', '.notRecordingMicrophone', function(e) {
-              console.log("clicked mic")
+              console.log("e.originalEvent: ",e.originalEvent)
            if(e.originalEvent)sessionStorage.setItem("mic",true)
        });
        $(document).on('click', '.recordingMicrophone', function(e) {
