@@ -152,7 +152,18 @@
 
 
     return function koreBotChat() {
-
+	/* hoonartek kore Customization for mic starts */
+        window.micAutoOnOff = false;
+        window.enableMicAutoOnOff = function enableMicAutoOnOff(){
+            window.micAutoOnOff = !window.micAutoOnOff;
+            if (window.micAutoOnOff){
+                document.getElementById("mic-auto-btn").style.backgroundColor = "lightgreen";
+                document.getElementById('notRecordingMicBtn').click();
+            }else{
+                document.getElementById("mic-auto-btn").style.backgroundColor = "gray";
+            }
+        }
+        /* hoonartek kore Customization for mic */
         var koreJquery;
         if (window && window.KoreSDK && window.KoreSDK.dependencies && window.KoreSDK.dependencies.jQuery) {
             //load kore's jquery version
@@ -335,7 +346,7 @@
                 return low;
             }
 
-//hoonartek kore customization for mic on off 06-11
+	//hoonartek kore customization for mic on off 06-11
             function readDigitsSeparately(numberString) {
                 return numberString.split('').join(' '); // Splits the string into an array of characters and joins them with a space
             }
