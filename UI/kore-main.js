@@ -9,6 +9,15 @@
         window.parent.postMessage('expandBtn', '*');
     });
     // hoonartek customization for iframe issue ends
+
+//hoonartek kore customization for mic on off
+         $(document).on('click', '.notRecordingMicrophone', function(e) {
+           if(e.originalEvent)sessionStorage.setItem("mic",true)
+       });
+       $(document).on('click', '.recordingMicrophone', function(e) {
+           if(e.originalEvent)sessionStorage.setItem("mic",false)
+       });
+//hoonartek kore customization for mic on off ends
     
     $(document).ready(function () {
         function assertion(options, callback) {
