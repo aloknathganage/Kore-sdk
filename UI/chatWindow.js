@@ -1703,9 +1703,9 @@
                             return;
                         }
                 //hoonartek kore customization for mic on off
-                        // if ($('.recordingMicrophone').is(':visible')) {
-                        //     $('.recordingMicrophone').trigger('click');
-                        // }
+                        if ($('.recordingMicrophone').is(':visible')) {
+                            $('.recordingMicrophone').trigger('click');
+                        }
                 //hoonartek kore customization for mic on off
                         event.preventDefault();
 
