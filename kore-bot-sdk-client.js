@@ -135,6 +135,20 @@ KoreBot.prototype.fetchUserLocation = function() {
   };
   navigator.geolocation.getCurrentPosition(successCallback);
 };
+// hoonartek kore customization for mic
+function reFormatUserText(text){
+  const phoneRegex = /^\d{10}$/;
+  let removeSpaces = text.replace(/\s/g, "");
+  const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i;
+    if (vehicleRegex.test(removeSpaces)) {
+      return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
+    }
+    if(phoneRegex.test(removeSpaces)){
+        return removeSpaces
+    }
+  return text.replace(/\.$/, '');
+}
+// hoonartek kore customization for mic ends
 /*
 sends a message to bot.
 */
@@ -151,6 +165,11 @@ KoreBot.prototype.sendMessage = function(message,optCb) {
 		if(userLocation.latitude !== 0 && userLocation.longitude !== 0) { //passing location for each message
 			message["meta"].location = userLocation;
 		}
+		// hoonartek kore customization for mic
+		    if(message?.message?.body){
+		      message.message.body = reFormatUserText(message.message.body);
+		    }
+   		// hoonartek kore customization for mic ends
 		this.RtmClient.sendMessage(message,optCb);
 	}else{
 		if(optCb){
