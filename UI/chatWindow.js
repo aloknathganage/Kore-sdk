@@ -5357,10 +5357,10 @@
                     }    
                 }
 	// hoonartek kore customization for mic on off
-                if(recognizing){
+                if(recognizing && audioPlaying){    //hoonartek kore customization for mic on off)
                     recognition.stop();
                 }
-                else if(sessionStorage.getItem("mic")== 'true' && !recognizing){
+                else if(sessionStorage.getItem("mic")== 'true' && !recognizing && !audioPlaying){   //hoonartek kore customization for mic on off
                     recognition.start();  
                 }
         // hoonartek kore customization for mic on off ends
