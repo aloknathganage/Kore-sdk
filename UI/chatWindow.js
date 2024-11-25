@@ -152,18 +152,7 @@
 
 
     return function koreBotChat() {
-	/* hoonartek kore Customization for mic starts */
-        window.micAutoOnOff = false;
-        window.enableMicAutoOnOff = function enableMicAutoOnOff(){
-            window.micAutoOnOff = !window.micAutoOnOff;
-            if (window.micAutoOnOff){
-                document.getElementById("mic-auto-btn").style.backgroundColor = "lightgreen";
-                document.getElementById('notRecordingMicBtn').click();
-            }else{
-                document.getElementById("mic-auto-btn").style.backgroundColor = "gray";
-            }
-        }
-        /* hoonartek kore Customization for mic */
+
         var koreJquery;
         if (window && window.KoreSDK && window.KoreSDK.dependencies && window.KoreSDK.dependencies.jQuery) {
             //load kore's jquery version
@@ -345,94 +334,6 @@
                 }
                 return low;
             }
-
-	//hoonartek kore customization for mic on off 06-11
-            function readDigitsSeparately(numberString) {
-                return numberString.split('').join(' '); // Splits the string into an array of characters and joins them with a space
-            }
-            //hoonartek kore customization for mic on off
-
-	//hoonartek kore customization for mic on off
-            function reFormatUserText(text){
-                const phoneRegex = /^\d{10}$/;
-                let removeSpaces = text.replace(/\s/g, "");
-                const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i;
-		const policyRegex = /^\d{18}$/;
-		const pincodeRegex = /^\d{6}$/;
-                  if (vehicleRegex.test(removeSpaces)) {
-                    return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
-                  }
-                  if(phoneRegex.test(removeSpaces)){
-                      return removeSpaces
-                  }
-		if(policyRegex.test(removeSpaces)){
-                    return removeSpaces
-                }
-		if(pincodeRegex.test(removeSpaces)){
-                    return removeSpaces
-                }
-		if(panNumberRegex.test(removeSpaces)){
-                    return removeSpaces
-                }
-                return text.replace(/\.$/, '');
-              }
-            //hoonartek kore customization for mic on off ends
-		
-            //hoonartek kore customization for mic on off
-            function sortSpeakText(speakText,obj){
-                let text = speakText;
-                console.log(obj)
-                if(!speakText){
-                    let payload =obj.message[0].component.payload
-                    let type = payload.template_type ?? null
-                    text = obj.message[0].cInfo.body
-                    switch (type) {
-                        case 'quick_replies':
-                            let text_quick_replies = payload.quick_replies.map(item => item.title).join(', ');
-                            text += `Options  ${text_quick_replies}`
-                            break;
-                        case 'button':
-                            let text_button = payload.buttons.map(item => item.title).join(', ');
-                            text += `Options  ${text_button}`
-                            break;
-                        case 'dropdown_template':
-                            // let text_dropdown_template = payload.buttons.map(item => item.title).join(', ');
-                            // text += `Options  ${text_dropdown_template}`
-                            text = 'Please select the value manually'
-                            break;
-                        case 'multi_select':
-                            text = 'Please select the options manually'
-                            break  
-                        case 'carousel':
-                            text = 'Please select the options manually'
-                            break 
-			case 'countryDropdownTemplate':
-                            text = 'Please select the options manually'
-                            break
-                        case 'insuranceTemplate':
-                            text = 'Please select the options manually'
-                            break
-
-                        default:
-                            break;
-                    }
-
-                }
-		else{
-                    console.log("This is text ")
-                }
-		    
-                //hoonartek kore customization for mic on off 06-11
-                text = text.replace(/Rs\.?\s?(\d{1,3}(?:,\s?\d{3})*)\/-/g, (match, p1) => {
-                    return `rupees ${p1.replaceAll(/,\s*/g, '')}`;
-                  }).replace(/<\/?b>/g, '')
-                    .replace(/\s?\./g, '')
-                    text = text.replace(/\b\d{6}\b/g, match => readDigitsSeparately(match));
-                return text;
-                //hoonartek kore customization for mic on off
-		    
-            }
-//hoonartek kore customization for mic on off
             
             function xssAttack(txtStr) {
                 //   if (compObj && compObj[0] && compObj[0].componentType === "text") {
@@ -1702,11 +1603,9 @@
                             alert('Uploading file, please wait...');
                             return;
                         }
-                //hoonartek kore customization for mic on off
                         if ($('.recordingMicrophone').is(':visible')) {
                             $('.recordingMicrophone').trigger('click');
                         }
-                //hoonartek kore customization for mic on off
                         event.preventDefault();
 
                         me.sendMessage(_this, me.attachmentInfo);
@@ -2239,10 +2138,7 @@
                     // });
                     me.resetWindow();
                 // hoonartek customization for clear history ends
-	// hoonartek kore customization for mic on off
-                    // $('.recordingMicrophone').trigger('click');
-                    	sessionStorage.setItem("mic",false)
-        // hoonartek kore customization for mic ends
+                    $('.recordingMicrophone').trigger('click');
                     if (ttsAudioSource) {
                         ttsAudioSource.stop();
                     }
@@ -2706,11 +2602,6 @@
                 me.customTemplateObj.helpers = me.helpers;
                 me.customTemplateObj.extension = extension;
                 graphLibGlob = me.config.graphLib || "d3";
-	// hoonartek kore customization for mic
-                if(msgData.type === "currentUser"){
-                    msgData.message[0].cInfo.body = reFormatUserText(msgData.message[0].cInfo.body);
-                }
-        // hoonartek kore customization for mic ends
                 if (msgData.type === "bot_response") {
 
                     // kore customization starts (showing table )
@@ -3495,9 +3386,6 @@
                         _txtToSpeak = msgData.message[0].component.payload.speech_hint;
                     }
                     if (me.config.ttsInterface&&me.config.ttsInterface==="webapi") {
-		// hoonartek kore customization for mic on off
-                        _txtToSpeak=sortSpeakText(_txtToSpeak,msgData)
-                // hoonartek kore customization for mic on off ends
                         _ttsConnection = me.speakWithWebAPI(_txtToSpeak);
                     }else if(me.config.ttsInterface && me.config.ttsInterface==="awspolly"){
                         if(!window.speakTextWithAWSPolly){
@@ -4980,22 +4868,10 @@
                     }
                     //console.log('Interm: ',interim_transcript);
                     //console.log('final: ',final_transcript);
-	// hoonartek Kore customization for mic on off - Navya
-                    if (recognizing && sessionStorage.getItem("mic")== 'true') {
+                    if (recognizing) {
                         $('.chatInputBox').html(prevStr + "" + interim_transcript);
                         $('.sendButton').removeClass('disabled');
-			micEnable();
                     }
-		// Hoonartek kore customization starts
-                    if (final_transcript !== "") {
-                        var me = window.chatContainerConfig;
-                        me.sendMessage($('.chatInputBox'));
-                        final_transcript = "";  // hoonartek Kore customization for mic on off - Navya
-                        prevStr ="";
-                        // recognition.stop()  //for turn off mic after send 
-
-                    }
-                 // Hoonartek customization ends
 
                     setTimeout(function () {
                         setCaretEnd(document.getElementsByClassName("chatInputBox"));
@@ -5350,11 +5226,6 @@
             }
 
             function playMessageSequence() {
-	// hoonartek kore customization for mic on off (stop the recognization while message playing through speaker)
-                if(recognizing && audioPlaying){	//hoonartek kore customization for mic on off
-                    recognition.stop();
-                }
-        // hoonartek kore customization for mic on off
                 if (!speechSyn) {
                     speechSyn = new SpeechSynthesisUtterance();
                 }
@@ -5365,20 +5236,9 @@
                     window.speechSynthesis.speak(speechSyn);
                     speechSyn.onend = function () {
                         audioPlaying = false;
-		 //hoonartek kore customization for mic on off
-                        // if(!recognizing)recognition.start(); 
-                //hoonartek kore customization for mic on off
                         playMessageSequence();
                     }    
                 }
-	// hoonartek kore customization for mic on off
-                if(recognizing && audioPlaying){    //hoonartek kore customization for mic on off)
-                    recognition.stop();
-                }
-                else if(sessionStorage.getItem("mic")== 'true' && !recognizing && !audioPlaying){   //hoonartek kore customization for mic on off
-                    recognition.start();  
-                }
-        // hoonartek kore customization for mic on off ends
             }
 
             function createSocketForTTS() {
