@@ -1,5 +1,5 @@
 (function(KoreSDK){
-
+//test
     var KoreSDK=KoreSDK||{};
 
     var botOptions = {};
