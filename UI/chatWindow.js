@@ -416,6 +416,12 @@
 
                 }
                 else{
+		//hoonartek kore customization for mic on off - enter pan card manually
+                    const pancard = "PAN for KYC purpose"
+                    // const words = text.split(/\s+/); // Split by spaces
+                    if(text.includes(pancard)){
+                        text = 'Please enter the Pan Card Number Manually'
+                    }
                     console.log("This is text ")
                 }
                 //hoonartek kore customization for mic on off
@@ -424,6 +430,7 @@
                       }).replace(/<\/?b>/g, '')
                         .replace(/\s?\./g, '')
                         text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
+		    	text = text.replace(/\b\d{18}\b/g, match => readDigitsSeparately(match)); //policy number read sep
                 return text;
                 //hoonartek kore customization for mic on off
             }
