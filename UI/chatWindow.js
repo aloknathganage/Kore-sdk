@@ -427,7 +427,7 @@
                     console.log("This is text ")
                 }
                 //hoonartek kore customization for mic on off new
-                 text = text.replace(/₹\s?(\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?)/g, (match, p1) => { 	// for rupees
+                 text = text.replace(/₹\s?(\d{1,3}(?:,\s?\d{3})*)\/-/g, (match, p1) => { 	// for rupees
                         return `rupees ${p1.replace(/,\s*/g, '')}`;
                         }).replace(/<\/?b>/g, '')
                         text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
