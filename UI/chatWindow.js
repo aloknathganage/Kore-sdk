@@ -222,12 +222,13 @@
             /*************************** file upload variable *******************************/
             var appConsts = {};
             var attachmentInfo = {};
-            var allowedFileTypes = ["m4a", "amr", "aac", "wav", "mp3", "mp4", "mov", "3gp", "flv", "png", "jpg", "jpeg", "gif", "bmp", "csv", "txt", "json", "pdf", "doc", "dot", "docx", "docm"
-                , "dotx", "dotm", "xls", "xlt", "xlm", "xlsx", "xlsm", "xltx", "xltm", "xlsb", "xla", "xlam", "xll", "xlw", "ppt", "pot", "pps", "pptx", "pptm", "potx", "potm", "ppam",
-                "ppsx", "ppsm", "sldx", "sldm", "zip", "rar", "tar", "wpd", "wps", "rtf", "msg", "dat", "sdf", "vcf", "xml", "3ds", "3dm", "max", "obj", "ai", "eps", "ps", "svg", "indd", "pct", "accdb",
-                "db", "dbf", "mdb", "pdb", "sql", "apk", "cgi", "cfm", "csr", "css", "htm", "html", "jsp", "php", "xhtml", "rss", "fnt", "fon", "otf", "ttf", "cab", "cur", "dll", "dmp", "drv", "7z", "cbr",
-                "deb", "gz", "pkg", "rpm", "zipx", "bak", "avi", "m4v", "mpg", "rm", "swf", "vob", "wmv", "3gp2", "3g2", "asf", "asx", "srt", "wma", "mid", "aif", "iff", "m3u", "mpa", "ra", "aiff", "tiff",
-                "log"];
+            // var allowedFileTypes = ["m4a", "amr", "aac", "wav", "mp3", "mp4", "mov", "3gp", "flv", "png", "jpg", "jpeg", "gif", "bmp", "csv", "txt", "json", "pdf", "doc", "dot", "docx", "docm"
+            //     , "dotx", "dotm", "xls", "xlt", "xlm", "xlsx", "xlsm", "xltx", "xltm", "xlsb", "xla", "xlam", "xll", "xlw", "ppt", "pot", "pps", "pptx", "pptm", "potx", "potm", "ppam",
+            //     "ppsx", "ppsm", "sldx", "sldm", "zip", "rar", "tar", "wpd", "wps", "rtf", "msg", "dat", "sdf", "vcf", "xml", "3ds", "3dm", "max", "obj", "ai", "eps", "ps", "svg", "indd", "pct", "accdb",
+            //     "db", "dbf", "mdb", "pdb", "sql", "apk", "cgi", "cfm", "csr", "css", "htm", "html", "jsp", "php", "xhtml", "rss", "fnt", "fon", "otf", "ttf", "cab", "cur", "dll", "dmp", "drv", "7z", "cbr",
+            //     "deb", "gz", "pkg", "rpm", "zipx", "bak", "avi", "m4v", "mpg", "rm", "swf", "vob", "wmv", "3gp2", "3g2", "asf", "asx", "srt", "wma", "mid", "aif", "iff", "m3u", "mpa", "ra", "aiff", "tiff",
+            //     "log"];
+	    var allowedFileTypes = ["png", "doc", "pdf", "jpg", "jpeg"]; // hoonartek customization
             appConsts.CHUNK_SIZE = 1024 * 1024;
             var filetypes = {}, audio = ['m4a', 'amr', 'wav', 'aac', 'mp3'], video = ['mp4', 'mov', '3gp', 'flv'], image = ['png', 'jpg', 'jpeg','gif'];
             filetypes.audio = audio;
@@ -256,6 +257,7 @@
             var chatInitialize;
             var recognizer;
             var customTemplateObj = {};
+	    var conMicOff = false;   // hoonartek kore customization for mic on off
             window.chartColors = ['#75b0fe', '#f78083', '#99ed9e', '#fde296', '#26344a', '#5f6bf7', '#b3bac8', '#99a1fd', '#9cebf9', '#f7c7f4'];
             /**************************File upload variable end here **************************/
             var _escPressed = 0;
@@ -424,13 +426,12 @@
                     }
                     console.log("This is text ")
                 }
-                //hoonartek kore customization for mic on off
-                text = text.replace(/Rs\.?\s?(\d{1,3}(?:,\s?\d{3})*)\/-/g, (match, p1) => {
-                        return `rupees ${p1.replaceAll(/,\s*/g, '')}`;
-                      }).replace(/<\/?b>/g, '')
-                        .replace(/\s?\./g, '')
+                //hoonartek kore customization for mic on off new
+                 text = text.replace(/₹\s?(\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?)/g, (match, p1) => { 	// for rupees
+                        return `rupees ${p1.replace(/,\s*/g, '')}`;
+                        }).replace(/<\/?b>/g, '')
                         text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
-		    	text = text.replace(/\b\d{18}\b/g, match => readDigitsSeparately(match)); //policy number read sep
+                        text = text.replace(/\b\d{18}\b/g, match => readDigitsSeparately(match)); //policy number read sep
                 return text;
                 //hoonartek kore customization for mic on off
             }
@@ -5364,6 +5365,14 @@
                 if (audioMsgs.length > 0 && !audioPlaying) {
                     audioPlaying = true;
                     speechSyn.text = audioMsgs.shift();
+		//hoonartek kore customization for mic on off starts1 for checkbox/templates mic on off
+                    if(speechSyn.text == 'Please select the value manually' || speechSyn.text == 'Please select the options manually'){
+                        conMicOff = true;
+                    }
+                    else{
+                        conMicOff = false;
+                    }
+                //hoonartek kore customization for mic on off ends1
                     window.speechSynthesis.speak(speechSyn);
                     speechSyn.onend = function () {
                         audioPlaying = false;
@@ -5373,7 +5382,7 @@
                 if(recognizing && audioPlaying){    //hoonartek kore customization for mic on off
                     recognition.stop();
                 }
-                else if(sessionStorage.getItem("mic")== 'true' && !recognizing && !audioPlaying){   //hoonartek kore customization for mic on off
+                else if(sessionStorage.getItem("mic")== 'true' && !recognizing && !audioPlaying && !conMicOff){   //hoonartek kore customization for mic on off
                     recognition.start();  
                 }
         //hoonartek kore customization for mic on off
