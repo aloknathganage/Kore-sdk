@@ -138,6 +138,9 @@ KoreBot.prototype.fetchUserLocation = function() {
 // hoonartek kore customization for mic
 function reFormatUserText(text){
   const phoneRegex = /^\d{10}$/;
+  const policyRegex = /^\d{18}$/;
+  const pincodeRegex = /^\d{6}$/;
+  const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/;
   let removeSpaces = text.replace(/\s/g, "");
   const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i;
     if (vehicleRegex.test(removeSpaces)) {
@@ -145,7 +148,15 @@ function reFormatUserText(text){
     }
     if(phoneRegex.test(removeSpaces)){
         return removeSpaces
-    }
+    } if(policyRegex.test(removeSpaces)){
+      return removeSpaces
+  }
+  if(pincodeRegex.test(removeSpaces)){
+      return removeSpaces
+  }
+  if(panNumberRegex.test(removeSpaces)){
+      return removeSpaces
+  }
   return text.replace(/\.$/, '');
 }
 // hoonartek kore customization for mic ends
