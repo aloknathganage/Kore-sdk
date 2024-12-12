@@ -385,7 +385,12 @@
                 if(!speakText){
                     let payload =obj.message[0].component.payload
                     let type = payload.template_type ?? null
+		    let formdata = obj.message[0].component.formData
                     text = obj.message[0].cInfo.body
+		if(formdata){
+                        text = "Please fill out the form manually"
+                    }
+		else{
                     switch (type) {
                         case 'quick_replies':
                             let text_quick_replies = payload.quick_replies.map(item => item.title).join(', ');
@@ -414,8 +419,8 @@
                             break
                         default:
                             break;
-                    }
-
+                    	}
+		     } //end else
                 }
                 else{
 		//hoonartek kore customization for mic on off - enter pan card manually
@@ -5366,7 +5371,7 @@
                     audioPlaying = true;
                     speechSyn.text = audioMsgs.shift();
 		//hoonartek kore customization for mic on off starts1 for checkbox/templates mic on off
-                    if(speechSyn.text == 'Please select the value manually' || speechSyn.text == 'Please select the options manually'){
+                    if(speechSyn.text == 'Please select the value manually' || speechSyn.text == 'Please select the options manually'|| speechSyn.text == 'Please fill out the form manually'){
                         conMicOff = true;
                     }
                     else{
