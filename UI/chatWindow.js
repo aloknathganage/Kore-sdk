@@ -3847,7 +3847,9 @@
                                         {{if msgItem.url}}url="${msgItem.url}"{{/if}}\
                                         class="buttonTmplContentChild" data-value="${msgItem.value}"\
                                         type="${msgItem.type}">\
-                                        ${msgItem.title}\
+                                        <span class="button-title">${msgItem.title}</span>\
+                                        <br>\
+                                        <span class="button-subtitle">${msgItem.subtitle}</span>\
                                         </li> \
                                     </a> \
                                 {{/each}} \
