@@ -1145,6 +1145,15 @@
     line-height: 1.5;
 }
 
+/* hoonartek customization for button template title and subtitle font */
+.kore-chat-window .buttonTmplContent .buttonTmplContentChild .button-title {
+    font-size: 14px; /* Adjust the font size for the title */
+}
+.kore-chat-window .buttonTmplContent .buttonTmplContentChild .button-subtitle {
+    font-size: 12px;
+}
+/* hoonartek customization for button template title and subtitle font ends*/
+
 .kore-chat-window .buttonTmplContent .buttonTmplContentHeading {
     text-align: left;
     color: var(--sdk-chat-window-bot-bubble-font-clr);
