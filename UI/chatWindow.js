@@ -3817,7 +3817,8 @@
                         class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} {{if msgData.icon}}with-icon{{/if}}"> \
                         <div class="buttonTmplContent"> \
                             {{if msgData.icon}}<div aria-live="off" class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
-                            <ul class="buttonTmplContentBox">\
+		    		<!-- hoonartek customization for round button more than 3 -->\
+                            <ul class="buttonTmplContentBox" {{if msgData.message[0].component.payload.buttons.length > 3}}many-buttons{{else}}few-buttons{{/if}}">\
                                 <li class="buttonTmplContentHeading"> \
                                     {{if msgData.type === "bot_response"}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "bot")}} {{else}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "user")}} {{/if}} \
                                     {{if msgData.message[0].cInfo && msgData.message[0].cInfo.emoji}} \
