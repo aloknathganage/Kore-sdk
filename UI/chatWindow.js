@@ -1590,6 +1590,7 @@
 
             chatWindow.prototype.resetWindow = function () {
                 var me = this;
+		sessionStorage.removeItem('button'); // brand color hoonartek customization for Remove the session item when the window is reset 
                 me.config.chatContainer.find('.kore-chat-header .header-title').html(me.config.botMessages.reconnecting);
                 me.config.chatContainer.find('.chat-container').html("");        // hoonartek customization for clear history after reconnect uncommented
                 me.bot.close();
@@ -1869,6 +1870,9 @@
                         $('.chatInputBox').text($(this).attr('actual-value') || $(this).attr('value'));
                         //var _innerText = $(this)[0].innerText.trim() || $(this).attr('data-value').trim();
                         var _innerText = ($(this)[0] && $(this)[0].innerText) ? $(this)[0].innerText.trim() : "" || ($(this) && $(this).attr('data-value')) ? $(this).attr('data-value').trim() : "";
+			    // brand color
+                            console.log("_innerText............",_innerText)
+                        // brand color ends
                         me.sendMessage($('.chatInputBox'), _innerText);
                     } else if (type == "url" || type == "web_url") {
                         if($(this).attr('msgData')!==undefined){
@@ -2694,6 +2698,43 @@
                 });
             };
 
+ // brand color
+function  applyTheme(input){                            
+switch(input){
+	case "Motor":
+	case "motor":
+	    console.log("in case")
+	    document.querySelectorAll('.buttonTmplContentChild, li.fromCurrentUser .messageBubble, .kore-chat-window a').forEach(button => {
+	    button.style.backgroundColor = "#00a3b0"
+	    // document.querySelectorAll('.buttonTmplContentChild').forEach(button => {
+	    // button.style.backgroundColor = "#00a3b0"
+	    })
+	break;
+	case "Health":
+	case "health":
+	    console.log("in case")
+	    document.querySelectorAll('.buttonTmplContentChild, .messageBubble, .kore-chat-window a').forEach(button => {
+	    button.style.backgroundColor = "#009690";
+	    })
+	break;
+	case "Travel":
+	case "travel":
+	    console.log("in case")
+	    document.querySelectorAll('.buttonTmplContentChild, .messageBubble, .kore-chat-window a').forEach(button => {
+	    button.style.backgroundColor = "#5095b3";
+	    })
+	break;
+	default:
+	    document.querySelectorAll('.buttonTmplContentChild, .messageBubble, .kore-chat-window a').forEach(button => {
+		button.style.backgroundColor = "#0d6efd";
+		})
+		break;
+	    }
+    }
+
+
+
+
             chatWindow.prototype.renderMessage = function (msgData) {
                 var me = this, messageHtml = '', extension = '', _extractedFileName = '';
                 var helpers=me.helpers;
@@ -2764,6 +2805,15 @@
                 }
                 else {
                     waiting_for_message = false;
+	// brand color 
+			let setitem = msgData.message[0].cInfo.body
+                    console.log(setitem.className)
+                    console.log("item to be set item......:", setitem)
+                    if(setitem === "Motor" ||setitem === "motor"|| setitem === "Health" || setitem === "health"|| setitem === "Travel"|| setitem === "travel"){
+                                sessionStorage.setItem('button', setitem);
+                                // setitem.style.backgroundColor = "#00a3b0";
+        
+                    }
                 }
                 var _chatContainer = $(me.config.chatContainer).find('.chat-container');
                 if (msgData.message && msgData.message[0] && msgData.message[0].cInfo && msgData.message[0].cInfo.attachments) {
@@ -2793,6 +2843,17 @@
                             'helpers': helpers,
                             'extension': extension
                         });
+			//change brand color for upcoming buttons css
+                        console.log("2nd.....")
+                        
+                        var sessionItem = sessionStorage.getItem('button')
+                            console.log("sessionItem............",sessionItem)
+                            
+                        if(sessionItem){
+                            applyTheme(sessionItem);
+                        }else{
+                            console.log(" Render There is no item in session storage")
+                        }
                     }
                     else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "wait_for_response") {// to show typing indicator until next response receive
                         waiting_for_message = true;
@@ -3412,6 +3473,13 @@
                             'extension': extension,
                             'extractedFileName': _extractedFileName
                         });
+			//brand color
+                        currentItem = msgData.message[0].cInfo.body;
+                        sessionIte = sessionStorage.getItem('button')
+                        console.log("........2............",sessionIte)
+                        if(currentItem===sessionIte){
+                            applyTheme(sessionItem)
+                        }
                     }
 
                     //For Agent presence
@@ -4234,9 +4302,22 @@
         //hoonartek customization starts for button
         } else if (tempType === "templatebutton") {
             console.log("this is the button");
+		
+            // hoonartek customization for brand color
+            let currentButton = null;
 
             // Wait for the button template to be rendered
             setTimeout(function() {
+		//cust1 for brand color
+		const sessionItem = sessionStorage.getItem('button');
+            console.log("CsessionItem.............:", sessionItem)
+                if(sessionItem){
+                    applyTheme(sessionItem)
+                }else{
+    
+                    console.log("There is not item in sessionItem.",sessionItem)
+                }
+                 // brand color code ends
                 // Add a click event listener to each button
                 var clickType='';
     
@@ -4642,6 +4723,14 @@
                     });
                 }
             }*/
+
+	// brand color to clear the session storage
+            window.onload = function () {
+                // Clear all session storage items
+                sessionStorage.clear();
+                console.log("All session storage items cleared after reload.");
+            };
+		
             window.onbeforeunload = function () {
                 if (chatInitialize && $(chatInitialize.config.chatContainer).length > 0) {
                     chatInitialize.stopSpeaking();
