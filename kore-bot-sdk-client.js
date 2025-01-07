@@ -136,28 +136,58 @@ KoreBot.prototype.fetchUserLocation = function() {
   navigator.geolocation.getCurrentPosition(successCallback);
 };
 // hoonartek kore customization for mic
-function reFormatUserText(text){
-  const phoneRegex = /^\d{10}$/;
-  const policyRegex = /^\d{18}$/;
-  const pincodeRegex = /^\d{6}$/;
-  const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/;
+// function reFormatUserText(text){
+//   const phoneRegex = /^\d{10}$/;
+//   const policyRegex = /^\d{18}$/;
+//   const pincodeRegex = /^\d{6}$/;
+//   const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/;
+//   let removeSpaces = text.replace(/\s/g, "");
+//   const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i;
+//     if (vehicleRegex.test(removeSpaces)) {
+//       return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
+//     }
+//     if(phoneRegex.test(removeSpaces)){
+//         return removeSpaces
+//     } if(policyRegex.test(removeSpaces)){
+//       return removeSpaces
+//   }
+//   if(pincodeRegex.test(removeSpaces)){
+//       return removeSpaces
+//   }
+//   if(panNumberRegex.test(removeSpaces)){
+//       return removeSpaces
+//   }
+//   return text.replace(/\.$/, '');
+// }
+function reFormatUserText(text) {
+  const phoneRegex = /^\d{10}$/; // Validates a 10-digit phone number
+  const policyRegex = /^\d{18}$/; // Validates an 18-digit policy number
+  const pincodeRegex = /^\d{6}$/; // Validates a 6-digit pincode
+  const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/; // Validates a PAN number
+  const passportRegex = /^[A-Z]{1}\d{7}$/; // Validates a passport number (1 letter followed by 7 digits)
+  const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i; // Validates vehicle registration number
   let removeSpaces = text.replace(/\s/g, "");
-  const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i;
-    if (vehicleRegex.test(removeSpaces)) {
-      return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
-    }
-    if(phoneRegex.test(removeSpaces)){
-        return removeSpaces
-    } if(policyRegex.test(removeSpaces)){
-      return removeSpaces
+ 
+  if (vehicleRegex.test(removeSpaces)) {
+    return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
   }
-  if(pincodeRegex.test(removeSpaces)){
-      return removeSpaces
+  if (phoneRegex.test(removeSpaces)) {
+    return removeSpaces;
   }
-  if(panNumberRegex.test(removeSpaces)){
-      return removeSpaces
+  if (policyRegex.test(removeSpaces)) {
+    return removeSpaces;
   }
-  return text.replace(/\.$/, '');
+  if (pincodeRegex.test(removeSpaces)) {
+    return removeSpaces;
+  }
+  if (panNumberRegex.test(removeSpaces)) {
+    return removeSpaces;
+  }
+  if (passportRegex.test(removeSpaces)) {
+    return removeSpaces;
+  }
+ 
+  return text.replace(/\.$/, ''); // Removes a trailing period if no match
 }
 // hoonartek kore customization for mic ends
 /*
