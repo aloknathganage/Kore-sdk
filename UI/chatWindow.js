@@ -407,7 +407,7 @@
 		    return removeSpaces;
 		  }
 		 
-		  return text.replace(/\.$/, ''); // Removes a trailing period if no match
+		  return text.replace(/,|\.$/g, ''); // Removes a trailing period if no match
 		}
             //hoonartek kore customization for mic on off
             function sortSpeakText(speakText,obj){
@@ -468,6 +468,7 @@
                         }).replace(/<\/?b>/g, '')
                         text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
                         text = text.replace(/\b\d{18}\b/g, match => readDigitsSeparately(match)); //policy number read sep
+		    	text = text.replace(/[😄😊✈️🚗]/g, '', match => readDigitsSeparately(match)); //for emoji prompt
                 return text;
                 //hoonartek kore customization for mic on off
             }
