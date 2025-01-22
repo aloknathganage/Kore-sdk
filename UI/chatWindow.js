@@ -407,7 +407,7 @@
 		    return removeSpaces;
 		  }
 		 
-		  return text.replace(/,|\.$/g, ''); // Removes a trailing period if no match
+		  return text.replace(/\.$/g, ''); // Removes a trailing period if no match
 		}
             //hoonartek kore customization for mic on off
             function sortSpeakText(speakText,obj){
