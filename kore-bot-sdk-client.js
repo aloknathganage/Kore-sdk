@@ -160,6 +160,7 @@ KoreBot.prototype.fetchUserLocation = function() {
 //   return text.replace(/\.$/, '');
 // }
 function reFormatUserText(text) {
+  console.log("In reFormatUserText in kore bot client sdk file");
   const phoneRegex = /^\d{10}$/; // Validates a 10-digit phone number
   const policyRegex = /^\d{18}$/; // Validates an 18-digit policy number
   const pincodeRegex = /^\d{6}$/; // Validates a 6-digit pincode
