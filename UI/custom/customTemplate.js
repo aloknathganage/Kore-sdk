@@ -493,49 +493,95 @@
 
 		// hoonartek customization for prechecked option script
 	// hoonartek customization for by default selected By online policy
-	var checkBoxesTemplate =  '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
-            {{if msgData.message}} \
-            <li {{if msgData.type !== "bot_response"}}id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon"> \
-                    <div class = "listTmplContent"> \
-                        {{if msgData.icon}}<div aria-live="off" class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
-                        <ul class="{{if msgData.message[0].component.payload.fromHistory}} dummy listTmplContentBox  {{else}} listTmplContentBox{{/if}} "> \
-                            {{if msgData.message[0].component.payload.title || msgData.message[0].component.payload.heading}} \
-                                <li class="listTmplContentHeading"> \
-                                    {{if msgData.type === "bot_response" && msgData.message[0].component.payload.heading}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.heading, "bot")}} {{else}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "user")}} {{/if}} \
-                                    {{if msgData.message[0].cInfo && msgData.message[0].cInfo.emoji}} \
-                                        <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}</span> \
-                                    {{/if}} \
-                                </li> \
-                            {{/if}} \
-                            {{each(key, msgItem) msgData.message[0].component.payload.elements}} \
-                                {{if msgData.message[0].component.payload.buttons}} \
-                                    <li class="listTmplContentChild"> \
-                                        <div class="checkbox checkbox-primary styledCSS checkboxesDiv"> \
-                                            <input  class = "checkInput" type="checkbox" text = "${msgItem.title}" value = "${msgItem.value}" id="${msgItem.value}${msgData.messageId}" \
-                                            {{if msgItem.prechecked}} checked="checked" disabled="disabled"{{/if}}> \
-                                            <label for="${msgItem.value}${msgData.messageId}">{{html helpers.convertMDtoHTML(msgItem.title, "bot")}}</label> \
-                                        </div> \
-                                    </li> \
-                                {{/if}} \
-                            {{/each}} \
-                            <div class="{{if msgData.message[0].component.payload.fromHistory}} hide  {{else}} checkboxButtons {{/if}} "> \
-                                {{each(key, buttonData) msgData.message[0].component.payload.buttons}} \
-                                    <div class="checkboxBtn" value=${buttonData.payload} title="${buttonData.title}"> \
-                                        ${buttonData.title} \
-                                    </div> \
-                                {{/each}} \
-                            </div> \
-                        </ul> \
-                    </div> \
-                </li> \
-            {{/if}} \
+	// var checkBoxesTemplate =  '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
+ //            {{if msgData.message}} \
+ //            <li {{if msgData.type !== "bot_response"}}id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon"> \
+ //                    <div class = "listTmplContent"> \
+ //                        {{if msgData.icon}}<div aria-live="off" class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
+ //                        <ul class="{{if msgData.message[0].component.payload.fromHistory}} dummy listTmplContentBox  {{else}} listTmplContentBox{{/if}} "> \
+ //                            {{if msgData.message[0].component.payload.title || msgData.message[0].component.payload.heading}} \
+ //                                <li class="listTmplContentHeading"> \
+ //                                    {{if msgData.type === "bot_response" && msgData.message[0].component.payload.heading}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.heading, "bot")}} {{else}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "user")}} {{/if}} \
+ //                                    {{if msgData.message[0].cInfo && msgData.message[0].cInfo.emoji}} \
+ //                                        <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}</span> \
+ //                                    {{/if}} \
+ //                                </li> \
+ //                            {{/if}} \
+ //                            {{each(key, msgItem) msgData.message[0].component.payload.elements}} \
+ //                                {{if msgData.message[0].component.payload.buttons}} \
+ //                                    <li class="listTmplContentChild"> \
+ //                                        <div class="checkbox checkbox-primary styledCSS checkboxesDiv"> \
+ //                                            <input  class = "checkInput" type="checkbox" text = "${msgItem.title}" value = "${msgItem.value}" id="${msgItem.value}${msgData.messageId}" \
+ //                                            {{if msgItem.prechecked}} checked="checked" disabled="disabled"{{/if}}> \
+ //                                            <label for="${msgItem.value}${msgData.messageId}">{{html helpers.convertMDtoHTML(msgItem.title, "bot")}}</label> \
+ //                                        </div> \
+ //                                    </li> \
+ //                                {{/if}} \
+ //                            {{/each}} \
+ //                            <div class="{{if msgData.message[0].component.payload.fromHistory}} hide  {{else}} checkboxButtons {{/if}} "> \
+ //                                {{each(key, buttonData) msgData.message[0].component.payload.buttons}} \
+ //                                    <div class="checkboxBtn" value=${buttonData.payload} title="${buttonData.title}"> \
+ //                                        ${buttonData.title} \
+ //                                    </div> \
+ //                                {{/each}} \
+ //                            </div> \
+ //                        </ul> \
+ //                    </div> \
+ //                </li> \
+ //            {{/if}} \
+	// {{if msgData.createdOn}}\
+	// 	    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+	// 	    ${helpers.formatDate(msgData.createdOn)}</div>\
+	// {{/if}} \
+ //        </script>';
+
+// Anurag script added on 29-01-2025
+		var checkBoxesTemplate =  '<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
+	    {{if msgData.message}} \
+	    <li {{if msgData.type !== "bot_response"}}id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon"> \
+	            <div class="listTmplContent"> \
+	                {{if msgData.icon}}<div aria-live="off" class="profile-photo"> <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div> </div> {{/if}} \
+	                <ul class="{{if msgData.message[0].component.payload.fromHistory}} dummy listTmplContentBox  {{else}} listTmplContentBox{{/if}} "> \
+	                    {{if msgData.message[0].component.payload.title || msgData.message[0].component.payload.heading}} \
+	                        <li class="listTmplContentHeading"> \
+	                            {{if msgData.type === "bot_response" && msgData.message[0].component.payload.heading}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.heading, "bot")}} {{else}} {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "user")}} {{/if}} \
+	                            {{if msgData.message[0].cInfo && msgData.message[0].cInfo.emoji}} \
+	                                <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}</span> \
+	                            {{/if}} \
+	                        </li> \
+	                    {{/if}} \
+	                    {{each(key, msgItem) msgData.message[0].component.payload.elements}} \
+	                        {{if msgData.message[0].component.payload.buttons}} \
+	                            <li class="listTmplContentChild"> \
+	                                <div class="checkbox checkbox-primary styledCSS checkboxesDiv"> \
+	                                    <input class="checkInput" type="checkbox" text="${msgItem.title}" value="${msgItem.value}" id="${msgItem.value}${msgData.messageId}" \
+	                                    {{if msgItem.prechecked}} checked="checked" disabled="disabled"{{/if}}> \
+	                                    <label for="${msgItem.value}${msgData.messageId}">{{html helpers.convertMDtoHTML(msgItem.title, "bot")}}</label> \
+	                                    {{if msgItem.subtitle}} \
+	                                        <br><span class="checkbox-subtitle">${msgItem.subtitle}</span> \
+	                                    {{/if}} \
+	                                </div> \
+	                            </li> \
+	                        {{/if}} \
+	                    {{/each}} \
+	                    <div class="{{if msgData.message[0].component.payload.fromHistory}} hide  {{else}} checkboxButtons {{/if}} "> \
+	                        {{each(key, buttonData) msgData.message[0].component.payload.buttons}} \
+	                            <div class="checkboxBtn" value=${buttonData.payload} title="${buttonData.title}"> \
+	                                ${buttonData.title} \
+	                            </div> \
+	                        {{/each}} \
+	                    </div> \
+	                </ul> \
+	            </div> \
+	        </li> \
+	    {{/if}} \
 	{{if msgData.createdOn}}\
-		    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
-		    ${helpers.formatDate(msgData.createdOn)}</div>\
+	    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+	    ${helpers.formatDate(msgData.createdOn)}</div>\
 	{{/if}} \
-        </script>';
+	</script>';
+// Anurag script added on 29-01-2025
 		
-	
 		/* Sample template structure for Like_dislike template
 			var message = {
 			"type": "template",
