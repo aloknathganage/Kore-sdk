@@ -1807,8 +1807,9 @@
     font-size: 20px;
     height: auto;
     text-align: center;
-    width: 254px;
+    width: 300px; 
 }
+/* Anurag width 300px added on 29_01_2025*/
 
 .kore-chat-window .carouselImageContent {
     width: 244px;
