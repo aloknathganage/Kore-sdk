@@ -3107,6 +3107,16 @@
     margin-top: -24px;
     margin-left: 29px; /* Keep image aspect ratio */
 }
+/*Anurag 03/02*/
+.quick_replies_btn_parent .gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: -5px; /* Reduced gap between buttons */
+}
 
+.quick_replies_btn_parent .gridContainer .quickReplyDiv {
+    flex: 1 1 calc(50% - px); /* Adjusted to compensate for the new smaller gap */
+    box-sizing: border-box;
+}
 
 
