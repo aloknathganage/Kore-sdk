@@ -1227,7 +1227,7 @@
 
 .kore-chat-window .buttonTmplContent .buttonTmplContentChild.quickReplyDiv {
     display: table-cell;
-    padding: 10px 10px 7px 0;
+    padding: 1px 10px 7px 0; /*Anurag 03/02*/
     border: none;
 }
 
