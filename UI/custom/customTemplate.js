@@ -3520,7 +3520,7 @@ var countryDropdownTemplate = '<script id="chat_message_multiselect_tmpl" type="
 					{{if msgData.message[0].component.payload.heading}}<div class="templateHeading">${msgData.message[0].component.payload.heading}</div>{{/if}} \
 					<!-- Search Input --> \
 					<div class="multiSelectContainer"> \
-						<input type="text" class="searchInput" placeholder="Search for countries..." /> \
+						<input type="text" class="searchInput" placeholder="Please search here..." /> \
 						<!-- Checkbox Options --> \
 						<div class="checkboxOptions"> \
 							{{each(key, msgItem) msgData.message[0].component.payload.elements}} \
