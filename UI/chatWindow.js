@@ -2002,7 +2002,72 @@
                     });
                 });
                 //hoonartek customization for country selection template for travel - search functionality ends
-		//manasi healthaddon template
+		
+		// hoonartek customization for health discount template & country selection template done-button
+                _chatContainer.off('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn,.viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply, .done-button, .doneBtn').on('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn, .viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply,.done-button, .doneBtn', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var type = $(this).attr('type');
+                    if (type) {
+                        type = type.toLowerCase();
+                    }
+                    if (type == "postback" || type == "text") {
+                        $('.chatInputBox').text($(this).attr('actual-value') || $(this).attr('value'));
+                        //var _innerText = $(this)[0].innerText.trim() || $(this).attr('data-value').trim();
+                        var _innerText = ($(this)[0] && $(this)[0].innerText) ? $(this)[0].innerText.trim() : "" || ($(this) && $(this).attr('data-value')) ? $(this).attr('data-value').trim() : "";
+                        me.sendMessage($('.chatInputBox'), _innerText);
+                    } else if (type == "url" || type == "web_url") {
+                        if($(this).attr('msgData')!==undefined){
+                            var msgData;
+                            try {
+                                msgData = JSON.parse($(this).attr('msgData'));
+                               } catch (err) {
+               
+                            }
+                            if(msgData && msgData.message && msgData.message[0].component && (msgData.message[0].component.formData || (msgData.message[0].component.payload &&  msgData.message[0].component.payload.formData))){
+                                if(msgData.message[0].component.formData){
+                                   msgData.message[0].component.payload.formData = msgData.message[0].component.formData;
+                                }
+                                me.renderWebForm(msgData);
+                                return;
+                            }
+                        }
+                        var a_link = $(this).attr('url');
+                        if (a_link.indexOf("http:") < 0 && a_link.indexOf("https:") < 0) {
+                            a_link = "http:////" + a_link;
+                        }
+                        me.openExternalLink(a_link);
+                    }
+                    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[1] === 'likeDiv') {
+                        $(".likeImg").addClass('hide');
+                        $(".likedImg").removeClass('hide');
+                        $(".likeDislikeDiv").addClass('dummy');
+                    }
+                    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[1] === 'disLikeDiv') {
+                        $(".disLikeImg").addClass('hide');
+                        $(".disLikedImg").removeClass('hide');
+                        $(".likeDislikeDiv").addClass('dummy');
+                    }
+
+   //                  if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'checkboxBtn') {
+   //                      var checkboxSelection = $(e.currentTarget.parentElement.parentElement).find('.checkInput:checked')
+   //                      var selectedValue = [];
+   //                      var toShowText = [];
+   //                      for (var i = 0; i < checkboxSelection.length; i++) {
+   //                          selectedValue.push($(checkboxSelection[i]).attr('value'));
+   //                          toShowText.push($(checkboxSelection[i]).attr('text'));
+   //                      }
+   //                      $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString());
+   //                      me.sendMessage($('.chatInputBox'),toShowText.toString());
+			// // hoonartek customization for disable the Done button after submission
+   //                      $(e.currentTarget).prop('disabled', true);
+   //                      $(e.currentTarget).css('pointer-events', 'none'); // Optionally disable pointer events
+   //                      $(e.currentTarget).css('opacity', '0.8'); // Change opacity for visual feedback
+   //                  	// hoonartek customization ends
+   //                      // console.log('Done button disabled successfully after submission.');
+   //                  }
+
+			//manasi healthaddon template
 		    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'checkboxBtn') {
                 var checkboxSelection = $(e.currentTarget.parentElement.parentElement).find('.checkInput:checked');
                 var toShowText = [];
@@ -2052,69 +2117,6 @@
             }
  
 		// manasi healthaddon template
-		// hoonartek customization for health discount template & country selection template done-button
-                _chatContainer.off('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn,.viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply, .done-button, .doneBtn').on('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn, .viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply,.done-button, .doneBtn', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var type = $(this).attr('type');
-                    if (type) {
-                        type = type.toLowerCase();
-                    }
-                    if (type == "postback" || type == "text") {
-                        $('.chatInputBox').text($(this).attr('actual-value') || $(this).attr('value'));
-                        //var _innerText = $(this)[0].innerText.trim() || $(this).attr('data-value').trim();
-                        var _innerText = ($(this)[0] && $(this)[0].innerText) ? $(this)[0].innerText.trim() : "" || ($(this) && $(this).attr('data-value')) ? $(this).attr('data-value').trim() : "";
-                        me.sendMessage($('.chatInputBox'), _innerText);
-                    } else if (type == "url" || type == "web_url") {
-                        if($(this).attr('msgData')!==undefined){
-                            var msgData;
-                            try {
-                                msgData = JSON.parse($(this).attr('msgData'));
-                               } catch (err) {
-               
-                            }
-                            if(msgData && msgData.message && msgData.message[0].component && (msgData.message[0].component.formData || (msgData.message[0].component.payload &&  msgData.message[0].component.payload.formData))){
-                                if(msgData.message[0].component.formData){
-                                   msgData.message[0].component.payload.formData = msgData.message[0].component.formData;
-                                }
-                                me.renderWebForm(msgData);
-                                return;
-                            }
-                        }
-                        var a_link = $(this).attr('url');
-                        if (a_link.indexOf("http:") < 0 && a_link.indexOf("https:") < 0) {
-                            a_link = "http:////" + a_link;
-                        }
-                        me.openExternalLink(a_link);
-                    }
-                    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[1] === 'likeDiv') {
-                        $(".likeImg").addClass('hide');
-                        $(".likedImg").removeClass('hide');
-                        $(".likeDislikeDiv").addClass('dummy');
-                    }
-                    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[1] === 'disLikeDiv') {
-                        $(".disLikeImg").addClass('hide');
-                        $(".disLikedImg").removeClass('hide');
-                        $(".likeDislikeDiv").addClass('dummy');
-                    }
-
-                    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'checkboxBtn') {
-                        var checkboxSelection = $(e.currentTarget.parentElement.parentElement).find('.checkInput:checked')
-                        var selectedValue = [];
-                        var toShowText = [];
-                        for (var i = 0; i < checkboxSelection.length; i++) {
-                            selectedValue.push($(checkboxSelection[i]).attr('value'));
-                            toShowText.push($(checkboxSelection[i]).attr('text'));
-                        }
-                        $('.chatInputBox').text($(this).attr('title') +': '+ selectedValue.toString());
-                        me.sendMessage($('.chatInputBox'),toShowText.toString());
-			// hoonartek customization for disable the Done button after submission
-                        $(e.currentTarget).prop('disabled', true);
-                        $(e.currentTarget).css('pointer-events', 'none'); // Optionally disable pointer events
-                        $(e.currentTarget).css('opacity', '0.8'); // Change opacity for visual feedback
-                    	// hoonartek customization ends
-                        // console.log('Done button disabled successfully after submission.');
-                    }
 			// hoonartek customization for health discount template done button
                     if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'done-button') {
                         var checkboxSelection = $(e.currentTarget.parentElement.parentElement).find('.insurance-option-checkbox:checked')
