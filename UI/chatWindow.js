@@ -8,63 +8,148 @@
     //}
 })(function () {
     // hoonartek customization starts Done : button and for checkboxes template None of the above - ALok
-     $(document).on('click', '.listTmplContent', function() {
-        let sdcVal= Number(sessionStorage.getItem('sdc'))
-        var checkboxes = document.querySelectorAll('.checkInput');
-        const noneOfTheAboveValue = "None of the above";
-        // Get the checked checkboxes and their values
-        var checkedValues = Array.prototype.filter.call(checkboxes, function(checkbox) {
-            return checkbox.checked;
-        }).map(function(checkedCheckbox) {
-            return checkedCheckbox.getAttribute('text');  //customization  // Get the value of the checked checkbox
-        });
-        console.log('checkedValuess at begining - : ' + checkedValues);
+    //  $(document).on('click', '.listTmplContent', function() {
+    //     let sdcVal= Number(sessionStorage.getItem('sdc'))
+    //     var checkboxes = document.querySelectorAll('.checkInput');
+    //     const noneOfTheAboveValue = "None of the above";
+    //     // Get the checked checkboxes and their values
+    //     var checkedValues = Array.prototype.filter.call(checkboxes, function(checkbox) {
+    //         return checkbox.checked;
+    //     }).map(function(checkedCheckbox) {
+    //         return checkedCheckbox.getAttribute('text');  //customization  // Get the value of the checked checkbox
+    //     });
+    //     console.log('checkedValuess at begining - : ' + checkedValues);
 
-        if(sdcVal){
-            checkedCount = checkedCount - sdcVal
+    //     if(sdcVal){
+    //         checkedCount = checkedCount - sdcVal
+    //     }
+    //     // customization
+    //     if (checkedValues.includes(noneOfTheAboveValue)) {
+    //         // "None of the Above" is selected, disable all other checkboxes
+    //         checkboxes.forEach(checkbox => {
+    //             if (checkbox.value !== noneOfTheAboveValue) {
+    //                 checkbox.checked = false;  // Uncheck other checkboxes
+    //                 checkbox.disabled = true;  // Disable other checkboxes
+    //                 // checkbox.style.pointerEvents = 'none';  // Prevent interaction
+    //             }
+    //         });
+    //         // Recalculate `checkedValues` after unchecking other checkboxes
+    //             checkedValues = [noneOfTheAboveValue];  // Set checkedValues to only include "None of the Above"
+    //             checkedCount = 1;  // Update checkedCount accordingly
+
+    //         // Disable the Done button if "None of the Above" is selected
+    //         document.querySelectorAll('.checkboxBtn').forEach(function(button) {
+    //             button.style.pointerEvents = 'none';
+    //         });
+    //     } else {
+    //         // "None of the Above" is not selected, enable all other checkboxes
+    //         checkboxes.forEach(checkbox => {
+    //             checkbox.disabled = false;  // Enable all checkboxes
+    //             checkbox.style.pointerEvents = 'auto';  // Reset pointer events
+    //         });
+    //     }
+    //     // customization
+    //      // Calculate the number of checked checkboxes
+    //      var checkedCount = checkedValues.length;
+
+    //     if (checkedCount > 0) {
+    //         document.querySelectorAll('.checkboxBtn').forEach(function(checkbox) {
+    //             checkbox.style.pointerEvents = 'auto';
+    //         });
+    //     } else {
+    //         document.querySelectorAll('.checkboxBtn').forEach(function(checkbox) {
+    //             checkbox.style.pointerEvents = 'none';
+    //         });
+    //     }
+    //     console.log('Number of checked checkboxes: ' + checkedCount);
+    //     console.log('checkedValuess - : ' + checkedValues);
+    // });
+// hoonartek customization starts Done : button and for checkboxes template None of the above - ends
+
+//manasi healthaddon template
+	$(document).on('click', '.listTmplContent', function () {
+        let sdcVal = Number(sessionStorage.getItem('sdc'));
+        var checkboxes = document.querySelectorAll('.checkInput');
+        var dropdowns = document.querySelectorAll('.styledDropdown');
+        const noneOfTheAboveValue = "None of the above";
+    
+        // Get the checked checkboxes and their values
+        var checkedValues = Array.prototype.filter.call(checkboxes, function (checkbox) {
+            return checkbox.checked;
+        }).map(function (checkedCheckbox) {
+            return checkedCheckbox.getAttribute('text'); // Get the value of the checked checkbox
+        });
+    
+        // Get the dropdown selections and their values
+        var dropdownValues = Array.prototype.map.call(dropdowns, function (dropdown) {
+            const selectedOption = dropdown.options[dropdown.selectedIndex];
+            return {
+                dropdownId: dropdown.id, // Dropdown ID
+                selectedValue: selectedOption.value, // Selected Value
+                selectedLabel: selectedOption.text, // Selected Label
+            };
+        });
+    
+        console.log('Checked Values:', checkedValues);
+        console.log('Dropdown Values:', dropdownValues);
+    
+        if (sdcVal) {
+            checkedCount = checkedCount - sdcVal;
         }
-        // customization
+    
+        // Handle the "None of the Above" functionality
         if (checkedValues.includes(noneOfTheAboveValue)) {
-            // "None of the Above" is selected, disable all other checkboxes
             checkboxes.forEach(checkbox => {
                 if (checkbox.value !== noneOfTheAboveValue) {
-                    checkbox.checked = false;  // Uncheck other checkboxes
-                    checkbox.disabled = true;  // Disable other checkboxes
-                    // checkbox.style.pointerEvents = 'none';  // Prevent interaction
+                    checkbox.checked = false; // Uncheck other checkboxes
+                    checkbox.disabled = true; // Disable other checkboxes
                 }
             });
-            // Recalculate `checkedValues` after unchecking other checkboxes
-                checkedValues = [noneOfTheAboveValue];  // Set checkedValues to only include "None of the Above"
-                checkedCount = 1;  // Update checkedCount accordingly
-
+    
+            checkedValues = [noneOfTheAboveValue]; // Set checkedValues to only include "None of the Above"
+            checkedCount = 1; // Update checkedCount accordingly
+    
             // Disable the Done button if "None of the Above" is selected
-            document.querySelectorAll('.checkboxBtn').forEach(function(button) {
+            document.querySelectorAll('.checkboxBtn').forEach(function (button) {
                 button.style.pointerEvents = 'none';
             });
         } else {
-            // "None of the Above" is not selected, enable all other checkboxes
             checkboxes.forEach(checkbox => {
-                checkbox.disabled = false;  // Enable all checkboxes
-                checkbox.style.pointerEvents = 'auto';  // Reset pointer events
+                checkbox.disabled = false; // Enable all checkboxes
+                checkbox.style.pointerEvents = 'auto'; // Reset pointer events
             });
         }
-        // customization
-         // Calculate the number of checked checkboxes
-         var checkedCount = checkedValues.length;
-
+    
+        // Calculate the number of checked checkboxes
+        var checkedCount = checkedValues.length;
+    
         if (checkedCount > 0) {
-            document.querySelectorAll('.checkboxBtn').forEach(function(checkbox) {
-                checkbox.style.pointerEvents = 'auto';
+            document.querySelectorAll('.checkboxBtn').forEach(function (button) {
+                button.style.pointerEvents = 'auto';
             });
         } else {
-            document.querySelectorAll('.checkboxBtn').forEach(function(checkbox) {
-                checkbox.style.pointerEvents = 'none';
+            document.querySelectorAll('.checkboxBtn').forEach(function (button) {
+                button.style.pointerEvents = 'none';
             });
         }
-        console.log('Number of checked checkboxes: ' + checkedCount);
-        console.log('checkedValuess - : ' + checkedValues);
+    
+        // Log the collected data
+        console.log('Number of checked checkboxes:', checkedCount);
+        console.log('Checked Values:', checkedValues);
+        console.log('Dropdown Values:', dropdownValues);
+    
+        // Combine both checkedValues and dropdownValues into one object for further processing
+        const combinedData = {
+            checkedValues,
+            dropdownValues,
+        };
+    
+        console.log('Combined Data:', combinedData);
+    
+        // Use the combinedData object for further processing (e.g., sending to API, etc.)
     });
-// hoonartek customization starts Done : button and for checkboxes template None of the above - ends
+ 
+//manasi healthaddon template
 	
 // hoonartek customization starts for the health template Done : and for None of the above
     $(document).on('click', '.insurance-options-container', function() {
@@ -1917,7 +2002,56 @@
                     });
                 });
                 //hoonartek customization for country selection template for travel - search functionality ends
-		    
+		//manasi healthaddon template
+		    if (e.currentTarget.classList && e.currentTarget.classList.length > 0 && e.currentTarget.classList[0] === 'checkboxBtn') {
+                var checkboxSelection = $(e.currentTarget.parentElement.parentElement).find('.checkInput:checked');
+                var toShowText = [];
+                var backendValues = [];
+            
+                checkboxSelection.each(function () {
+                    var checkboxValue = $(this).attr('value'); 
+                    var titleText = $(this).closest('.checkbox-group').find('label').first().text().trim(); 
+                    var dropdown = $(this).closest('.checkbox-group').find('.styledDropdown'); 
+            
+                    if (checkboxValue === "None of the above") {
+                        toShowText.push(titleText);
+                        backendValues.push(checkboxValue);
+                    } else if (dropdown.length > 0) {
+                        var selectedDropdownOption = dropdown.find('option:selected');
+                        var dropdownLabel = selectedDropdownOption.text().trim();
+            
+                        // Add formatted value with proper spacing and comma
+                        toShowText.push(`${titleText}: ${dropdownLabel}`);
+                        backendValues.push(`${checkboxValue}: ${selectedDropdownOption.val()}`);
+                    } else {
+                        // Push the checkbox value normally
+                        toShowText.push(titleText);
+                        backendValues.push(checkboxValue);
+                    }
+                });
+            
+                console.log('Final toShowText:', toShowText); // Debugging
+                var finalOutput = toShowText.join(', ');  
+                console.log('Formatted Output:', finalOutput); // Debugging
+
+                // ✅ Ensure backendValues are correctly formatted
+                var backendData = backendValues.join(', ');
+                console.log('Backend Values:', backendData);
+
+                // ✅ Ensure UI is updated correctly
+                $('.chatInputBox').html(backendData); // Use .html() instead of .text()
+            
+                
+            
+                // ✅ Send message with correctly formatted backend values
+                me.sendMessage($('.chatInputBox'), finalOutput);
+            
+                $(e.currentTarget).prop('disabled', true);
+                $(e.currentTarget).css('pointer-events', 'none');
+                $(e.currentTarget).css('opacity', '0.8');
+            }
+ 
+		// manasi healthaddon template
 		// hoonartek customization for health discount template & country selection template done-button
                 _chatContainer.off('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn,.viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply, .done-button, .doneBtn').on('click', '.buttonTmplContentBox li,.listTmplContentChild .buyBtn, .viewMoreList .viewMore,.listItemPath,.quickReply,.carouselImageContent,.listRightContent,.checkboxBtn,.likeDislikeDiv,.buttonQuickReply,.done-button, .doneBtn', function (e) {
                     e.preventDefault();
