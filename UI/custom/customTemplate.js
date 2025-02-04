@@ -60,8 +60,15 @@
 				'extension': this.extension
 			});
 			this.bindEvents(messageHtml);
-		}
-		else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "listView") {
+		}else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "healthAddonTemplate") {
+			messageHtml = $(this.getChatTemplate("healthAddonTemplate")).tmpl({
+				'msgData': msgData,
+				'helpers': this.helpers,
+				'extension': this.extension
+			});
+			$(messageHtml).data(msgData);
+			this.bindEvents(messageHtml);
+		}else if (msgData.message[0] && msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.template_type == "listView") {
 			messageHtml = $(this.getChatTemplate("templatelistView")).tmpl({
 				'msgData': msgData,
 				'helpers': this.helpers,
@@ -675,6 +682,102 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
 {{/if}} \
 </script>';
 
+
+//Manasi - Health Addon Template 04/02/2024
+// Health addon temaple
+
+ // var message = {
+ //     "type": "template",
+ //     "payload": {
+ //         "template_type": "healthAddonTemplate",
+ //         "elements": [
+ //             {
+ //                 "title": "Classic T-Shirt Collection",
+ //                 "value": "tShirt",
+ //                 "prechecked": true,
+ //                 "hasDropdown": true,
+ //                 "dropdownOptions": [
+ //                     { "value": "small", "label": "Small" },
+ //                     { "value": "medium", "label": "Medium" },
+ //                     { "value": "large", "label": "Large" }
+ //                 ]
+ //             },
+ //             {
+ //                 "title": "Classic Shirt Collection",
+ //                 "value": "shirts",
+ //                 "prechecked": false
+ //             }
+ //         ],
+ //         "buttons": [
+ //             {
+ //                 "title": "Done",
+ //                 "type": "postback",
+ //                 "payload": "payload"
+ //             }
+ //         ]
+ //     }
+ // };
+
+
+ var healthAddonTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl">\
+    {{if msgData.message}}\
+    <li {{if msgData.type !== "bot_response"}}id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon">\
+        <div class="listTmplContent">\
+            {{if msgData.icon}}\
+            <div aria-live="off" class="profile-photo">\
+                <div class="user-account avtar" style="background-image:url(${msgData.icon})"></div>\
+            </div>\
+            {{/if}}\
+            <ul class="{{if msgData.message[0].component.payload.fromHistory}}dummy listTmplContentBox {{else}}listTmplContentBox{{/if}}">\
+                {{if msgData.message[0].component.payload.title || msgData.message[0].component.payload.heading}}\
+                <li class="listTmplContentHeading">\
+                    {{if msgData.type === "bot_response" && msgData.message[0].component.payload.heading}}\
+                    {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.heading, "bot")}}\
+                    {{else}}\
+                    {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "user")}}\
+                    {{/if}}\
+                    {{if msgData.message[0].cInfo && msgData.message[0].cInfo.emoji}}\
+                    <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}\</span>
+                    {{/if}}\
+                </li>\
+                {{/if}}\
+                {{each(key, msgItem) msgData.message[0].component.payload.elements}}\
+                <li class="listTmplContentChild">\
+                    <div class="checkbox-group">\
+                        <div class="checkbox checkbox-primary styledCSS checkboxesDiv">\
+                            <input class="checkInput" type="checkbox" text="${msgItem.title}" value="${msgItem.value}" id="${msgItem.value}${msgData.messageId}"\
+                            {{if msgItem.prechecked}}checked="checked" disabled="disabled"{{/if}} data-dropdown="${msgItem.hasDropdown}">\
+                            <label for="${msgItem.value}${msgData.messageId}">{{html helpers.convertMDtoHTML(msgItem.title, "bot")}}</label>\
+                        </div>\
+                        {{if msgItem.hasDropdown}}\
+                        <select id="${msgItem.value}_dropdown" class="styledDropdown">\
+                            {{each(optionKey, optionItem) msgItem.dropdownOptions}}\
+                            <option value="${optionItem.value}">${optionItem.label}</option>\
+                            {{/each}}\
+                        </select>\
+                        {{/if}}\
+                    </div>\
+                </li>\
+                {{/each}}\
+                <div class="{{if msgData.message[0].component.payload.fromHistory}}hide{{else}}checkboxButtons{{/if}}">\
+                    {{each(key, buttonData) msgData.message[0].component.payload.buttons}}\
+                    <div class="checkboxBtn" value=${buttonData.payload} title="${buttonData.title}">\
+                        ${buttonData.title}\
+                    </div>\
+                    {{/each}}\
+                </div>\
+            </ul>\
+        </div>\
+    </li>\
+    {{/if}}\
+    {{if msgData.createdOn}}\
+    <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
+        ${helpers.formatDate(msgData.createdOn)}\
+    </div>\
+    {{/if}}\
+</script>';
+ 
+		
 /* Sample template structure for Advanced Multi Select Checkbox 
  var message = {
 "type": "template",
@@ -3594,6 +3697,22 @@ var countryDropdownTemplate = '<script id="chat_message_multiselect_tmpl" type="
             		return formTemplate;
 		} else if (tempType === "advancedMultiSelect") {
 			return advancedMultiSelect;
+		}else if(tempType === "healthAddonTemplate"){
+			// Listen for checkbox change and dropdown selection
+			$(document).on('change', '.checkInput', function() {
+				var selectedCheckboxValue = $(this).val();
+				var dropdownId = "#" + selectedCheckboxValue + "_dropdown";
+				if ($(this).is(':checked')) {
+			   // If the option has a dropdown, capture the selected dropdown value
+			   	var dropdownValue = $(dropdownId).val();
+			   	var selectedValue = selectedCheckboxValue + " [" + dropdownValue + "]";  // Combine checkbox and dropdown value
+			    
+			   // Store the selected value
+			   	console.log("Selected Value: " + selectedValue);  // You can store this in a variable or send it to the server
+			    	}
+			   });
+			  
+			   return healthAddonTemplate;
 		}else if (tempType === "templatelistView") {
 			return listViewTemplate;
 		}else if (tempType === "actionSheetTemplate") {
