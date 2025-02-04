@@ -287,7 +287,32 @@
 	 display:none;
  }
  /* Inline form template css ends here */ 
- 
+  /*manasi temaplete healthAddonTemplate*/
+ .checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.checkboxesDiv {
+    margin-right: 50px;  /* Adds space between the label and the dropdown */
+ align-items: right;
+}
+
+.styledDropdown {
+    margin-left: 10px;  /* Adds space between checkbox and dropdown */
+    order: 2;  /* Ensures the dropdown is positioned after the checkbox */
+ width: auto; /* Automatically adjust width to content */
+    max-width: 100%; /* Ensure it doesn't exceed parent container width */
+    padding: 5px 10px; /* Add some padding for better visibility */
+    border: 2px solid #ccc; /* Lighter border color */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Adjust font size */
+    background-color: #fff; /* White background */
+    box-sizing: border-box; /* Include padding in the total width */
+ align-items: right;
+}
+/*manasi temaplete healthAddonTemplate*/
  
   /* Multi select checkbox css starts here */
  .kore-chat-window .kore-action-sheet{
