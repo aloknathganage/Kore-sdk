@@ -295,12 +295,12 @@
 }
 
 .checkboxesDiv {
-    margin-right: 50px;  /* Adds space between the label and the dropdown */
+    margin-right: 0px;  /* Adds space between the label and the dropdown */
  align-items: right;
 }
 
 .styledDropdown {
-    margin-left: 10px;  /* Adds space between checkbox and dropdown */
+    margin-left: 0px;  /* Adds space between checkbox and dropdown */
     order: 2;  /* Ensures the dropdown is positioned after the checkbox */
  width: auto; /* Automatically adjust width to content */
     max-width: 100%; /* Ensure it doesn't exceed parent container width */
