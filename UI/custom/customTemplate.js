@@ -568,9 +568,6 @@
                                     <input class="checkInput" type="checkbox" text="${msgItem.title}" value="${msgItem.value}" id="${msgItem.value}${msgData.messageId}" \
                                     {{if msgItem.prechecked === true}} checked="checked" disabled="disabled"{{/if}}> \
                                     <label for="${msgItem.value}${msgData.messageId}">{{html helpers.convertMDtoHTML(msgItem.title, "bot")}}</label> \
-                                    {{if msgItem.subtitle && msgItem.subtitle !== ""}} \
-                                        <br><span class="checkbox-subtitle">{{html helpers.convertMDtoHTML(msgItem.subtitle, "bot")}}</span> \
-                                    {{/if}} \
                                 </div> \
                             </li> \
                         {{/if}} \
