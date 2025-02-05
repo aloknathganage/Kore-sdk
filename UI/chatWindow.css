@@ -3112,6 +3112,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: -5px; /* Reduced gap between buttons */
+    padding-top: 4px;
 }
 
 .quick_replies_btn_parent .gridContainer .quickReplyDiv {
