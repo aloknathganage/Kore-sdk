@@ -625,14 +625,34 @@
                     var strTime = hours + ':' + minutes + ' ' + ampm;
                     return strTime;
                 },
-                'formatDate': function (date) {
+                // 'formatDate': function (date) {
+                //     var d = new Date(date);
+                //     if (isNaN(d.getTime())) {
+                //         var _tmpDate = new Date().getTime();
+                //         d = new Date(_tmpDate);
+                //     }
+                //     return d.toDateString() + " at " + helpers.formatAMPM(d);
+                // },
+
+		// pallavi time added on 07_02_2025
+		'formatDate': function (date) {
                     var d = new Date(date);
                     if (isNaN(d.getTime())) {
                         var _tmpDate = new Date().getTime();
                         d = new Date(_tmpDate);
                     }
-                    return d.toDateString() + " at " + helpers.formatAMPM(d);
+                    console.log("msgData", msgData);
+                    firsttext = msgData.message[0].cInfo.body;
+                    console.log("firsttext", firsttext);
+                    if (firsttext.includes("I am your friendly assistant.")) {
+                        return d.toDateString() + " at " + helpers.formatAMPM(d);
+                    }
+                    else{
+                        return helpers.formatAMPM(d);
+                    }
                 },
+		// pallavi time added on 07_02_2025
+		    
                 'convertMDtoHTML': function (val, responseType,msgItem) {
                     if(typeof val==='object'){
                         try {
@@ -2898,6 +2918,11 @@
                 me.customTemplateObj.helpers = me.helpers;
                 me.customTemplateObj.extension = extension;
                 graphLibGlob = me.config.graphLib || "d3";
+		    
+		// pallavi time added on 07_02_2025
+                window.msgData = msgData;
+                // pallavi time added on 07_02_2025
+		    
 	// hoonartek kore customization for mic
                 if(msgData.type === "currentUser"){ 
                     msgData.message[0].cInfo.body = reFormatUserText(msgData.message[0].cInfo.body);
@@ -3960,7 +3985,7 @@
                                     <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
                                     ${helpers.formatDate(msgData.createdOn)}</div>\
                                 {{else}}\
-                                    <div aria-live="off" class="extra-info" style="margin-right: 0px; margin-top: -10px; margin-bottom: 3px; margin-left: 218px; font-size: 12px; color: #8a959f;">\
+                                    <div aria-live="off" class="extra-info" style="margin-right: 0px; margin-top: -10px; margin-bottom: 3px; margin-left: 390px; font-size: 12px; color: #8a959f;">\
                                     ${helpers.formatDate(msgData.createdOn)}</div> \
                                 {{/if}}\
                    {{/if}} \
