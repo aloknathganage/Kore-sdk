@@ -644,7 +644,7 @@
                     console.log("msgData", msgData);
                     firsttext = msgData.message[0].cInfo.body;
                     console.log("firsttext", firsttext);
-                    if (firsttext.includes("I am your friendly assistant.")) {
+                    if (firsttext.includes("I am your friendly assistant")) {
                         return d.toDateString() + " at " + helpers.formatAMPM(d);
                     }
                     else{
