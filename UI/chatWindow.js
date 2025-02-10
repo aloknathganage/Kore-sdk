@@ -3985,7 +3985,7 @@
                                     <div aria-live="off" class="extra-info" style="margin-right: 15px; margin-top: -10px; margin-bottom: 3px; margin-left: 48px; font-size: 12px; color: #8a959f;">\
                                     ${helpers.formatDate(msgData.createdOn)}</div>\
                                 {{else}}\
-                                    <div aria-live="off" class="extra-info" style="margin-right: 0px; margin-top: -10px; margin-bottom: 3px; margin-left: 350px; font-size: 12px; color: #8a959f;">\
+                                    <div aria-live="off" class="extra-info" style="margin-right: 0px; margin-top: -10px; margin-bottom: 3px; margin-left: 345px; font-size: 12px; color: #8a959f;">\
                                     ${helpers.formatDate(msgData.createdOn)}</div> \
                                 {{/if}}\
                    {{/if}} \
