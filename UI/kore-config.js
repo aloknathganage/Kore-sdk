@@ -56,12 +56,38 @@
         allowIframe: false, 			// set true, opens authentication links in popup window, default value is "false"
         isSendButton: false, 			// set true, to show send button below the compose bar
         isTTSEnabled: true,			// set true, to show speaker icon
-        ttsInterface:'webapi',          // webapi or awspolly , where default is webapi
+        // ttsInterface:'webapi',          // webapi or awspolly , where default is webapi
+        // pallavi azure 13_02_2025
+        ttsInterface:'azure',
+        // pallavi azure 13_02_2025
         isSpeechEnabled: true,			// set true, to show mic icon
+        // stt:{
+        //     vendor: 'webapi',           //'webapi'|'azure'|'google' //uses respective settings from the following keys and uncomments respective files in index.html
+        //     azure:{
+        //         subscriptionKey: '',
+        //         recognitionLanguage: 'en-US',
+        //         recognitionMode: 'Interactive' //Interactive/Dictation/Conversation/Interactive
+        //     },
+        //    google:{
+        //     apiKey:"",
+        //     recognitionLanguage:"en-US"
+        //    },
+        //    webapi:{
+        //     recognitionLanguage: 'en-US'
+        //    }
+        // },
+        // pallavi azure 13_02_2025
+        azureTTS: {
+            // key: '1vuRCq8Nn72FJxDcLef5qExngH7MZPe8H36HNVN1W41dnrz6IAA9JQQJ99BAACGhslBXJ3w3AAAYACOGyzwM',
+            key: 'ea81bafd0787487c808e90e4dd006252',
+            region: 'centralindia',
+        },
         stt:{
-            vendor: 'webapi',           //'webapi'|'azure'|'google' //uses respective settings from the following keys and uncomments respective files in index.html
+            //vendor: 'webapi',           //'webapi'|'azure'|'google' //uses respective settings from the following keys and uncomments respective files in index.html
+            vendor: 'azure',
             azure:{
-                subscriptionKey: '',
+                // subscriptionKey: '1vuRCq8Nn72FJxDcLef5qExngH7MZPe8H36HNVN1W41dnrz6IAA9JQQJ99BAACGhslBXJ3w3AAAYACOGyzwM',
+                subscriptionKey: 'ea81bafd0787487c808e90e4dd006252',
                 recognitionLanguage: 'en-US',
                 recognitionMode: 'Interactive' //Interactive/Dictation/Conversation/Interactive
             },
@@ -73,6 +99,7 @@
             recognitionLanguage: 'en-US'
            }
         },
+        // pallavi azure 13_02_2025
         allowLocation: true,			// set false, to deny sending location to server
         loadHistory: true,				// set true to load recent chat history
         messageHistoryLimit: 10,		// set limit to load recent chat history
