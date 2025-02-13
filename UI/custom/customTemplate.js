@@ -745,7 +745,7 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
  //     }
  // };
 
-
+//Manasi 13/02
  var healthAddonTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl">\
     {{if msgData.message}}\
     <li {{if msgData.type !== "bot_response"}}id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon">\
@@ -764,7 +764,7 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
                     {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "user")}}\
                     {{/if}}\
                     {{if msgData.message[0].cInfo && msgData.message[0].cInfo.emoji}}\
-                    <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}\</span>\
+                    <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}\</span>
                     {{/if}}\
                 </li>\
                 {{/if}}\
@@ -773,7 +773,7 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
                     <div class="checkbox-group">\
                         <div class="checkbox checkbox-primary styledCSS checkboxesDiv">\
                             <input class="checkInput" type="checkbox" text="${msgItem.title}" value="${msgItem.value}" id="${msgItem.value}${msgData.messageId}"\
-                            {{if msgItem.prechecked}}checked="checked" disabled="disabled"{{/if}} data-dropdown="${msgItem.hasDropdown}">\
+                            {{if msgItem.prechecked === true}} checked="checked" disabled="disabled"{{/if}}>\
                             <label for="${msgItem.value}${msgData.messageId}">{{html helpers.convertMDtoHTML(msgItem.title, "bot")}}</label>\
                         </div>\
                         {{if msgItem.hasDropdown}}\
@@ -803,7 +803,7 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
     </div>\
     {{/if}}\
 </script>';
- 
+//Manasi 13/02 
 		
 /* Sample template structure for Advanced Multi Select Checkbox 
  var message = {
