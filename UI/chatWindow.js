@@ -72,7 +72,8 @@
         var checkboxes = document.querySelectorAll('.checkInput');
         var dropdowns = document.querySelectorAll('.styledDropdown');
         const noneOfTheAboveValue = "None of the above";
-	//manasi 13/02
+	
+    //manasi 13/02
 	checkboxes.forEach(checkbox => {
             if (checkbox.hasAttribute('checked')) {  
                 checkbox.addEventListener('click', function (event) {
@@ -85,80 +86,80 @@
         });
  	//manasi 13/02
 
-        // Get the checked checkboxes and their values
-        var checkedValues = Array.prototype.filter.call(checkboxes, function (checkbox) {
-            return checkbox.checked;
-        }).map(function (checkedCheckbox) {
-            return checkedCheckbox.getAttribute('text'); // Get the value of the checked checkbox
-        });
-    
-        // Get the dropdown selections and their values
-        var dropdownValues = Array.prototype.map.call(dropdowns, function (dropdown) {
-            const selectedOption = dropdown.options[dropdown.selectedIndex];
-            return {
-                dropdownId: dropdown.id, // Dropdown ID
-                selectedValue: selectedOption.value, // Selected Value
-                selectedLabel: selectedOption.text, // Selected Label
-            };
-        });
-    
-        console.log('Checked Values:', checkedValues);
-        console.log('Dropdown Values:', dropdownValues);
-    
-        if (sdcVal) {
-            checkedCount = checkedCount - sdcVal;
-        }
-    
-        // Handle the "None of the Above" functionality
-        if (checkedValues.includes(noneOfTheAboveValue)) {
-            checkboxes.forEach(checkbox => {
-                if (checkbox.value !== noneOfTheAboveValue) {
-                    checkbox.checked = false; // Uncheck other checkboxes
-                    checkbox.disabled = true; // Disable other checkboxes
-                }
-            });
-    
-            checkedValues = [noneOfTheAboveValue]; // Set checkedValues to only include "None of the Above"
-            checkedCount = 1; // Update checkedCount accordingly
-    
-            // Disable the Done button if "None of the Above" is selected
-            document.querySelectorAll('.checkboxBtn').forEach(function (button) {
-                button.style.pointerEvents = 'none';
-            });
-        } else {
-            checkboxes.forEach(checkbox => {
-                checkbox.disabled = false; // Enable all checkboxes
-                checkbox.style.pointerEvents = 'auto'; // Reset pointer events
-            });
-        }
-    
-        // Calculate the number of checked checkboxes
-        var checkedCount = checkedValues.length;
-    
-        if (checkedCount > 0) {
-            document.querySelectorAll('.checkboxBtn').forEach(function (button) {
-                button.style.pointerEvents = 'auto';
-            });
-        } else {
-            document.querySelectorAll('.checkboxBtn').forEach(function (button) {
-                button.style.pointerEvents = 'none';
-            });
-        }
-    
-        // Log the collected data
-        console.log('Number of checked checkboxes:', checkedCount);
-        console.log('Checked Values:', checkedValues);
-        console.log('Dropdown Values:', dropdownValues);
-    
-        // Combine both checkedValues and dropdownValues into one object for further processing
-        const combinedData = {
-            checkedValues,
-            dropdownValues,
+    // Get the checked checkboxes and their values
+    var checkedValues = Array.prototype.filter.call(checkboxes, function (checkbox) {
+        return checkbox.checked;
+    }).map(function (checkedCheckbox) {
+        return checkedCheckbox.getAttribute('text'); // Get the value of the checked checkbox
+    });
+
+    // Get the dropdown selections and their values
+    var dropdownValues = Array.prototype.map.call(dropdowns, function (dropdown) {
+        const selectedOption = dropdown.options[dropdown.selectedIndex];
+        return {
+            dropdownId: dropdown.id, // Dropdown ID
+            selectedValue: selectedOption.value, // Selected Value
+            selectedLabel: selectedOption.text, // Selected Label
         };
+    });
+
+    console.log('Checked Values:', checkedValues);
+    console.log('Dropdown Values:', dropdownValues);
     
-        console.log('Combined Data:', combinedData);
-    
-        // Use the combinedData object for further processing (e.g., sending to API, etc.)
+    if (sdcVal) {
+        checkedCount = checkedCount - sdcVal;
+    }
+
+    // Handle the "None of the Above" functionality
+    if (checkedValues.includes(noneOfTheAboveValue)) {
+        checkboxes.forEach(checkbox => {
+            if (checkbox.value !== noneOfTheAboveValue) {
+                checkbox.checked = false; // Uncheck other checkboxes
+                checkbox.disabled = true; // Disable other checkboxes
+            }
+        });
+
+        checkedValues = [noneOfTheAboveValue]; // Set checkedValues to only include "None of the Above"
+        checkedCount = 1; // Update checkedCount accordingly
+
+        // Disable the Done button if "None of the Above" is selected
+        document.querySelectorAll('.checkboxBtn').forEach(function (button) {
+            button.style.pointerEvents = 'none';
+        });
+    } else {
+        checkboxes.forEach(checkbox => {
+            checkbox.disabled = false; // Enable all checkboxes
+            checkbox.style.pointerEvents = 'auto'; // Reset pointer events
+        });
+    }
+
+    // Calculate the number of checked checkboxes
+    var checkedCount = checkedValues.length;
+
+    if (checkedCount > 0) {
+        document.querySelectorAll('.checkboxBtn').forEach(function (button) {
+            button.style.pointerEvents = 'auto';
+        });
+    } else {
+        document.querySelectorAll('.checkboxBtn').forEach(function (button) {
+            button.style.pointerEvents = 'none';
+        });
+    }
+
+    // Log the collected data
+    console.log('Number of checked checkboxes:', checkedCount);
+    console.log('Checked Values:', checkedValues);
+    console.log('Dropdown Values:', dropdownValues);
+
+    // Combine both checkedValues and dropdownValues into one object for further processing
+    const combinedData = {
+        checkedValues,
+        dropdownValues,
+    };
+
+    console.log('Combined Data:', combinedData);
+
+    // Use the combinedData object for further processing (e.g., sending to API, etc.)
     });
  
 //manasi healthaddon template
@@ -484,12 +485,18 @@
 		  const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/; // Validates a PAN number
 		  const passportRegex = /^[A-Z]{1}\d{7}$/; // Validates a passport number (1 letter followed by 7 digits)
 		  const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i; // Validates vehicle registration number
-		  // let removeSpaces = text.replace(/\s/g, "");
+		  const vehicleRegex2 = /^\d{2}[a-zA-Z]{2}\d{4}[a-zA-Z]$/; // Validates 23BH2525C pattern // pallavi azure 13_02_2025
+          // let removeSpaces = text.replace(/\s/g, "");
 		  let removeSpaces = text.replace(/[\s,.-]/g, ""); //Navya validation for Edge Browser
 		 
 		  if (vehicleRegex.test(removeSpaces)) {
 		    return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
 		  }
+          // pallavi azure 13_02_2025
+          if (vehicleRegex2.test(removeSpaces)) {
+            return removeSpaces.replace(/(\d{2})([a-zA-Z]{2})(\d{4})([a-zA-Z])/, "$1-$2-$3-$4"); //pallavi
+          }
+          // pallavi azure 13_02_2025
 		  if (phoneRegex.test(removeSpaces)) {
 		    return removeSpaces;
 		  }
@@ -515,12 +522,31 @@
                 if(!speakText){
                     let payload =obj.message[0].component.payload
                     let type = payload.template_type ?? null
-		    let formdata = obj.message[0].component.formData
+                    let formdata = obj.message[0].component.formData
                     text = obj.message[0].cInfo.body
-		if(formdata){
-                        text = "Please fill out the form manually"
+                    window.formvalue = false; // pallavi azure 13_02_2025
+                    // pallavi azure 13_02_2025
+                    if(formdata){  
+                        window.formvalue = true; 
+                        console.log("window.formvalue", window.formvalue);
+                        var formcounter = false;
+                        if (text.includes("click on")) {
+                            text = "Please click on the button and fill the form manually";
+                            formcounter = true;
+                        }
+                        if (text.includes("click below")) {
+                            text = "Please click on the button and fill the form manually";
+                            formcounter = true;
+                        }
+                        if (text.includes("filling out the form")) {
+                            text = "Please click on the button and fill the form manually";
+                            formcounter = true;
+                        } 
+                        if(!formcounter){
+                            text = "Please fill out the form manually"
+                        }           
                     }
-		else{
+                    else{
                     switch (type) {
                         case 'quick_replies':
                             let text_quick_replies = payload.quick_replies.map(item => item.title).join(', ');
@@ -537,7 +563,19 @@
                             break;
                         case 'multi_select':
                             text = 'Please select the options manually'
-                            break  
+                            break
+                        case 'dateTemplate':
+                            text = 'Please select the options manually'
+                            break 
+                        case 'healthAddonTemplate':
+                            text = 'Please select the options manually'
+                            break
+                        case 'checkBoxesTemplate':
+                            text = 'Please select the options manually'
+                            break 
+                        case 'calendarDropdown':
+                            text = 'Please select the options manually'
+                            break
                         case 'carousel':
                             text = 'Please select the options manually'
                             break 
@@ -561,6 +599,11 @@
                     }
                     console.log("This is text ")
                 }
+                // pallavi azure 13_02_2025
+                if (text.includes("please provide your 10-digit registered mobile number in the following format")) {
+                    text = "Dear customer, please provide your 10-digit registered mobile number in given format";
+                }
+                // pallavi azure 13_02_2025
                 //hoonartek kore customization for mic on off new
                  text = text.replace(/₹\s?(\d{1,3}(?:,\s?\d{3})*)\/-/g, (match, p1) => { 	// for rupees
                         return `rupees ${p1.replace(/,\s*/g, '')}`;
@@ -568,6 +611,8 @@
                         text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
                         text = text.replace(/\b\d{18}\b/g, match => readDigitsSeparately(match)); //policy number read sep
 		    	text = text.replace(/[⬅️😄😊✈️🚗]/g, '', match => readDigitsSeparately(match)); //for emoji prompt
+                text = text.replace(/\//g, ' '); // pallavi azure 13_02_2025
+                text = text.replace(/\be\.g\./gi, 'Example'); // pallavi azure 13_02_2025
                 return text;
                 //hoonartek kore customization for mic on off
             }
@@ -1604,7 +1649,7 @@
                 me.config.userAgentIE = navigator.userAgent.indexOf('Trident/') !== -1;
                 var mobileBrowserOpened = me.isMobile();
                 if (mobileBrowserOpened) {
-                    me.config.isSendButton = true;
+                    me.config.isSendButton = false; // pallavi azure 13_02_2025
                 }
                 me.config.ttsInterface = me.config.ttsInterface || 'webapi';
                 me.loadHistory = me.config.loadHistory || false;
@@ -1790,6 +1835,16 @@
                         minWidth: 480
                     });
                 _chatContainer.off('keyup', '.chatInputBox').on('keyup', '.chatInputBox', function (event) {
+                    // pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    $('.recordingMicrophone').css('display', 'none');
+                    $('.notRecordingMicrophone').css('display', 'block');
+                    // pallavi azure 13_02_2025
                     var _footerContainer = $(me.config.container).find('.kore-chat-footer');
                     var _bodyContainer = $(me.config.container).find('.kore-chat-body');
                     _bodyContainer.css('bottom', _footerContainer.outerHeight());
@@ -1803,20 +1858,20 @@
                         _chatContainer.find('.sendButton').addClass('disabled');
                     }
                 });
-		   //anurag 12/02
+
+		        //anurag calendarDropdown 12/02
                 $(document).on("change", ".startDate", function () {
                     var selectedDate = $(this).val();
                     var messageId = $(this).data("messageid");
-               
                     console.log("User selected date:", selectedDate);
-               
                     // Automatically send the selected date as user input
                     $(".chatInputBox").text(selectedDate);
                     var enterKey = $.Event("keydown", { which: 13 });
                     enterKey.keyCode = 13;
                     $(".chatInputBox").trigger(enterKey);
                 });
-                //end enurag 12/02 
+                //end anurag calendarDropdown 12/02 
+
                 _chatContainer.on('click', '.chatInputBoxPlaceholder', function (event) {
                     _chatContainer.find('.chatInputBox').trigger('click');
                     _chatContainer.find('.chatInputBox').trigger('focus');
@@ -1877,6 +1932,16 @@
                     });
                 });*/
                 _chatContainer.off('keydown', '.chatInputBox').on('keydown', '.chatInputBox', function (event) {
+                    // pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    $('.recordingMicrophone').css('display', 'none');
+                    $('.notRecordingMicrophone').css('display', 'block');
+                    // pallavi azure 13_02_2025
                     var _this = $(this);
                     var _footerContainer = $(me.config.container).find('.kore-chat-footer');
                     var _bodyContainer = $(me.config.container).find('.kore-chat-body');
@@ -1938,16 +2003,48 @@
                     if (ttsAudioSource) {
                         ttsAudioSource.stop();
                     }
+                    // pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    // pallavi azure 13_02_2025
                     if (me.config.isSpeechEnabled) {
                         getSIDToken();
                     }
                 });
+
+                //pallavi azure 13_02_2025 commented
+                // _chatContainer.off('click', '.recordingMicrophone').on('click', '.recordingMicrophone', function (event) {
+                //     stop();
+                //     setTimeout(function () {
+                //         setCaretEnd(document.getElementsByClassName("chatInputBox"));
+                //     }, 350);
+                // });
+                //pallavi azure 13_02_2025 commented
+
+                //pallavi azure 13_02_2025
                 _chatContainer.off('click', '.recordingMicrophone').on('click', '.recordingMicrophone', function (event) {
-                    stop();
+                    console.log("Mic clicked: Stopping speech recognition...");
+                    // Stop the recognizer if it's running
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                   
+                    }
                     setTimeout(function () {
-                        setCaretEnd(document.getElementsByClassName("chatInputBox"));
-                    }, 350);
+                                setCaretEnd(document.getElementsByClassName("chatInputBox"));
+                            }, 350);
+                    // Hide recording mic icon, show inactive mic icon
+                    $('.recordingMicrophone').css('display', 'none');
+                    $('.notRecordingMicrophone').css('display', 'block');
                 });
+                //pallavi azure 13_02_2025
+
                 _chatContainer.off('click', '.attachmentBtn').on('click', '.attachmentBtn', function (event) {
                     if (fileUploaderCounter == 1) {
                         alert('You can upload only one file');
@@ -2257,6 +2354,14 @@
                     if (ttsAudioSource) {
                         ttsAudioSource.stop();
                     }
+                    //pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    //pallavi azure 13_02_2025
                     me.isTTSOn = false;
                     me.destroy();
                     if (_ttsContext) {
@@ -2307,6 +2412,14 @@
                     if (ttsAudioSource) {
                         ttsAudioSource.stop();
                     }
+                    //pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    //pallavi azure 13_02_2025
                 });
 
                 _chatContainer.off('click', '.expand-btn').on('click', '.expand-btn', function (event) {
@@ -2376,6 +2489,16 @@
                     korePicker.init();
                  }
                 $(document).on('keyup', function (evt) {
+                    //pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    $('.recordingMicrophone').css('display', 'none');
+                    $('.notRecordingMicrophone').css('display', 'block');
+                    //pallavi azure 13_02_2025
                     if (evt.keyCode == 27) {
                         $('.closeImagePreview').trigger('click');
                         $('.closeElePreview').trigger('click');
@@ -2463,6 +2586,25 @@
                 });
 
                 _chatContainer.off('click', '.reload-btn').on('click', '.reload-btn', function (event,data) {
+                     //pallavi azure 13_02_2025
+                     console.log("Hitting reload");
+                     // Hide recording mic icon, show inactive mic icon
+                    $('.recordingMicrophone').css('display', 'none');
+                    $('.notRecordingMicrophone').css('display', 'block');
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    window.stopSpeakingAzureTTS();  // Stop Azure TTS
+                    console.log("Azure TTS stopped successfully.");
+                    //pallavi-mic
+                    $('.chatInputBox').text('');  // For div-based input
+                    $('.chatInputBox').val('');   // In case it's an input/textarea
+                    //pallavi-mic
+                    //pallavi azure 13_02_2025
+                    
                     chatInitialize.stopSpeaking();
                     if(data && data.isReconnect){
                         me.config.botOptions.forceReconnecting=true;
@@ -2485,44 +2627,130 @@
                         ttsAudioSource.stop();
                     }
 
+                    //pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    //pallavi azure 13_02_2025
+
                 });
+                // pallavi azure 13_02_2025 commented
+                // _chatContainer.off('click', '.ttspeaker').on('click', '.ttspeaker', function (event) {
+                //     if (me.config.isTTSEnabled) {
+                //         if (me.isTTSOn) {
+                //             if (ttsAudioSource) {
+                //                 ttsAudioSource.stop();
+                //             }
+                //             cancelTTSConnection();
+                //             me.isTTSOn = false;
+                //             $('#ttspeaker')[0].pause();
+                //             if(me.config.ttsInterface && me.config.ttsInterface ==="webapi"){
+                //                 var synth = window.speechSynthesis;
+                //                 synth.pause();
+                //              }else if (me.config.ttsInterface === 'awspolly') {
+                //                 if (me.isTTSOn ===false) {
+                //                     // isTTSOn = false;
+                //                     gainNode.gain.value = 0; // 10 %
+                //                     $('.ttspeakerDiv').addClass('ttsOff');
+                //                 }
+                //             }
+                //             $('.ttspeakerDiv').addClass('ttsOff');
+                //         } 
+                //         else {
+                //             if(me.config.ttsInterface && me.config.ttsInterface==="webapi"){
+                //                 _ttsConnection = me.speakWithWebAPI();
+ 
+                //             }else if(me.config.ttsInterface &&me.config.ttsInterface === 'awspolly'){
+                //                 gainNode.gain.value = 1
+                //             }else{
+                //                 _ttsConnection = createSocketForTTS();
+                //             }
+                //             me.isTTSOn = true;
+                //             $('.ttspeakerDiv').removeClass('ttsOff');
+                //         }
+                //     }
+                // });
+                // pallavi azure 13_02_2025 commented
+
+                //pallavi azure 13_02_2025
                 _chatContainer.off('click', '.ttspeaker').on('click', '.ttspeaker', function (event) {
+                    console.log("In click ttspeaker  ");
+                    //pallavi-mic
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    $('.recordingMicrophone').css('display', 'none');
+                    $('.notRecordingMicrophone').css('display', 'block');
+                    //pallavi-mic
                     if (me.config.isTTSEnabled) {
                         if (me.isTTSOn) {
+                            console.log("In isTTSOn");
                             if (ttsAudioSource) {
+                                console.log("In ttsAudioSource");
                                 ttsAudioSource.stop();
                             }
                             cancelTTSConnection();
+                            console.log("In cancelTTSConnection");
                             me.isTTSOn = false;
                             $('#ttspeaker')[0].pause();
-                            if(me.config.ttsInterface && me.config.ttsInterface ==="webapi"){
+                
+                            // Stop TTS for webapi
+                            if (me.config.ttsInterface && me.config.ttsInterface === "webapi") {
+                                console.log("In me.config.ttsInterface");
                                 var synth = window.speechSynthesis;
-                                synth.pause();
-                             }else if (me.config.ttsInterface === 'awspolly') {
-                                if (me.isTTSOn ===false) {
-                                    // isTTSOn = false;
+                                if (synth) {
+                                    synth.pause(); // Stop speech if using Web API
+                                    console.log("WebAPI TTS stopped successfully.");
+                                }
+                
+                            // Stop Azure TTS
+                            } else if (me.config.ttsInterface && me.config.ttsInterface === "azure") {
+                                console.log("Azure me.config.ttsInterface");
+                                if (window.stopSpeakingAzureTTS) {
+                                    window.stopSpeakingAzureTTS();  // Stop Azure TTS
+                                    $('.recordingMicrophone').css('display', 'none'); //pallavi-mic
+                                    $('.notRecordingMicrophone').css('display', 'block'); //pallavi-mic
+                                    console.log("Azure TTS stopped successfully.");
+                                }
+                                $('.ttspeakerDiv').addClass('ttsOff');
+                                $('.recordingMicrophone').css('display', 'none'); //pallavi-mic
+                                $('.notRecordingMicrophone').css('display', 'block'); ////pallavi-mic
+                            
+                            // Handle AWS Polly
+                            } else if (me.config.ttsInterface === 'awspolly') {
+                                if (me.isTTSOn === false) {
                                     gainNode.gain.value = 0; // 10 %
                                     $('.ttspeakerDiv').addClass('ttsOff');
                                 }
                             }
+                
                             $('.ttspeakerDiv').addClass('ttsOff');
-                        } 
-                        else {
-                            if(me.config.ttsInterface && me.config.ttsInterface==="webapi"){
-                                _ttsConnection = me.speakWithWebAPI();
- 
-                            }else if(me.config.ttsInterface &&me.config.ttsInterface === 'awspolly'){
-                                gainNode.gain.value = 1
-                            }else{
+                        } else {
+                            // Start speaking logic based on the interface
+                            if (me.config.ttsInterface && me.config.ttsInterface === "webapi") {
+                                _ttsConnection = me.speakWithWebAPI();             
+                            } else if (me.config.ttsInterface && me.config.ttsInterface === "azure") {
+                                console.log("in me.config.ttsInterface azure ");
+                                _ttsConnection = me.speakWithAzure();
+                            } else if (me.config.ttsInterface && me.config.ttsInterface === 'awspolly') {
+                                gainNode.gain.value = 1;
+                            } else {
                                 _ttsConnection = createSocketForTTS();
                             }
                             me.isTTSOn = true;
+                            console.log("is true mic");
                             $('.ttspeakerDiv').removeClass('ttsOff');
                         }
                     }
                 });
+                //pallavi azure 13_02_2025
 
-               
                 var element = document.querySelector('.droppable');
                 function callback(files) {
                     // Here, we simply log the Array of files to the console.
@@ -2945,16 +3173,39 @@
                 me.customTemplateObj.extension = extension;
                 graphLibGlob = me.config.graphLib || "d3";
 		    
-		// pallavi time added on 07_02_2025
+		        // pallavi time added on 07_02_2025
                 window.msgData = msgData;
                 // pallavi time added on 07_02_2025
 		    
 	// hoonartek kore customization for mic
                 if(msgData.type === "currentUser"){ 
                     msgData.message[0].cInfo.body = reFormatUserText(msgData.message[0].cInfo.body);
+                    // pallavi azure 13_02_2025
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    $('.recordingMicrophone').css('display', 'none'); 
+                    $('.notRecordingMicrophone').css('display', 'block'); 
+                    // pallavi azure 13_02_2025
                 }
         // hoonartek kore customization for mic ends
                 if (msgData.type === "bot_response") {
+
+                    // pallavi azure 13_02_2025
+                    $('.recordingMicrophone').css('display', 'none');
+                    $('.notRecordingMicrophone').css('display', 'block');
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
+                    }
+                    $('.recordingMicrophone').css('display', 'none'); 
+                    $('.notRecordingMicrophone').css('display', 'block'); 
+                    // pallavi azure 13_02_2025
 
                     // kore customization starts (showing table )
                     if(msgData.message[0]?.component?.payload?.template_type == 'multi_select'){
@@ -2971,7 +3222,7 @@
                         }).length;
                         sessionStorage.setItem('sdc', checkedCount);
                     }
-			//Anurag 12/02 Calender
+			        //Anurag 12/02 Calender
                     if(msgData.message[0]?.component?.payload?.template_type == 'calendarDropdown'){
                         $(".startDate").prop("disabled", false);
                     }
@@ -2979,7 +3230,7 @@
                         $(".startDate").prop("disabled", true);
                     }	
                     //end calender
-			//pallavi disable quickreply 13/02
+			        //pallavi disable quickreply 13/02
                     if (msgData.message[0]?.component?.payload?.template_type == 'quickReplyTemplate') {
                         $(".buttonTmplContentChild.quickReplyDiv")
                             .css("pointer-events", "auto")
@@ -3756,12 +4007,45 @@
                     if (msgData.message[0].component && msgData.message[0].component.payload && msgData.message[0].component.payload.speech_hint) {
                         _txtToSpeak = msgData.message[0].component.payload.speech_hint;
                     }
-                    if (me.config.ttsInterface&&me.config.ttsInterface==="webapi") {
-		//hoonartek kore customization for mic on off
-                        _txtToSpeak=sortSpeakText(_txtToSpeak,msgData)
-                //hoonartek kore customization for mic on off
-                        _ttsConnection = me.speakWithWebAPI(_txtToSpeak);
-                    }else if(me.config.ttsInterface && me.config.ttsInterface==="awspolly"){
+        // pallavi azure 13_02_2025 commented
+        //             if (me.config.ttsInterface&&me.config.ttsInterface==="webapi") {
+		// //hoonartek kore customization for mic on off
+        //                 _txtToSpeak=sortSpeakText(_txtToSpeak,msgData)
+        //         //hoonartek kore customization for mic on off
+        //                 _ttsConnection = me.speakWithWebAPI(_txtToSpeak);
+        //             }else if(me.config.ttsInterface && me.config.ttsInterface==="awspolly"){
+        //                 if(!window.speakTextWithAWSPolly){
+        //                     console.warn("Please uncomment amazon polly files 'plugins/aws-sdk-2.668.0.min.js' and'plugins/kore-aws-polly.js' in index.html");
+        //                 }else{
+        //                     speakTextWithAWSPolly(_txtToSpeak);
+        //                 }
+
+        //             }else if (!_ttsConnection || (_ttsConnection.readyState && _ttsConnection.readyState !== 1)) {
+        //                 try {
+        //                     _ttsConnection = createSocketForTTS();
+        //                 } catch (e) {
+        //                     console.log(e);
+        //                 }
+        //             }
+        //             else {
+        //                 socketSendTTSMessage(_txtToSpeak);
+        //             }
+        //         }
+        //     };      
+        // pallavi azure 13_02_2025 commented   
+        
+        
+                // pallavi azure 13_02_2025
+                if (me.config.ttsInterface&&me.config.ttsInterface==="webapi") {
+                    console.log("In ttsinterface if condition");
+                    _txtToSpeak=sortSpeakText(_txtToSpeak,msgData);
+                    _ttsConnection = me.speakWithWebAPI(_txtToSpeak);
+                    }else if (me.config.ttsInterface === 'azure') {
+                        _txtToSpeak=sortSpeakText(_txtToSpeak,msgData); //pallavi-azure
+                        console.log("Azure by pallavi");
+                        _ttsConnection = me.speakWithAzure(_txtToSpeak); // pallavi-azure
+                    }
+                    else if(me.config.ttsInterface && me.config.ttsInterface==="awspolly"){
                         if(!window.speakTextWithAWSPolly){
                             console.warn("Please uncomment amazon polly files 'plugins/aws-sdk-2.668.0.min.js' and'plugins/kore-aws-polly.js' in index.html");
                         }else{
@@ -3779,7 +4063,8 @@
                         socketSendTTSMessage(_txtToSpeak);
                     }
                 }
-            };                   
+            }; 
+           // pallavi azure 13_02_2025
                                     
             chatWindow.prototype.pushTorenderMessagesQueue = function (msgItem) {
                 var me = this;
@@ -4589,6 +4874,7 @@
             //         return false;
             //         });
             //     });
+
 		    //pallavi quickreply disable 13/02
                 document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
                 .forEach(button => {
@@ -5280,74 +5566,168 @@
                     }
                 }, 20000,me);
             }
-            if ('webkitSpeechRecognition' in window && isChrome()) {
-                recognition = new window.webkitSpeechRecognition;
-                final_transcript = '';
-                recognition.continuous = true;
-                recognition.interimResults = true;
+            // pallavi azure 13_02_2025 commented Its of webkit used mic
+            //         if ('webkitSpeechRecognition' in window && isChrome()) {
+            //             recognition = new window.webkitSpeechRecognition;
+            //             final_transcript = '';
+            //             recognition.continuous = true;
+            //             recognition.interimResults = true;
 
-                recognition.onstart = function () {
-                    prevStr = "";
-                    recognizing = true;
-                    $('.recordingMicrophone').css('display', 'block');
-                    $('.notRecordingMicrophone').css('display', 'none');
-                };
+            //             recognition.onstart = function () {
+            //                 prevStr = "";
+            //                 recognizing = true;
+            //                 $('.recordingMicrophone').css('display', 'block');
+            //                 $('.notRecordingMicrophone').css('display', 'none');
+            //             };
 
-                recognition.onerror = function (event) {
-                    console.log(event.error);
-                    $('.recordingMicrophone').trigger('click');
-                    $('.recordingMicrophone').css('display', 'none');
-                    $('.notRecordingMicrophone').css('display', 'block');
-                };
+            //             recognition.onerror = function (event) {
+            //                 console.log(event.error);
+            //                 $('.recordingMicrophone').trigger('click');
+            //                 $('.recordingMicrophone').css('display', 'none');
+            //                 $('.notRecordingMicrophone').css('display', 'block');
+            //             };
 
-                recognition.onend = function () {
-                    recognizing = false;
-                    $('.recordingMicrophone').trigger('click');
-                    $('.recordingMicrophone').css('display', 'none');
-                    $('.notRecordingMicrophone').css('display', 'block');
-                };
+            //             recognition.onend = function () {
+            //                 recognizing = false;
+            //                 $('.recordingMicrophone').trigger('click');
+            //                 $('.recordingMicrophone').css('display', 'none');
+            //                 $('.notRecordingMicrophone').css('display', 'block');
+            //             };
 
-                recognition.onresult = function (event) {
-                    final_transcript = '';
-                    var interim_transcript = '';
-                    for (var i = event.resultIndex; i < event.results.length; ++i) {
-                        if (event.results[i].isFinal) {
-                            final_transcript += event.results[i][0].transcript;
-                        } else {
-                            interim_transcript += event.results[i][0].transcript;
-                        }
-                    }
-                    final_transcript = capitalize(final_transcript);
-                    final_transcript = linebreak(final_transcript);
-                    interim_transcript = linebreak(interim_transcript);
-                    if (final_transcript !== "") {
-                        prevStr += final_transcript;
-                    }
-                    //console.log('Interm: ',interim_transcript);
-                    //console.log('final: ',final_transcript);
-			
-	// hoonartek Kore customization for mic on off - Navya
-                    if (recognizing && sessionStorage.getItem("mic")== 'true') {
-                        $('.chatInputBox').html(prevStr + "" + interim_transcript);
-                        $('.sendButton').removeClass('disabled');
-                        micEnable();
-                    }
-                // Hoonartek kore customization starts
-                    if (final_transcript !== "") {
-                        var me = window.chatContainerConfig;
-                        me.sendMessage($('.chatInputBox'));
-                        final_transcript = "";  // hoonartek Kore customization for mic on off - Navya
-                        prevStr ="";
-                        // recognition.stop()  //for turn off mic after send 
+            //             recognition.onresult = function (event) {
+            //                 final_transcript = '';
+            //                 var interim_transcript = '';
+            //                 for (var i = event.resultIndex; i < event.results.length; ++i) {
+            //                     if (event.results[i].isFinal) {
+            //                         final_transcript += event.results[i][0].transcript;
+            //                     } else {
+            //                         interim_transcript += event.results[i][0].transcript;
+            //                     }
+            //                 }
+            //                 final_transcript = capitalize(final_transcript);
+            //                 final_transcript = linebreak(final_transcript);
+            //                 interim_transcript = linebreak(interim_transcript);
+            //                 if (final_transcript !== "") {
+            //                     prevStr += final_transcript;
+            //                 }
+            //                 //console.log('Interm: ',interim_transcript);
+            //                 //console.log('final: ',final_transcript);
 
-                    }
-                // Hoonartek customization ends
-                    setTimeout(function () {
-                        setCaretEnd(document.getElementsByClassName("chatInputBox"));
-                        document.getElementsByClassName('chatInputBox')[0].scrollTop = document.getElementsByClassName('chatInputBox')[0].scrollHeight;
-                    }, 350);
-                };
-            }
+	        // // hoonartek Kore customization for mic on off - Navya
+            //                 if (recognizing && sessionStorage.getItem("mic")== 'true') {
+            //                     $('.chatInputBox').html(prevStr + "" + interim_transcript);
+            //                     $('.sendButton').removeClass('disabled');
+            //                     micEnable();
+            //                 }
+            //             // Hoonartek kore customization starts
+            //                 if (final_transcript !== "") {
+            //                     var me = window.chatContainerConfig;
+            //                     me.sendMessage($('.chatInputBox'));
+            //                     final_transcript = "";  // hoonartek Kore customization for mic on off - Navya
+            //                     prevStr ="";
+            //                     // recognition.stop()  //for turn off mic after send 
+
+            //                 }
+            //             // Hoonartek customization ends
+            //                 setTimeout(function () {
+            //                     setCaretEnd(document.getElementsByClassName("chatInputBox"));
+            //                     document.getElementsByClassName('chatInputBox')[0].scrollTop = document.getElementsByClassName('chatInputBox')[0].scrollHeight;
+            //                 }, 350);
+            //             };
+            //         }
+            // pallavi azure 13_02_2025 commented Its of webkit used mic
+
+            // pallavi azure 13_02_2025 working android with webkit
+            //         if ('webkitSpeechRecognition' in window && isChrome()) {
+            //     recognition = new window.webkitSpeechRecognition();
+            //     final_transcript = '';
+            //     recognition.continuous = true;
+            //     recognition.interimResults = true;
+            
+            //     let inputSent = false; // Prevent multiple sends
+            //     let speechEndTimer = null; // Timer for handling speech end
+            //     const SPEECH_END_DELAY = 1500; // Delay to detect speech end
+            
+            //     recognition.onstart = function () {
+            //         if (!recognizing) {
+            //             //alert("Speech recognition started");
+            //             recognizing = true;
+            //             prevStr = '';
+            //             inputSent = false; // Reset the inputSent flag when recognition starts
+            //             $('.recordingMicrophone').css('display', 'block');
+            //             $('.notRecordingMicrophone').css('display', 'none');
+            //         }
+            //     };
+            
+            //     recognition.onerror = function (event) {
+            //         console.error("Speech recognition error:", event.error);
+            //         stopRecognition();
+            //     };
+            
+            //     recognition.onend = function () {
+            //         recognizing = false;
+            //         stopRecognition();
+            //     };
+            
+            //     recognition.onresult = function (event) {
+            //         let interim_transcript = '';
+            
+            //         // Process speech recognition results
+            //         for (let i = event.resultIndex; i < event.results.length; ++i) {
+            //             if (event.results[i].isFinal) {
+            //                 final_transcript = event.results[i][0].transcript;
+            //             } else {
+            //                 interim_transcript += event.results[i][0].transcript;
+            //             }
+            //         }
+            
+            //         // Display interim results dynamically without appending
+            //         if (recognizing && sessionStorage.getItem("mic") === 'true') {
+            //             $('.chatInputBox').html(interim_transcript); // Show only interim transcript temporarily
+            //             $('.sendButton').removeClass('disabled'); // Enable the send button
+            //         }
+            
+            //         // Send final transcript only once
+            //         if (final_transcript !== "" && !inputSent) {
+            //             // Clear previous speechEndTimer
+            //             if (speechEndTimer) clearTimeout(speechEndTimer);
+            
+            //             // Start a timer to send final transcript after speech ends
+            //             speechEndTimer = setTimeout(function () {
+            //                 if (!inputSent) {
+            //                     console.log("Sending final transcript: ", final_transcript);
+            
+            //                     // Update input box with clean final result
+            //                     $('.chatInputBox').html(final_transcript); 
+            //                     const me = window.chatContainerConfig;
+            //                     me.sendMessage($('.chatInputBox')); // Send the message
+            
+            //                     // Reset variables
+            //                     prevStr = ''; 
+            //                     final_transcript = '';
+            //                     inputSent = true; // Mark input as sent
+            //                     recognition.stop(); // Stop recognition after sending
+            //                 }
+            //             }, SPEECH_END_DELAY);
+            //         }
+            
+            //         // Adjust caret and scrolling
+            //         setTimeout(function () {
+            //             setCaretEnd(document.getElementsByClassName("chatInputBox"));
+            //             document.getElementsByClassName('chatInputBox')[0].scrollTop = document.getElementsByClassName('chatInputBox')[0].scrollHeight;
+            //         }, 350);
+            //     };
+            
+            //     function stopRecognition() {
+            //         if (recognition) {
+            //             recognition.stop();
+            //             recognizing = false;
+            //             $('.recordingMicrophone').css('display', 'none');
+            //             $('.notRecordingMicrophone').css('display', 'block');
+            //         }
+            //     }
+            // }
+            // pallavi azure 13_02_2025 working android with webkit
 
             var two_line = /\n\n/g;
             var one_line = /\n/g;
@@ -5388,13 +5768,52 @@
                 }
             }
 
-            function getSIDToken() {      
+            // pallavi azure 13_02_2025 commented
+            // function getSIDToken() {      
+            //     if(chatInitialize.config.stt.vendor === 'azure'){
+            //         if (recognizer != null) {
+            //             RecognizerStop(SDK, recognizer);
+            //         }
+            //         recognizer = RecognizerSetup(SDK, chatInitialize.config.stt.azure.recognitionMode, chatInitialize.config.stt.azure.recognitionLanguage, 0, chatInitialize.stt.azure.subscriptionKey);
+            //         RecognizerStart(SDK, recognizer);
+            //     } else if(chatInitialize.config.stt.vendor === 'google'){
+            //         // using google cloud speech API
+            //         micEnable();
+            //     } else if(chatInitialize.config.stt.vendor === 'webapi') {
+            //         // using webkit speech recognition
+            //         startGoogleWebKitRecognization();
+            //     }
+            // }
+            // pallavi azure 13_02_2025 commented
+
+            // pallavi azure 13_02_2025
+            function getSIDToken() {     
+                console.log("In getSIDToken"); 
                 if(chatInitialize.config.stt.vendor === 'azure'){
-                    if (recognizer != null) {
-                        RecognizerStop(SDK, recognizer);
+                    console.log("In getSIDToken IF condition"); 
+                    // if (recognizer != null) {
+                    //     RecognizerStop(SDK, recognizer);
+                    // }
+                    // recognizer = RecognizerSetup(SDK, chatInitialize.config.stt.azure.recognitionMode, chatInitialize.config.stt.azure.recognitionLanguage, 0, chatInitialize.config.stt.azure.subscriptionKey);
+                    // RecognizerStart(SDK, recognizer);
+                    
+                    //pallavi-mic
+                    if (window.currentSpeechRecognizer) {
+                        window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                            console.log("Speech Recognizer Stopped.");
+                            window.currentSpeechRecognizer = null;
+                        });
                     }
-                    recognizer = RecognizerSetup(SDK, chatInitialize.config.stt.azure.recognitionMode, chatInitialize.config.stt.azure.recognitionLanguage, 0, chatInitialize.stt.azure.subscriptionKey);
-                    RecognizerStart(SDK, recognizer);
+                    //pallavi-mic
+
+                    $('.recordingMicrophone').css('display', 'block');  
+                    $('.notRecordingMicrophone').css('display', 'none'); 
+                    console.log("Mic ON: Session Started");
+                    window.recognizeSpeechWithAzure()
+                    // pallu 2
+                    console.log("Hitting new stopSpeakingAzureTTS");
+                    window.stopSpeakingAzureTTS();
+                    // pallu 2
                 } else if(chatInitialize.config.stt.vendor === 'google'){
                     // using google cloud speech API
                     micEnable();
@@ -5403,6 +5822,8 @@
                     startGoogleWebKitRecognization();
                 }
             }
+            // pallavi azure 13_02_2025
+
             function micEnable() {
                 if (isRecordingStarted) {
                     return;
@@ -5624,6 +6045,14 @@
                 clearInterval(intervalKey);
                 $('.recordingMicrophone').css('display', 'none');
                 $('.notRecordingMicrophone').css('display', 'block');
+                // pallavi azure 13_02_2025
+                if (window.currentSpeechRecognizer) {
+                    window.currentSpeechRecognizer.stopContinuousRecognitionAsync(() => {
+                        console.log("Speech Recognizer Stopped.");
+                        window.currentSpeechRecognizer = null;
+                    });
+                }
+                // pallavi azure 13_02_2025
                 if (rec) {
                     rec.stop();
                     isListening = false;
@@ -5660,75 +6089,129 @@
             /*************************************    Microphone code end here    **************************************/
 
             /*************************************    TTS code start here         **************************************/
+    
+            // pallavi azure 13_02_2025 commented webkit
+    //         chatWindow.prototype.speakWithWebAPI= function(_txtToSpeak) {
+    //             if(!_txtToSpeak){
+    //                 return false;
+    //             }
+    //             if('speechSynthesis' in window){
+    //                 // window.speechSynthesis.cancel();
+    //                 // Create a new instance of SpeechSynthesisUtterance.
+    //                 // var msg = new SpeechSynthesisUtterance();
+    //                 // msg.text =_txtToSpeak;
+    //                 //  msg.voice = speechSynthesis.getVoices().filter(function(voice) {        
+    //                 //      return voice.default===true;
+    //                 //     })[0];
+    //                 // Queue this utterance.
+    //                 // window.speechSynthesis.speak(msg);
+    //                 audioMsgs.push(_txtToSpeak);
+    //                 playMessageSequence();
+    //            }else{
+    //                console.warn("KORE:Your browser doesn't support TTS(Speech Synthesiser)")
+    //            }
+    //         }
+    //         chatWindow.prototype.stopSpeaking= function() {
+    //             var me = this;
+    //             if (me.config.isTTSEnabled) {
+    //                 if(me.config.ttsInterface && me.config.ttsInterface==="webapi"){
+    //                     if('speechSynthesis' in window){
+    //                         audioMsgs = [];
+    //                         audioPlaying = false;
+    //                         window.speechSynthesis.cancel();
+    //                     }
+    //                 }
+    //             }
+    //         }
 
-            chatWindow.prototype.speakWithWebAPI= function(_txtToSpeak) {
-                if(!_txtToSpeak){
-                    return false;
+    //         function playMessageSequence() {
+	// //hoonartek kore customization for mic on off (stop the recognization while message playing through speaker)
+    //             if(recognizing && audioPlaying){    //hoonartek kore customization for mic on off
+    //                 recognition.stop();
+    //             }
+    //     //hoonartek kore customization for mic on off
+    //             if (!speechSyn) {
+    //                 speechSyn = new SpeechSynthesisUtterance();
+    //             }
+        
+    //             if (audioMsgs.length > 0 && !audioPlaying) {
+    //                 audioPlaying = true;
+    //                 speechSyn.text = audioMsgs.shift();
+	// 	//hoonartek kore customization for mic on off starts1 for checkbox/templates mic on off
+    //                 if(speechSyn.text == 'Please select the value manually' || speechSyn.text == 'Please select the options manually'|| speechSyn.text == 'Please fill out the form manually'){
+    //                     conMicOff = true;
+    //                 }
+    //                 else{
+    //                     conMicOff = false;
+    //                 }
+    //             //hoonartek kore customization for mic on off ends1
+    //                 window.speechSynthesis.speak(speechSyn);
+    //                 speechSyn.onend = function () {
+    //                     audioPlaying = false;
+    //                     playMessageSequence();
+    //                 }    
+    //             }//hoonartek kore customization for mic on off
+    //             if(recognizing && audioPlaying){    //hoonartek kore customization for mic on off
+    //                 recognition.stop();
+    //             }
+    //             else if(sessionStorage.getItem("mic")== 'true' && !recognizing && !audioPlaying && !conMicOff){   //hoonartek kore customization for mic on off
+    //                 recognition.start();  
+    //             }
+    //     //hoonartek kore customization for mic on off
+    //         }
+    // pallavi azure 13_02_2025 commented webkit
+
+            // pallavi azure 13_02_2025
+            chatWindow.prototype.speakWithAzure = function(_txtToSpeak) {
+                console.log("In chatWindow.prototype.speakWithAzure ");
+                if (!_txtToSpeak) {
+                    console.log("In !_txtToSpeak ");
+                    console.log("No text to speak.");
+                    return;
                 }
-                if('speechSynthesis' in window){
-                    // window.speechSynthesis.cancel();
-                    // Create a new instance of SpeechSynthesisUtterance.
-                    // var msg = new SpeechSynthesisUtterance();
-                    // msg.text =_txtToSpeak;
-                    //  msg.voice = speechSynthesis.getVoices().filter(function(voice) {        
-                    //      return voice.default===true;
-                    //     })[0];
-                    // Queue this utterance.
-                    // window.speechSynthesis.speak(msg);
+                console.warn("\n\n----------------------_txtToSpeak----------", _txtToSpeak);
+                console.warn("\n\n----------------------audioMsgs----------", audioMsgs);
+
+                if (typeof window.speakTextWithAzure === 'function') {
+                    console.log("Adding message to queue:", _txtToSpeak);
+                    console.log("Pushing _txtToSpeak to audiomsgs");
                     audioMsgs.push(_txtToSpeak);
-                    playMessageSequence();
-               }else{
-                   console.warn("KORE:Your browser doesn't support TTS(Speech Synthesiser)")
-               }
-            }
-            chatWindow.prototype.stopSpeaking= function() {
-                var me = this;
-                if (me.config.isTTSEnabled) {
-                    if(me.config.ttsInterface && me.config.ttsInterface==="webapi"){
-                        if('speechSynthesis' in window){
+                    console.warn("\n\n\n\n -------audioMsgs-------", audioMsgs);
+                    console.warn("\n\n\n\n -------audioPlaying-------", audioPlaying);
+
+                    // if (!audioPlaying) {
+                    //     console.warn("\n\n\n\n ---iffff----audioPlaying-------", audioPlaying);
+                    //     playMessageSequence();
+                    // }
+                    console.log("Hitting speakTextWithAzure in prototype");
+                    window.speakTextWithAzure(_txtToSpeak);
+                    console.log("after speakTextWithAzure audioMsgs in prototype", audioMsgs);
+                } else {
+                    console.warn("Azure TTS is not properly initialized");
+                }
+            };
+
+            // Stop speaking function
+            chatWindow.prototype.stopSpeaking = function() {
+                if (this.config.isTTSEnabled) {
+                    if (this.config.ttsInterface === "webapi" && 'speechSynthesis' in window) {
+                        audioMsgs = [];
+                        audioPlaying = false;
+                        window.speechSynthesis.cancel();
+                    } else if (this.config.ttsInterface === "azure") {
+                        console.log("In prototype stopSpeaking ");
+                        console.warn('\n\n\n ---------------typeof window.stopSpeakingAzureTTS-------', typeof window.stopSpeakingAzureTTS)
+
+                        if (typeof window.stopSpeakingAzureTTS === 'function') {
                             audioMsgs = [];
                             audioPlaying = false;
-                            window.speechSynthesis.cancel();
+                            console.log("Hitting stopSpeakingAzureTTS");
+                            window.stopSpeakingAzureTTS();
                         }
                     }
                 }
-            }
-
-            function playMessageSequence() {
-	//hoonartek kore customization for mic on off (stop the recognization while message playing through speaker)
-                if(recognizing && audioPlaying){    //hoonartek kore customization for mic on off
-                    recognition.stop();
-                }
-        //hoonartek kore customization for mic on off
-                if (!speechSyn) {
-                    speechSyn = new SpeechSynthesisUtterance();
-                }
-        
-                if (audioMsgs.length > 0 && !audioPlaying) {
-                    audioPlaying = true;
-                    speechSyn.text = audioMsgs.shift();
-		//hoonartek kore customization for mic on off starts1 for checkbox/templates mic on off
-                    if(speechSyn.text == 'Please select the value manually' || speechSyn.text == 'Please select the options manually'|| speechSyn.text == 'Please fill out the form manually'){
-                        conMicOff = true;
-                    }
-                    else{
-                        conMicOff = false;
-                    }
-                //hoonartek kore customization for mic on off ends1
-                    window.speechSynthesis.speak(speechSyn);
-                    speechSyn.onend = function () {
-                        audioPlaying = false;
-                        playMessageSequence();
-                    }    
-                }//hoonartek kore customization for mic on off
-                if(recognizing && audioPlaying){    //hoonartek kore customization for mic on off
-                    recognition.stop();
-                }
-                else if(sessionStorage.getItem("mic")== 'true' && !recognizing && !audioPlaying && !conMicOff){   //hoonartek kore customization for mic on off
-                    recognition.start();  
-                }
-        //hoonartek kore customization for mic on off
-            }
+            };
+            // pallavi azure 13_02_2025
 
             function createSocketForTTS() {
 
