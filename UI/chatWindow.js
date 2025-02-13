@@ -72,7 +72,19 @@
         var checkboxes = document.querySelectorAll('.checkInput');
         var dropdowns = document.querySelectorAll('.styledDropdown');
         const noneOfTheAboveValue = "None of the above";
-    
+	//manasi 13/02
+	checkboxes.forEach(checkbox => {
+            if (checkbox.hasAttribute('checked')) {  
+                checkbox.addEventListener('click', function (event) {
+                    if (!checkbox.checked) {
+                        event.preventDefault(); // Prevent unchecking
+                        checkbox.checked = true; // Keep it checked
+                    }
+                });
+            }
+        });
+ 	//manasi 13/02
+
         // Get the checked checkboxes and their values
         var checkedValues = Array.prototype.filter.call(checkboxes, function (checkbox) {
             return checkbox.checked;
