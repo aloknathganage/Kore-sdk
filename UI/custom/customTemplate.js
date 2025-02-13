@@ -746,7 +746,7 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
  // };
 
 //Manasi 13/02
- var healthAddonTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl">\
+  var healthAddonTemplate = '<script id="chat_message_tmpl" type="text/x-jqury-tmpl">\
     {{if msgData.message}}\
     <li {{if msgData.type !== "bot_response"}}id="msg_${msgItem.clientMessageId}"{{/if}} class="{{if msgData.type === "bot_response"}}fromOtherUsers{{else}}fromCurrentUser{{/if}} with-icon">\
         <div class="listTmplContent">\
@@ -789,7 +789,7 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
                 <div class="{{if msgData.message[0].component.payload.fromHistory}}hide{{else}}checkboxButtons{{/if}}">\
                     {{each(key, buttonData) msgData.message[0].component.payload.buttons}}\
                     <div class="checkboxBtn" value=${buttonData.payload} title="${buttonData.title}">\
-                        ${buttonData.title}\ 
+                        ${buttonData.title}\
                     </div>\
                     {{/each}}\
                 </div>\
