@@ -764,7 +764,7 @@ var formTemplate='<script id="chat_message_tmpl" type="text/x-jqury-tmpl"> \
                     {{html helpers.convertMDtoHTML(msgData.message[0].component.payload.text, "user")}}\
                     {{/if}}\
                     {{if msgData.message[0].cInfo && msgData.message[0].cInfo.emoji}}\
-                    <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}\</span>
+                    <span class="emojione emojione-${msgData.message[0].cInfo.emoji[0].code}">${msgData.message[0].cInfo.emoji[0].title}\</span>\
                     {{/if}}\
                 </li>\
                 {{/if}}\
