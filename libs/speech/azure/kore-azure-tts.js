@@ -28,7 +28,8 @@
 
             // ✅ Set voice explicitly
             // speechConfig.speechSynthesisVoiceName = "en-US-DavisNeural"; //pallavi new
-            speechConfig.speechSynthesisVoiceName = "en-US-EmmaNeural"; //pallavi new
+            // speechConfig.speechSynthesisVoiceName = "en-US-EmmaNeural"; //pallavi new
+            speechConfig.speechSynthesisVoiceName = "en-IN-AartiNeural"; //pallavi new_14_02_2025
 
             audioContext = new AudioContext();
             // player = new SpeechSDK.SpeakerAudioDestination();
