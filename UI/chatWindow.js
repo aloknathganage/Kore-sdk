@@ -5805,9 +5805,10 @@
                         });
                     }
                     //pallavi-mic
-
-                    $('.recordingMicrophone').css('display', 'block');  
-                    $('.notRecordingMicrophone').css('display', 'none'); 
+		    //OFF GREEN MIC BEFORE RECOGNITION Pallavi_14_02_2025
+                    // $('.recordingMicrophone').css('display', 'block');  
+                    // $('.notRecordingMicrophone').css('display', 'none'); 
+		    //OFF GREEN MIC BEFORE RECOGNITION Pallavi_14_02_2025
                     console.log("Mic ON: Session Started");
                     window.recognizeSpeechWithAzure()
                     // pallu 2
