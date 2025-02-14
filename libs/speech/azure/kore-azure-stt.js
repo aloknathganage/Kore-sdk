@@ -164,11 +164,28 @@
             // $('.notRecordingMicrophone').css('display', 'none');
             //pallavi-mic
 
-            // Start continuous speech recognition
+            //OFF GREEN MIC BEFORE RECOGNITION Pallavi 14_02_2025
+            // // Start continuous speech recognition
+            // speechRecognizer.startContinuousRecognitionAsync(
+            //     () => console.log("Azure Speech Recognition Started"),
+            //     (err) => console.error("Error Starting Recognition:", err)
+            // );
+
+            // //pallavi-mic
+            // console.log("Mic ON: Session Started");
+            // $('.recordingMicrophone').css('display', 'block');
+            // $('.notRecordingMicrophone').css('display', 'none');
+            // //pallavi-mic
+
             speechRecognizer.startContinuousRecognitionAsync(
-                () => console.log("Azure Speech Recognition Started"),
+                () => {
+                    console.log("Azure Speech Recognition Started");
+                    $('.recordingMicrophone').css('display', 'block'); // Move UI update here
+                    $('.notRecordingMicrophone').css('display', 'none');
+                },
                 (err) => console.error("Error Starting Recognition:", err)
             );
+            //OFF GREEN MIC BEFORE RECOGNITION Pallavi 14_02_2025
 
             //pallavi-mic
             console.log("Mic ON: Session Started");
