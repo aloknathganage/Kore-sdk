@@ -156,13 +156,6 @@
             let inputSent = false;  // Prevent multiple sends
             let speechEndTimer = null; // Timer for handling speech end
             const SPEECH_END_DELAY = 1500; // Delay to detect speech end
-    
-            //pallavi-mic
-            // Show recording microphone icon
-            // console.log("Mic ON: Session Started");
-            // $('.recordingMicrophone').css('display', 'block');
-            // $('.notRecordingMicrophone').css('display', 'none');
-            //pallavi-mic
 
             //OFF GREEN MIC BEFORE RECOGNITION Pallavi 14_02_2025
             // // Start continuous speech recognition
@@ -186,12 +179,6 @@
                 (err) => console.error("Error Starting Recognition:", err)
             );
             //OFF GREEN MIC BEFORE RECOGNITION Pallavi 14_02_2025
-
-            //pallavi-mic
-            console.log("Mic ON: Session Started");
-            $('.recordingMicrophone').css('display', 'block');
-            $('.notRecordingMicrophone').css('display', 'none');
-            //pallavi-mic
     
             // Process interim results (when recognition is ongoing)
             speechRecognizer.recognizing = function(s, e) {
