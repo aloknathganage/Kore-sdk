@@ -604,8 +604,13 @@
                     text = "Dear customer, please provide your 10-digit registered mobile number in given format";
                 }
                 // pallavi azure 13_02_2025
+		// Remove bold formatting markers
+                text = text.replace(/<\/?b>/g, '');  // Remove <b> and </b> tags
+                text = text.replace(/\*\*(.*?)\*\*/g, '$1'); // Remove double asterisks (bold markdown)
+                text = text.replace(/\*(.*?)\*/g, '$1'); // Remove single asterisk (italic markdown)
+		    
                 //hoonartek kore customization for mic on off new
-                 text = text.replace(/₹\s?(\d{1,3}(?:,\s?\d{3})*)\/-/g, (match, p1) => { 	// for rupees
+                text = text.replace(/₹\s?(\d{1,3}(?:,\s?\d{3})*)\/-/g, (match, p1) => { 	// for rupees
                         return `rupees ${p1.replace(/,\s*/g, '')}`;
                         }).replace(/<\/?b>/g, '')
                         text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
