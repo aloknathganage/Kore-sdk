@@ -1864,17 +1864,33 @@
                     }
                 });
 
-		        //anurag calendarDropdown 12/02
-                $(document).on("change", ".startDate", function () {
+		//anurag calendarDropdown 12/02
+                // $(document).on("change", ".startDate", function () {
+                //     var selectedDate = $(this).val();
+                //     var messageId = $(this).data("messageid");
+                //     console.log("User selected date:", selectedDate);
+                //     // Automatically send the selected date as user input
+                //     $(".chatInputBox").text(selectedDate);
+                //     var enterKey = $.Event("keydown", { which: 13 });
+                //     enterKey.keyCode = 13;
+                //     $(".chatInputBox").trigger(enterKey);
+                // });
+		$(document).on("change", ".startDate", function () {
                     var selectedDate = $(this).val();
                     var messageId = $(this).data("messageid");
+               
                     console.log("User selected date:", selectedDate);
-                    // Automatically send the selected date as user input
-                    $(".chatInputBox").text(selectedDate);
+               
+                    // Convert selected date (YYYY-MM-DD) to DD-MM-YYYY
+                    var dateParts = selectedDate.split("-");
+                    var formattedDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0];
+               
+                    // Automatically send the selected date as user input in DD-MM-YYYY format
+                    $(".chatInputBox").text(formattedDate);
                     var enterKey = $.Event("keydown", { which: 13 });
                     enterKey.keyCode = 13;
                     $(".chatInputBox").trigger(enterKey);
-                });
+                });    
                 //end anurag calendarDropdown 12/02 
 
                 _chatContainer.on('click', '.chatInputBoxPlaceholder', function (event) {
