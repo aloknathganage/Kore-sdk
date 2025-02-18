@@ -792,7 +792,8 @@
     top: 50px;
     bottom: 53px;
     background-color: var(--sdk-chat-window-body-bg);
-    font-family: "Lato", sans-serif;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
     font-size: 14px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -2833,7 +2834,7 @@
   position: absolute;
   max-width: 170px;
   padding: 2px;
-  font: 12px sans-serif;
+  font: 12px 'Poppins',sans-serif;
   background: #eed;
   border: 0px;
   border-radius: 8px;
@@ -2842,7 +2843,7 @@
 .kore-chat-window  .largePreviewContent .bar-chart-tooltip {
     position: absolute;
     padding: 2px;
-    font: 12px sans-serif;
+    font: 12px 'Poppins',sans-serif;
     background: #eed;
     border: 0px;
     border-radius: 8px;
