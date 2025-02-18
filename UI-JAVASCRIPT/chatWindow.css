@@ -153,7 +153,8 @@
     color: #222;
     font-size: 16px;
     background-color: white;
-    font-family: arial,sans-serif;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
     height: 50px;
     line-height: 49px;
     padding: 0 0 0 20px;
@@ -227,7 +228,8 @@
     top: 50px;
     bottom: 53px;
     background-color: white;
-    font-family: "Lato", sans-serif;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
     font-size: 14px;
 }
 .lineChartChildDiv .mouse-over-effects .mouse-per-line text{
@@ -458,13 +460,15 @@ ul.chat-container li.fromOtherUsers.with-icon .extra-info{
     max-height: 70px;
     overflow-x: hidden;
     overflow-y: auto;
-	font-family: "Lato", sans-serif;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
 }
 .kore-chat-window .kore-chat-footer .chatInputBoxPlaceholder {
 	position: absolute;
 	color: #aaa;
 	font-size: 16px;
-	font-family: "Lato", sans-serif;
+	font-family: 'Poppins',sans-serif;
+        font-weight: 400;
 	position: absolute;
 	top: 4px;
 }
