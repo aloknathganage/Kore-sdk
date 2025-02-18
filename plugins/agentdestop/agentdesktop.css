@@ -1,6 +1,6 @@
 .header-sec-sdk-{
     font-family: 'Poppins',sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     background: #FFFFFF;
     box-shadow: 0px 0px 6px #a8c8dd;
     display: flex;
@@ -9,7 +9,7 @@
 }
 .header-sec-sdk- .name-agent{
     font-family: 'Poppins',sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     font-weight: bold;
     font-size: 16px;
     color: #26344A;
@@ -19,7 +19,7 @@
 
 .initial-video-audio-container{
     font-family: 'Poppins',sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     display: flex;
     align-items: center;
     padding: 15px;
@@ -67,7 +67,7 @@
 }
 .cobrowse-toolbar {
     font-family: 'Poppins',sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     display: flex;
     align-items: flex-start;
     z-index: 100000;
@@ -103,7 +103,7 @@
 }
 .video-audio-chat-container{
     font-family: 'Poppins',sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     background: #FFFFFF;
     border: 1px solid #A8C8DD;
     box-sizing: border-box;
