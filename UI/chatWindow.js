@@ -4844,98 +4844,107 @@
                 return msgTemplate;
             } else if (tempType === "popup") {
                 return popupTemplate;
-            // } else if (tempType === "templatebutton") {
-            //     console.log("this is the button");
-                
-            //     return buttonTemplate;
-
+	    // Ishika disable
+	    } else if (tempType === "templatebutton") {
+		    console.log("this is the button");
+		    // Wait for the button template to be rendered
+		    setTimeout(function() {
+		        // Assuming msgData is available and contains the body
+		        var firsttext = msgData.message[0].cInfo.body;
+		        console.log("firsttext", firsttext);
+		        // Check if the firsttext contains "Please click the button below to download your policy soft copy"
+		        if (firsttext.includes("Please click the button below to download your policy soft copy")) {
+		            console.log("Heading found in message, not disabling any buttons.");
+		            return; // Don't disable buttons if the heading is present
+		        }
+		        var clickType = '';
+		        // Loop through all the buttons to add the click event listener
+		        document.querySelectorAll('.buttonTmplContent, .buttonTmplContent.quickReplyDiv')
+		            .forEach(button => {
+		                button.addEventListener('click', function(e) {
+		                    var clickType = e.target.getAttribute('type');  // Get button type
+		                    if (!button.getAttribute('data-clicked')) {
+		                        console.log("A button was clicked: " + button.textContent);
+		                        // Disable the clicked button
+		                        button.style.pointerEvents = 'none';
+		                        button.style.cursor = 'default';
+		                        button.style.backgroundColor = '#0D6EFD';
+		                        button.style.opacity = '0.8';
+		                        if (clickType !== 'web_url') {
+		                            // Disable all other buttons except the ones of type 'web_url'
+		                            document.querySelectorAll('.buttonTmplContent, .buttonTmplContent.quickReplyDiv')
+		                                .forEach(b => {
+		                                    b.style.pointerEvents = 'none';
+		                                    b.style.cursor = 'default';
+		                                    b.style.backgroundColor = '#0D6EFD';
+		                                    b.style.opacity = '0.8';
+		                                });
+		                        }
+		                        // Mark this specific button as clicked to prevent future clicks
+		                        this.setAttribute('data-clicked', true);
+		                        console.log("All current buttons are now disabled.");
+		                    } 
+		                    else {
+		                        console.log("Button already clicked.");
+		                    }
+		                    return false;
+		                });
+		            });
+		    }, 100);  // Add a slight delay to ensure buttons are rendered
+		    return buttonTemplate;
+		// hoonartek customization end
+		// Ishika disable
+		    
+         //pallavi quickreply disable 13/02
         //hoonartek customization starts for button
-        } else if (tempType === "templatebutton") {
-            console.log("this is the button");
+      //   } else if (tempType === "templatebutton") {
+      //       console.log("this is the button");
 
-            // Wait for the button template to be rendered
-            setTimeout(function() {
-                // Add a click event listener to each button
-                var clickType='';
-    
-            //     document.querySelectorAll('.buttonTmplContentChild').forEach(button => {
-            //         button.addEventListener('click', function(e) {
-            //             clickType = e.target.type;
-            //             // Check if any button has already been clicked
-            //             if (!button.getAttribute('data-clicked')) {
-            //                 console.log("A button was clicked: " + button.textContent);
-            //                 if (clickType == 'web_url') { // Replace 'paynow' with the actual ID of the Pay Now button
-            //                     button.style.pointerEvents = 'none'; // Disable this button
-            //                     button.style.cursor = 'default'; // Change cursor to indicate disabled state
-            //                     button.style.backgroundColor = '#0D6EFD'; // Change background to indicate disabled state
-            //                     button.style.opacity = '0.8'; // Adjust opacity for visual feedback
-            //                 } 
-            //                 else {
+      //       // Wait for the button template to be rendered
+      //       setTimeout(function() {
+      //           // Add a click event listener to each button
+      //           var clickType='';
 
-            //                 document.querySelectorAll('.buttonTmplContentChild').forEach(b => {
-            //                     // Disable only if the button does not have the class 'quickReplyDiv'
-            //                     if (!b.classList.contains('quickReplyDiv')) {
-            //                         if (clickType !== 'web_url'){
-            //                         b.style.pointerEvents = 'none'; // Disable further clicks
-            //                         b.style.cursor = 'default'; // Change cursor to indicate disabled state
-            //                         b.style.backgroundColor = '#0D6EFD'; // Change background to indicate disabled state
-            //                         b.style.opacity = '0.8';  // Adjust opacity for visual feedback
-            //                     }
-                            
-            //                 }
-            //                 });
-            //                 }
-            //                 // Mark this specific button as clicked to avoid future clicks
-            //                 this.setAttribute('data-clicked', true);
-            //                 console.log("All current buttons are now disabled.");
-            //             } 
-            //             else {
-            //                 console.log("Button already clicked.");
-            //             }
-            //         return false;
-            //         });
-            //     });
+		    // //pallavi quickreply disable 13/02
+      //           document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
+      //           .forEach(button => {
+      //               button.addEventListener('click', function(e) {
+      //                   var clickType = e.target.getAttribute('type');  // Use getAttribute to get type correctly
 
-		    //pallavi quickreply disable 13/02
-                document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
-                .forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        var clickType = e.target.getAttribute('type');  // Use getAttribute to get type correctly
+      //                   if (!button.getAttribute('data-clicked')) {
+      //                       console.log("A button was clicked: " + button.textContent);
 
-                        if (!button.getAttribute('data-clicked')) {
-                            console.log("A button was clicked: " + button.textContent);
+      //                       // Disable only the clicked button
+      //                       button.style.pointerEvents = 'none';
+      //                       button.style.cursor = 'default';
+      //                       button.style.backgroundColor = '#0D6EFD';
+      //                       button.style.opacity = '0.8';
 
-                            // Disable only the clicked button
-                            button.style.pointerEvents = 'none';
-                            button.style.cursor = 'default';
-                            button.style.backgroundColor = '#0D6EFD';
-                            button.style.opacity = '0.8';
-
-                            if (clickType !== 'web_url') {
-                                // Disable all other buttons except web_url type
-                                document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
-                                .forEach(b => {
-                                    b.style.pointerEvents = 'none';
-                                    b.style.cursor = 'default';
-                                    b.style.backgroundColor = '#0D6EFD';
-                                    b.style.opacity = '0.8';
-                                });
-                            }
-                            // Mark this specific button as clicked to avoid future clicks
-                            this.setAttribute('data-clicked', true);
-                            console.log("All current buttons are now disabled.");
-                        } 
-                        else {
-                            console.log("Button already clicked.");
-                        }
-                    return false;
-                    });
-                });
+      //                       if (clickType !== 'web_url') {
+      //                           // Disable all other buttons except web_url type
+      //                           document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
+      //                           .forEach(b => {
+      //                               b.style.pointerEvents = 'none';
+      //                               b.style.cursor = 'default';
+      //                               b.style.backgroundColor = '#0D6EFD';
+      //                               b.style.opacity = '0.8';
+      //                           });
+      //                       }
+      //                       // Mark this specific button as clicked to avoid future clicks
+      //                       this.setAttribute('data-clicked', true);
+      //                       console.log("All current buttons are now disabled.");
+      //                   } 
+      //                   else {
+      //                       console.log("Button already clicked.");
+      //                   }
+      //               return false;
+      //               });
+      //           });
                                
-                //pallavi quickreply disable 13/02
-             }, 100);  // Add a slight delay to ensure buttons are rendered
-            return buttonTemplate;
-            //hoonartek customization end
+      //           //pallavi quickreply disable 13/02
+            //  }, 100);  // Add a slight delay to ensure buttons are rendered
+            // return buttonTemplate;
+            // //hoonartek customization end
             
             } else if (tempType === "templatelist") {
                 return listTemplate;
