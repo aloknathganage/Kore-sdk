@@ -6184,34 +6184,111 @@
     // pallavi azure 13_02_2025 commented webkit
 
             // pallavi azure 13_02_2025
-            chatWindow.prototype.speakWithAzure = function(_txtToSpeak) {
-                console.log("In chatWindow.prototype.speakWithAzure ");
+            // chatWindow.prototype.speakWithAzure = function(_txtToSpeak) {
+            //     console.log("In chatWindow.prototype.speakWithAzure ");
+            //     if (!_txtToSpeak) {
+            //         console.log("In !_txtToSpeak ");
+            //         console.log("No text to speak.");
+            //         return;
+            //     }
+            //     console.warn("\n\n----------------------_txtToSpeak----------", _txtToSpeak);
+            //     console.warn("\n\n----------------------audioMsgs----------", audioMsgs);
+
+            //     if (typeof window.speakTextWithAzure === 'function') {
+            //         console.log("Adding message to queue:", _txtToSpeak);
+            //         console.log("Pushing _txtToSpeak to audiomsgs");
+            //         audioMsgs.push(_txtToSpeak);
+            //         console.warn("\n\n\n\n -------audioMsgs-------", audioMsgs);
+            //         console.warn("\n\n\n\n -------audioPlaying-------", audioPlaying);
+
+            //         // if (!audioPlaying) {
+            //         //     console.warn("\n\n\n\n ---iffff----audioPlaying-------", audioPlaying);
+            //         //     playMessageSequence();
+            //         // }
+            //         console.log("Hitting speakTextWithAzure in prototype");
+            //         window.speakTextWithAzure(_txtToSpeak);
+            //         console.log("after speakTextWithAzure audioMsgs in prototype", audioMsgs);
+            //     } else {
+            //         console.warn("Azure TTS is not properly initialized");
+            //     }
+            // };
+	    // pallavi azure 18_02_2025
+	    // Initialize tracking variables
+            if (!window.lastSpokenMessage) {
+                window.lastSpokenMessage = ''; // Initialize if not already done
+            }
+
+            if (!window.lastNonFormMessage) {
+                window.lastNonFormMessage = ''; // Initialize
+            }
+
+            if (!window.lastUserMessage) {
+                window.lastUserMessage = ''; // Initialize
+            }
+
+            chatWindow.prototype.speakWithAzure = function (_txtToSpeak, formId = null) {
+                console.log("In chatWindow.prototype.speakWithAzure");
+
                 if (!_txtToSpeak) {
-                    console.log("In !_txtToSpeak ");
                     console.log("No text to speak.");
                     return;
                 }
-                console.warn("\n\n----------------------_txtToSpeak----------", _txtToSpeak);
-                console.warn("\n\n----------------------audioMsgs----------", audioMsgs);
 
+                console.warn("\n\n----------------------_txtToSpeak----------", _txtToSpeak);
+
+                // Define the form message
+                const formMessage = "Please click on the button and fill the form manually";
+
+                // Track if user has typed a message before form appears again
+                let goahead = false;
+
+                // If the message is the form prompt message
+                if (_txtToSpeak.includes(formMessage)) {
+                    console.log("Form message detected");
+
+                    // Retrieve previous messages
+                    const lastMessage = window.lastSpokenMessage;
+                    const lastNonFormMessage = window.lastNonFormMessage;
+                    const lastUserMessage = window.lastUserMessage;
+
+                    // ✅ If user typed something, form message must be spoken
+                    if (window.firsttext && window.firsttext.trim() !== '' && window.firsttext !== formMessage) {
+                        console.log("User typed a message before form. Setting goahead = true.");
+                        goahead = true;
+                        window.lastUserMessage = window.firsttext; // Store user message
+                        window.firsttext = ''; // Reset after processing
+                    }
+
+                    // ❌ Condition: Skip if form message is repeated without user/bot messages in between
+                    if (_txtToSpeak === lastMessage && lastNonFormMessage === '' && !goahead) {
+                        console.log("Skipping repeated form message (immediate repetition).");
+                        return;
+                    }
+
+                    // Reset tracking for non-form bot messages
+                    window.lastNonFormMessage = '';
+
+                    // Update last spoken message
+                    window.lastSpokenMessage = _txtToSpeak;
+                    console.log("Speaking form message:", _txtToSpeak);
+                } else {
+                    // If it's NOT a form message, update lastNonFormMessage
+                    window.lastNonFormMessage = _txtToSpeak;
+                }
+
+                // Proceed to speak the text (if not skipped)
                 if (typeof window.speakTextWithAzure === 'function') {
                     console.log("Adding message to queue:", _txtToSpeak);
-                    console.log("Pushing _txtToSpeak to audiomsgs");
                     audioMsgs.push(_txtToSpeak);
                     console.warn("\n\n\n\n -------audioMsgs-------", audioMsgs);
-                    console.warn("\n\n\n\n -------audioPlaying-------", audioPlaying);
 
-                    // if (!audioPlaying) {
-                    //     console.warn("\n\n\n\n ---iffff----audioPlaying-------", audioPlaying);
-                    //     playMessageSequence();
-                    // }
                     console.log("Hitting speakTextWithAzure in prototype");
                     window.speakTextWithAzure(_txtToSpeak);
-                    console.log("after speakTextWithAzure audioMsgs in prototype", audioMsgs);
                 } else {
                     console.warn("Azure TTS is not properly initialized");
                 }
             };
+	    // pallavi azure 18_02_2025
 
             // Stop speaking function
             chatWindow.prototype.stopSpeaking = function() {
