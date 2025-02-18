@@ -1,5 +1,6 @@
 .kore-chat-window{	
-    font-family: "Lato", sans-serif !important;	
+    font-family: 'Poppins', sans-serif !important;	
+    font-weight: 400;
 }
 .kore-chat-window .kore-action-sheet .header{
     height: 57px;
