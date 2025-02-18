@@ -11,6 +11,8 @@
     var bufferSource;
     window.audioPlaying = false;
     window.audioMsgs = []; // Ensuring global access
+    // Track if the form message has been spoken
+    window.formQueue = [];
 
     // Initialize Azure TTS
     function initAzureTTS() {
@@ -29,14 +31,14 @@
             // ✅ Set voice explicitly
             // speechConfig.speechSynthesisVoiceName = "en-US-DavisNeural"; //pallavi new
             // speechConfig.speechSynthesisVoiceName = "en-US-EmmaNeural"; //pallavi new
-            speechConfig.speechSynthesisVoiceName = "en-IN-AartiNeural"; //pallavi new_14_02_2025
+            speechConfig.speechSynthesisVoiceName = "en-IN-AartiNeural"; //pallavi new
 
             audioContext = new AudioContext();
             // player = new SpeechSDK.SpeakerAudioDestination();
             // var audioConfig = SpeechSDK.AudioConfig.fromSpeakerOutput(player);
 
             audioStream = SpeechSDK.PullAudioOutputStream.create();
-            var audioConfig  = AudioConfig.fromStreamOutput(audioStream);
+            var audioConfig  = SpeechSDK.AudioConfig.fromStreamOutput(audioStream);
 
             synthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig, audioConfig);
 
@@ -117,6 +119,10 @@
             manual = true;
             console.log("Mic will remain OFF because the message contains 'You're verified'");
         }
+        if (firsttextt.includes("Based on your selection, here’s the premium")) {
+            manual = true;
+            console.log("Based on your selection, here’s the premium");
+        }
         if (firsttextt.includes("Please wait for a moment")) {
             manual = true;
             console.log("Mic will remain OFF because the message contains 'You're verified'");
@@ -151,6 +157,7 @@
                 audioContext.decodeAudioData(result.audioData, (buffer) => {
                     bufferSource = audioContext.createBufferSource();
                     console.log("bufferSource", bufferSource);
+                    console.log("manual isPlaying", manual, isPlaying);
                     bufferSource.buffer = buffer;
                     bufferSource.connect(audioContext.destination);
                     bufferSource.start(0);
@@ -162,14 +169,12 @@
                             isPlaying = false;
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
-                        }
-                        // isPlaying = false; // pallavi form NOT CONFIRMED
-                        //pallavi-mic
-                        // if(isPlaying = false){
-                        //     console.log("TTS finished, activating STT..."); 
-                        //     window.recognizeSpeechWithAzure();
-                        // }
-                        //pallavi-mic
+                        }else{
+                            isPlaying = false;
+                        };
+
+                        manual = false;
+                        console.log("After over manual isPlaying", manual, isPlaying);
                     }
                 })
             },
@@ -181,13 +186,18 @@
     }
 
     // Speak text using Azure TTS
-    window.speakTextWithAzure = function (textToSpeak) {
+    window.speakTextWithAzure = function (textToSpeak, isForm = false) {
         console.log("In window.speakTextWithAzure textToSpeak", textToSpeak);
+         // 🟢 If a new form appears, check if we should announce the message
+         if (isForm) {
+            window.formQueue.push("Please click on button and fill form manually");
+            console.log(`🟢 New form added to queue. Current queue: ${window.formQueue.length}`);
+        }
         audioMessages.push(textToSpeak);
         console.log("audioMessages after pushing", audioMessages);
-
+        
         if (!isPlaying) {
-
+            console.log("isPlaying in !isplaying", isPlaying);
             console.warn('\n\n\n ---------------speakTextWithAzure-------', textToSpeak)
 
             // player = new SpeechSDK.SpeakerAudioDestination();
@@ -215,10 +225,20 @@
             }
 
             audioStatus = 'speaking';
+            isPlaying = true; // 🔹 Ensure isPlaying is set before calling speakMsgs() pallavi new
             speakMsgs();
         }
 
     };
+
+        // Function to announce form messages from the queue
+        window.announceNextForm = function () {
+            if (window.formQueue.length > 0) {
+                var formMessage = window.formQueue.shift(); // Pop from queue
+                console.log(`🔊 Announcing form message: ${formMessage}`);
+                window.speakTextWithAzure(formMessage);
+            }
+        };
 
     // Stop speaking function
     window.stopSpeakingAzureTTS = function () {
