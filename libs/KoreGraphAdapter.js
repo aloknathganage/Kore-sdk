@@ -977,7 +977,7 @@ var KoreGraphAdapter = (function($) {
       var tt_legend = d3.select(selection).append("div")   
          .attr("class", "tooltip-legend no-show");
       var legend = g.append("g")
-          .attr("font-family", "sans-serif")
+          .attr("font-family", "'Poppins',sans-serif")
           .attr("font-size", 10)
           .attr("text-anchor", "end")
         .selectAll("g")
@@ -1063,7 +1063,7 @@ function createhorizontalGroupBarChartLegend(mainDiv, columnsInfo, colorRange) {
         var cloloCode = z(d);
         $("#Legend_" + mainDivName).append("<span class='team-graph team1' style='display: inline-block; margin-right:10px;margin-left: 20px;'>\
         <span style='background:" + cloloCode + ";width: 10px;height: 10px;display: inline-block;vertical-align: middle;'>&nbsp;</span>\
-        <span title="+columnsInfo[d].replace(/[ ]/g,"\u00a0") +" style='padding-top: 0;font-family:Source Sans Pro, sans-serif;font-size: 13px;display: inline;'>" + ((columnsInfo[d].length > 10)?(columnsInfo[d].slice(0, 7) + "..."):(columnsInfo[d])) + " </span>\
+        <span title="+columnsInfo[d].replace(/[ ]/g,"\u00a0") +" style='padding-top: 0;font-family:Source Sans Pro,'Poppins',sans-serif;font-size: 13px;display: inline;'>" + ((columnsInfo[d].length > 10)?(columnsInfo[d].slice(0, 7) + "..."):(columnsInfo[d])) + " </span>\
     </span>");
     });
 
@@ -1592,7 +1592,7 @@ function createhorizontalGroupBarChartLegend(mainDiv, columnsInfo, colorRange) {
                 .attr("class", "tooltip-legend no-show")
 
           var legend = g.append("g")
-              .attr("font-family", "sans-serif")
+              .attr("font-family", "'Poppins',sans-serif")
               .attr("font-size", 8)
               .attr("text-anchor", "end")
             .selectAll("g")
@@ -1804,7 +1804,7 @@ function createhorizontalGroupBarChartLegend(mainDiv, columnsInfo, colorRange) {
               .attr("class", "tooltip-legend no-show")
 
           var legend = g.append("g")
-              .attr("font-family", "sans-serif")
+              .attr("font-family", "'Poppins',sans-serif")
               .attr("font-size", 10)
               .attr("text-anchor", "end")
             .selectAll("g")
@@ -2126,7 +2126,7 @@ function createhorizontalGroupBarChartLegend(mainDiv, columnsInfo, colorRange) {
             .attr("class", "tooltip-legend no-show");
 
           var legend = svg.append("g")
-              .attr("font-family", "sans-serif")
+              .attr("font-family", "'Poppins',sans-serif")
               .attr("font-size", 10)
               .attr("text-anchor", "end")
             .selectAll("g")
