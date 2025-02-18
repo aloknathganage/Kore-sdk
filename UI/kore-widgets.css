@@ -349,7 +349,8 @@
   position: absolute;
   max-width: 170px;
   padding: 2px;
-  font: 12px sans-serif;
+  font: 12px 'Poppins',sans-serif;
+  font-weight: 400;
   background:  var(--sdk-primary-bg-color);
   border: 0px;
   border-radius: 8px;
@@ -358,7 +359,8 @@
 .kr-wiz-content-css  .largePreviewContent .bar-chart-tooltip {
     position: absolute;
     padding: 2px;
-    font: 12px sans-serif;
+    font: 12px 'Poppins',sans-serif;
+    font-weight: 400;
     background:  var(--sdk-primary-bg-color);
     border: 0px;
     border-radius: 8px;
