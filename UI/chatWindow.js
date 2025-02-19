@@ -618,6 +618,7 @@
 		    	text = text.replace(/[⬅️😄😊✈️🚗]/g, '', match => readDigitsSeparately(match)); //for emoji prompt
                 text = text.replace(/\//g, ' '); // pallavi azure 13_02_2025
                 text = text.replace(/\be\.g\./gi, 'Example'); // pallavi azure 13_02_2025
+		text = text.replace(/\bno\.\b/gi, 'number'); // pallavi no. number 19_02_2025
                 return text;
                 //hoonartek kore customization for mic on off
             }
