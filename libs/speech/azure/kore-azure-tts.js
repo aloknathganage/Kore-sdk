@@ -117,23 +117,42 @@
         // micccc
         if (firsttextt.includes("You're verified")) {
             manual = true;
-            console.log("Mic will remain OFF because the message contains 'You're verified'");
         }
         if (firsttextt.includes("Based on your selection, here’s the premium")) {
             manual = true;
-            console.log("Based on your selection, here’s the premium");
         }
         if (firsttextt.includes("Please wait for a moment")) {
             manual = true;
-            console.log("Mic will remain OFF because the message contains 'You're verified'");
         }
         if (firsttextt.includes("It seems like there are no agents that can help you at this time.")) {
             manual = true;
-            console.log("Mic will remain OFF because the message contains 'You're verified'");
         }
         if (firsttextt.includes("Please hold while I find the right customer service executive for you")) {
             manual = true;
-            console.log("Mic will remain OFF because the message contains 'You're verified'");
+        }
+        if (firsttextt.includes("Ready to elevate your experience? Choose your preferred plan")) {
+            manual = true;
+        }
+        if (firsttextt.includes("We're thrilled! Here’s the proposal summary")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Ready to proceed")) {
+            manual = true;
+        }
+        if (firsttextt.includes("That's okay. Let's work together to find the best coverage for you")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Please wait, we are currently awaiting your payment confirmation status")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Oops! Your payment is still not through. Please Pay Now to proceed")) {
+            manual = true;
+        }
+        if (firsttextt.includes("You can also download it here")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Please complete your payment process using the link below. Thank you")) {
+            manual = true;
         }
         // miccccc
         // pallavi form
