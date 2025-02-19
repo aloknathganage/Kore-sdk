@@ -3259,7 +3259,7 @@
                     } else {
                         $(".buttonTmplContentChild.quickReplyDiv")
                             .css("pointer-events", "none")
-                            .css("opacity", "0.5");
+                            .css("opacity", "1");
                     }
                     //pallavi disable quickreply 13/02
                     if(msgData.message[0]?.component?.payload?.template_type == 'table'){
