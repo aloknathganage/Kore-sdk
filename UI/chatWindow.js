@@ -3255,11 +3255,11 @@
                     if (msgData.message[0]?.component?.payload?.template_type == 'quickReplyTemplate') {
                         $(".buttonTmplContentChild.quickReplyDiv")
                             .css("pointer-events", "auto")
-                            .css("opacity", "1.1");
+                            .css("opacity", "0.8");
                     } else {
                         $(".buttonTmplContentChild.quickReplyDiv")
                             .css("pointer-events", "none")
-                            .css("opacity", "1.1");
+                            .css("opacity", "0.8");
                     }
                     //pallavi disable quickreply 13/02
                     if(msgData.message[0]?.component?.payload?.template_type == 'table'){
