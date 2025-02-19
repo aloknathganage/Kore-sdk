@@ -3261,6 +3261,16 @@
                             .css("pointer-events", "none")
                             .css("opacity", "0.8");
                     }
+			
+		    if (msgData.message[0]?.component?.payload?.template_type == 'buttonTemplate') {
+                        $(".buttonTmplContentChild")
+                            .css("pointer-events", "auto")
+                            .css("opacity", "0.8");
+                    } else {
+                        $(".buttonTmplContentChild")
+                            .css("pointer-events", "none")
+                            .css("opacity", "0.8");
+                    }
                     //pallavi disable quickreply 13/02
                     if(msgData.message[0]?.component?.payload?.template_type == 'table'){
                         let plainObj=JSON.stringify(msgData.message[0].component.payload.elements);
