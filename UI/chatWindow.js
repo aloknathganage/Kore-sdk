@@ -487,17 +487,17 @@
 		  const passportRegex = /^[A-Z]{1}\d{7}$/; // Validates a passport number (1 letter followed by 7 digits)
 		  const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i; // Validates vehicle registration number
 		  const vehicleRegex2 = /^\d{2}[a-zA-Z]{2}\d{4}[a-zA-Z]$/; // Validates 23BH2525C pattern // pallavi azure 13_02_2025
-          // let removeSpaces = text.replace(/\s/g, "");
+           	  // let removeSpaces = text.replace(/\s/g, "");
 		  let removeSpaces = text.replace(/[\s,.-]/g, ""); //Navya validation for Edge Browser
 		  text = text.replace(phoneRegexInSentence, (match) => match.replace(/[-\s]/g, "")); // Matches a phone number in sentence 19_02_2025
 		  if (vehicleRegex.test(removeSpaces)) {
 		    return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
 		  }
-          // pallavi azure 13_02_2025
-          if (vehicleRegex2.test(removeSpaces)) {
-            return removeSpaces.replace(/(\d{2})([a-zA-Z]{2})(\d{4})([a-zA-Z])/, "$1-$2-$3-$4"); //pallavi
-          }
-          // pallavi azure 13_02_2025
+	          // pallavi azure 13_02_2025
+	          if (vehicleRegex2.test(removeSpaces)) {
+	            return removeSpaces.replace(/(\d{2})([a-zA-Z]{2})(\d{4})([a-zA-Z])/, "$1-$2-$3-$4"); //pallavi
+	          }
+          	  // pallavi azure 13_02_2025
 		  if (phoneRegex.test(removeSpaces)) {
 		    return removeSpaces;
 		  }
@@ -513,7 +513,6 @@
 		  if (passportRegex.test(removeSpaces)) {
 		    return removeSpaces;
 		  }
-		 
 		  return text.replace(/\.$/g, ''); // Removes a trailing period if no match
 		}
             //hoonartek kore customization for mic on off
