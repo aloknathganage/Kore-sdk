@@ -131,6 +131,10 @@
             manual = true;
             console.log("Mic will remain OFF because the message contains 'You're verified'");
         }
+        if (firsttextt.includes("Please hold while I find the right customer service executive for you")) {
+            manual = true;
+            console.log("Mic will remain OFF because the message contains 'You're verified'");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
