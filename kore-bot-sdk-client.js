@@ -159,38 +159,77 @@ KoreBot.prototype.fetchUserLocation = function() {
 //   }
 //   return text.replace(/\.$/, '');
 // }
+// function reFormatUserText(text) {
+//   console.log("In reFormatUserText in kore bot client sdk file");
+//   const phoneRegex = /^\d{10}$/; // Validates a 10-digit phone number
+//   const policyRegex = /^\d{18}$/; // Validates an 18-digit policy number
+//   const pincodeRegex = /^\d{6}$/; // Validates a 6-digit pincode
+//   const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/; // Validates a PAN number
+//   const passportRegex = /^[A-Z]{1}\d{7}$/; // Validates a passport number (1 letter followed by 7 digits)
+//   const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i; // Validates vehicle registration number
+//   // let removeSpaces = text.replace(/\s/g, "");
+//   let removeSpaces = text.replace(/[\s,.-]/g, ""); //Navya validation for Edge Browser
+ 
+//   if (vehicleRegex.test(removeSpaces)) {
+//     return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
+//   }
+//   if (phoneRegex.test(removeSpaces)) {
+//     return removeSpaces;
+//   }
+//   if (policyRegex.test(removeSpaces)) {
+//     return removeSpaces;
+//   }
+//   if (pincodeRegex.test(removeSpaces)) {
+//     return removeSpaces;
+//   }
+//   if (panNumberRegex.test(removeSpaces)) {
+//     return removeSpaces;
+//   }
+//   if (passportRegex.test(removeSpaces)) {
+//     return removeSpaces;
+//   }
+ 
+//   return text.replace(/\.$/, ''); // Removes a trailing period if no match
+// }
+
 function reFormatUserText(text) {
-  console.log("In reFormatUserText in kore bot client sdk file");
+  console.log("In reFormatUserText in chatwindow.js");
   const phoneRegex = /^\d{10}$/; // Validates a 10-digit phone number
+  const phoneRegexInSentence = /\b\d{3}[-\s]?\d{3}[-\s]?\d{4}\b/g; // Matches a phone number in sentence 19_02_2025
   const policyRegex = /^\d{18}$/; // Validates an 18-digit policy number
   const pincodeRegex = /^\d{6}$/; // Validates a 6-digit pincode
   const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/; // Validates a PAN number
   const passportRegex = /^[A-Z]{1}\d{7}$/; // Validates a passport number (1 letter followed by 7 digits)
   const vehicleRegex = /\b[a-z]{2}\d{2}[a-z]{2}\d{4}\b/i; // Validates vehicle registration number
+  const vehicleRegex2 = /^\d{2}[a-zA-Z]{2}\d{4}[a-zA-Z]$/; // Validates 23BH2525C pattern // pallavi azure 13_02_2025
   // let removeSpaces = text.replace(/\s/g, "");
   let removeSpaces = text.replace(/[\s,.-]/g, ""); //Navya validation for Edge Browser
- 
+  text = text.replace(phoneRegexInSentence, (match) => match.replace(/[-\s]/g, "")); // Matches a phone number in sentence 19_02_2025
   if (vehicleRegex.test(removeSpaces)) {
-    return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
+      return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
   }
+  // pallavi azure 13_02_2025
+  if (vehicleRegex2.test(removeSpaces)) {
+      return removeSpaces.replace(/(\d{2})([a-zA-Z]{2})(\d{4})([a-zA-Z])/, "$1-$2-$3-$4"); //pallavi
+  }
+  // pallavi azure 13_02_2025
   if (phoneRegex.test(removeSpaces)) {
-    return removeSpaces;
+      return removeSpaces;
   }
   if (policyRegex.test(removeSpaces)) {
-    return removeSpaces;
+      return removeSpaces;
   }
   if (pincodeRegex.test(removeSpaces)) {
-    return removeSpaces;
+      return removeSpaces;
   }
   if (panNumberRegex.test(removeSpaces)) {
-    return removeSpaces;
+      return removeSpaces;
   }
   if (passportRegex.test(removeSpaces)) {
-    return removeSpaces;
+      return removeSpaces;
   }
- 
-  return text.replace(/\.$/, ''); // Removes a trailing period if no match
-}
+    return text.replace(/\.$/g, ''); // Removes a trailing period if no match
+  }
 // hoonartek kore customization for mic ends
 /*
 sends a message to bot.
