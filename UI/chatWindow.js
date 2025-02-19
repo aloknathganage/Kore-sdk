@@ -4859,7 +4859,7 @@
 		        }
 		        var clickType = '';
 		        // Loop through all the buttons to add the click event listener
-		        document.querySelectorAll('.buttonTmplContent, .buttonTmplContent.quickReplyDiv')
+		        document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
 		            .forEach(button => {
 		                button.addEventListener('click', function(e) {
 		                    var clickType = e.target.getAttribute('type');  // Get button type
@@ -4872,7 +4872,7 @@
 		                        button.style.opacity = '0.8';
 		                        if (clickType !== 'web_url') {
 		                            // Disable all other buttons except the ones of type 'web_url'
-		                            document.querySelectorAll('.buttonTmplContent, .buttonTmplContent.quickReplyDiv')
+		                            document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
 		                                .forEach(b => {
 		                                    b.style.pointerEvents = 'none';
 		                                    b.style.cursor = 'default';
