@@ -614,7 +614,7 @@
                         return `rupees ${p1.replace(/,\s*/g, '')}`;
                         }).replace(/<\/?b>/g, '')
                         // text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
-		    	text = text.replace(/\b\d{6,7}\b|\b\d{10}\b/g, match => readDigitsSeparately(match)); //phone number reading seperately
+		    	text = text.replace(/\b\d{6,7}\b|\b\d{10}\b/g, match => readDigitsSeparately(match)); //phone number reading seperately 19_02_2025
                         text = text.replace(/\b\d{18}\b/g, match => readDigitsSeparately(match)); //policy number read sep
 		    	text = text.replace(/[⬅️😄😊✈️🚗]/g, '', match => readDigitsSeparately(match)); //for emoji prompt
                 text = text.replace(/\//g, ' '); // pallavi azure 13_02_2025
