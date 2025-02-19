@@ -154,6 +154,18 @@
         if (firsttextt.includes("Please complete your payment process using the link below. Thank you")) {
             manual = true;
         }
+        if (firsttextt.includes("Please click the button below to download your policy soft copy")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Thank you for your valuable feedback! Please feel free to reach out if you need any further assistance.")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Thank you for waiting.")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Please reach out to us if you need any assistance again")) {
+            manual = true;
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
