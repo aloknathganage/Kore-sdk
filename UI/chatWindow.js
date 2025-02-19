@@ -480,6 +480,7 @@
 	function reFormatUserText(text) {
 		  console.log("In reFormatUserText in chatwindow.js");
 		  const phoneRegex = /^\d{10}$/; // Validates a 10-digit phone number
+		  const phoneRegexInSentence = /\b\d{3}[-\s]?\d{3}[-\s]?\d{4}\b/g; // Matches a phone number in sentence 19_02_2025
 		  const policyRegex = /^\d{18}$/; // Validates an 18-digit policy number
 		  const pincodeRegex = /^\d{6}$/; // Validates a 6-digit pincode
 		  const panNumberRegex = /^[A-Z]{5}\d{4}[A-Z]{1}$/; // Validates a PAN number
@@ -488,7 +489,7 @@
 		  const vehicleRegex2 = /^\d{2}[a-zA-Z]{2}\d{4}[a-zA-Z]$/; // Validates 23BH2525C pattern // pallavi azure 13_02_2025
           // let removeSpaces = text.replace(/\s/g, "");
 		  let removeSpaces = text.replace(/[\s,.-]/g, ""); //Navya validation for Edge Browser
-		 
+		  text = text.replace(phoneRegexInSentence, (match) => match.replace(/[-\s]/g, "")); // Matches a phone number in sentence 19_02_2025
 		  if (vehicleRegex.test(removeSpaces)) {
 		    return removeSpaces.replace(/(\w{2})(\d{2})(\w{2})(\d{4})/, "$1-$2-$3-$4");
 		  }
