@@ -166,6 +166,9 @@
         if (firsttextt.includes("Please reach out to us if you need any assistance again")) {
             manual = true;
         }
+        if (firsttextt.includes("You're welcome! Have a great day!")) {
+            manual = true;
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
