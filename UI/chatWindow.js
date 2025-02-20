@@ -2696,7 +2696,10 @@
                     // setTimeout(function () {
                     //     me.resetWindow();
                     // });
-                    me.resetWindow();
+		    // Pallavi blank bot issue 20_02_2025
+                    // me.resetWindow();
+		    me.resetWindow({isReconnect: true}); // pass the data
+		    // Pallavi blank bot issue 20_02_2025
                 // hoonartek customization for clear history ends
 		// hoonartek kore customization for mic
                     // $('.recordingMicrophone').trigger('click');
