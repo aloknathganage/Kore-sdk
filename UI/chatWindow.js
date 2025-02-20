@@ -600,57 +600,57 @@
                     console.log("This is text ")
                 }
 		// pallavi date 20_02_2025
-                // Convert all date formats to readable format
-                text = text.replace(/\b(\d{2})[\/-](\d{2})[\/-](\d{4})\b|\b(\d{4})[\/-](\d{2})[\/-](\d{2})\b/g, (match, day, month, year, y1, m1, d1) => {
-                    let finalDay = day || d1;
-                    let finalMonth = month || m1;
-                    let finalYear = year || y1;
-                    return formatDate(finalDay, finalMonth, finalYear);
-                });
+                // // Convert all date formats to readable format
+                // text = text.replace(/\b(\d{2})[\/-](\d{2})[\/-](\d{4})\b|\b(\d{4})[\/-](\d{2})[\/-](\d{2})\b/g, (match, day, month, year, y1, m1, d1) => {
+                //     let finalDay = day || d1;
+                //     let finalMonth = month || m1;
+                //     let finalYear = year || y1;
+                //     return formatDate(finalDay, finalMonth, finalYear);
+                // });
 
-                function formatDate(day, month, year) {
-                    const months = [
-                        "January", "February", "March", "April", "May", "June",
-                        "July", "August", "September", "October", "November", "December"
-                    ];
+                // function formatDate(day, month, year) {
+                //     const months = [
+                //         "January", "February", "March", "April", "May", "June",
+                //         "July", "August", "September", "October", "November", "December"
+                //     ];
 
-                    let daySuffix = (d) => {
-                        if (d > 3 && d < 21) return "th"; 
-                        switch (d % 10) {
-                            case 1: return "st";
-                            case 2: return "nd";
-                            case 3: return "rd";
-                            default: return "th";
-                        }
-                    };
+                //     let daySuffix = (d) => {
+                //         if (d > 3 && d < 21) return "th"; 
+                //         switch (d % 10) {
+                //             case 1: return "st";
+                //             case 2: return "nd";
+                //             case 3: return "rd";
+                //             default: return "th";
+                //         }
+                //     };
 
-                    let formattedDay = `${parseInt(day)}${daySuffix(parseInt(day))}`;
-                    let formattedMonth = months[parseInt(month) - 1];
-                    let formattedYear = convertYearToWords(year);
+                //     let formattedDay = `${parseInt(day)}${daySuffix(parseInt(day))}`;
+                //     let formattedMonth = months[parseInt(month) - 1];
+                //     let formattedYear = convertYearToWords(year);
 
-                    return `${formattedDay} ${formattedMonth} ${formattedYear}`;
-                }
+                //     return `${formattedDay} ${formattedMonth} ${formattedYear}`;
+                // }
 
-                function convertYearToWords(year) {
-                    const yearNum = parseInt(year);
-                    if (yearNum < 2000) return numberToWords(yearNum);
+                // function convertYearToWords(year) {
+                //     const yearNum = parseInt(year);
+                //     if (yearNum < 2000) return numberToWords(yearNum);
                     
-                    const firstPart = yearNum.toString().substring(0, 2);
-                    const lastPart = yearNum.toString().substring(2, 4);
+                //     const firstPart = yearNum.toString().substring(0, 2);
+                //     const lastPart = yearNum.toString().substring(2, 4);
                     
-                    return `two thousand ${numberToWords(parseInt(lastPart))}`;
-                }
+                //     return `two thousand ${numberToWords(parseInt(lastPart))}`;
+                // }
 
-                function numberToWords(num) {
-                    const ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-                    const teens = ["", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
-                    const tens = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+                // function numberToWords(num) {
+                //     const ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+                //     const teens = ["", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+                //     const tens = ["", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
-                    if (num < 10) return ones[num];
-                    if (num < 20) return teens[num - 10];
-                    if (num % 10 === 0) return tens[Math.floor(num / 10)];
-                    return `${tens[Math.floor(num / 10)]} ${ones[num % 10]}`;
-                }
+                //     if (num < 10) return ones[num];
+                //     if (num < 20) return teens[num - 10];
+                //     if (num % 10 === 0) return tens[Math.floor(num / 10)];
+                //     return `${tens[Math.floor(num / 10)]} ${ones[num % 10]}`;
+                // }
                 // pallavi date 20_02_2025
                 // pallavi azure 13_02_2025
                 if (text.includes("please provide your 10-digit registered mobile number in the following format")) {
