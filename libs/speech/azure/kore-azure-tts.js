@@ -172,6 +172,9 @@
         if (firsttextt.includes("Dear customer, thank you for reaching out to us. I hope I assisted you well. Have a great day!")) {
             manual = true;
         }
+        if (firsttextt.includes("but we couldn't retrieve the information you're looking for at the moment")) {
+            manual = true;
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
