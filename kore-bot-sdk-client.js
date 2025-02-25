@@ -1559,6 +1559,7 @@ KoreRTMClient.prototype._onStart = function _onStart(err, data) {
   if(data && data.errors && (data.errors[0].code === 'TOKEN_EXPIRED' || data.errors[0].code === 401 || data.errors[0].msg === 'token expired')){
       KoreSDK.dependencies.jQuery(".reload-btn").trigger('click',{isReconnect:true});
       data.error='token_expired';
+      console.log("Hitting reload after token expired"); // Pallavi hitting reload blank page 25_02_2025
   }
   if (err || !data.url) {
     debug("error or no url in response %s", err || "no url");
