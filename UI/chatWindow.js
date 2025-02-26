@@ -4953,6 +4953,25 @@
 		                    var clickType = e.target.getAttribute('type');  // Get button type
 		                    if (!button.getAttribute('data-clicked')) {
 		                        console.log("A button was clicked: " + button.textContent);
+
+					// Manasi Pay Now 26_02_2025
+					let str =  button.textContent;
+	                                let noSpaceStr = str.replace(/\s+/g, ""); 
+	                            	if(noSpaceStr == "PayNow")
+	                            	{
+	                                	console.log("manasi paynow");
+	                                	const me = window.chatContainerConfig;
+	                                	$('.chatInputBox').text('Pay Now');
+	                                	me.sendMessage($('.chatInputBox'));
+	                            	}
+	                            	if(noSpaceStr == "DownloadSoftcopy")
+	                            	{
+	                                	const me = window.chatContainerConfig;
+	                                	$('.chatInputBox').text('Download Softcopy');
+	                                	me.sendMessage($('.chatInputBox'));
+	                            	}
+					// Manasi Pay Now 26_02_2025
+
 		                        // Disable the clicked button
 		                        button.style.pointerEvents = 'none';
 		                        button.style.cursor = 'default';
