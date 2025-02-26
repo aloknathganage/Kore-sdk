@@ -4966,6 +4966,7 @@
 	                            	}
 	                            	if(noSpaceStr == "DownloadSoftcopy")
 	                            	{
+						console.log("manasi softcopy");
 	                                	const me = window.chatContainerConfig;
 	                                	$('.chatInputBox').text('Download Softcopy');
 	                                	me.sendMessage($('.chatInputBox'));
