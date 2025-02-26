@@ -4941,10 +4941,10 @@
 		        var firsttext = msgData.message[0].cInfo.body;
 		        console.log("firsttext", firsttext);
 		        // Check if the firsttext contains "Please click the button below to download your policy soft copy"
-		        if (firsttext.includes("Please click the button below to download your policy soft copy")) {
-		            console.log("Heading found in message, not disabling any buttons.");
-		            return; // Don't disable buttons if the heading is present
-		        }
+		        // if (firsttext.includes("Please click the button below to download your policy soft copy")) {
+		        //     console.log("Heading found in message, not disabling any buttons.");
+		        //     return; // Don't disable buttons if the heading is present
+		        // }
 		        var clickType = '';
 		        // Loop through all the buttons to add the click event listener
 		        document.querySelectorAll('.buttonTmplContentChild, .buttonTmplContentChild.quickReplyDiv')
