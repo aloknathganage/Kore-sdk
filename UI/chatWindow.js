@@ -1874,15 +1874,29 @@
                 }
             };
 
-            chatWindow.prototype.resetWindow = function () {
+	    // Pallavi blank 26_02_2025
+            // chatWindow.prototype.resetWindow = function () {
+            //     var me = this;
+            //     me.config.chatContainer.find('.kore-chat-header .header-title').html(me.config.botMessages.reconnecting);
+            //     me.config.chatContainer.find('.chat-container').html("");        // hoonartek customization for clear history after reconnect uncommented
+            //     me.bot.close();
+            //     me.config.botOptions.maintainContext = false
+            //     me.setLocalStoreItem('kr-cw-uid',me.config.botOptions.userIdentity);
+            //     me.bot.init(me.config.botOptions);
+            // };
+
+		chatWindow.prototype.resetWindow = function (data) {
                 var me = this;
                 me.config.chatContainer.find('.kore-chat-header .header-title').html(me.config.botMessages.reconnecting);
-                me.config.chatContainer.find('.chat-container').html("");        // hoonartek customization for clear history after reconnect uncommented
+                if (!data) { // don't clear for internal reconnections
+                    me.config.chatContainer.find('.chat-container').html("");        // hoonartek customization for clear history after reconnect uncommented
+                }
                 me.bot.close();
                 me.config.botOptions.maintainContext = false
                 me.setLocalStoreItem('kr-cw-uid',me.config.botOptions.userIdentity);
                 me.bot.init(me.config.botOptions);
             };
+	    // Pallavi blank 26_02_2025
 
             chatWindow.prototype.bindEvents = function () {
                 var me = this;
@@ -2698,8 +2712,11 @@
                     // });
 		    // Pallavi blank bot issue 20_02_2025
                     // me.resetWindow();
-		    me.resetWindow({isReconnect: true}); // pass the data
+		    // me.resetWindow({isReconnect: true}); // pass the data
 		    // Pallavi blank bot issue 20_02_2025
+		    // Pallavi blank bot issue 26_02_2025
+		    me.resetWindow(data);
+		    // Pallavi blank bot issue 26_02_2025
                 // hoonartek customization for clear history ends
 		// hoonartek kore customization for mic
                     // $('.recordingMicrophone').trigger('click');
