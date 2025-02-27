@@ -550,11 +550,11 @@
                     switch (type) {
                         case 'quick_replies':
                             let text_quick_replies = payload.quick_replies.map(item => item.title).join(', ');
-                            text += `Options  ${text_quick_replies}`
+                            text += ` Options  ${text_quick_replies}`   // Pallavi added space in Options for dot issue 27_02_2025
                             break;
                         case 'button':
                             let text_button = payload.buttons.map(item => item.title).join(', ');
-                            text += `Options  ${text_button}`
+                            text += ` Options  ${text_button}`
                             break;
                         case 'dropdown_template':
                             // let text_dropdown_template = payload.buttons.map(item => item.title).join(', ');
@@ -4104,7 +4104,10 @@
                         _txtToSpeak = '';
                     }else {
                         try {
-                            _txtToSpeak = msgData.message[0].component.payload.text ? msgData.message[0].component.payload.text.replace(/\r?\n/g, ". .") : "";
+			    // pallavi dot 27_02_2025
+                            // _txtToSpeak = msgData.message[0].component.payload.text ? msgData.message[0].component.payload.text.replace(/\r?\n/g, ". .") : "";
+			    _txtToSpeak = msgData.message[0].component.payload.text ? msgData.message[0].component.payload.text.replace(/\r?\n/g, ". ").replace(/\.{2,}/g, ".").replace(/\.$/, " "): "";
+                            // pallavi dot 27_02_2025
                             _txtToSpeak = helpers.checkMarkdowns(_txtToSpeak);
                             // replacing extra new line or line characters
                             _txtToSpeak = _txtToSpeak.replace('___', '<hr/>');
