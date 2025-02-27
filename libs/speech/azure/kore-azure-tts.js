@@ -175,6 +175,10 @@
         if (firsttextt.includes("but we couldn't retrieve the information you're looking for at the moment")) {
             manual = true;
         }
+        if (firsttextt.includes("Please click on below button to proceed")) {
+            manual = true;
+        }
+        
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
