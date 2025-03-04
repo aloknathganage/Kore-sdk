@@ -3350,6 +3350,45 @@
                             .css("opacity", "0.8");
                     }
                     //pallavi disable quickreply 13/02
+		    //pallavi disable quickreply 04/03/2025
+		    if (msgData.message[0]?.component?.payload?.template_type == 'carouselTemplate') {
+                        $(".listItemPath.carouselButton")
+                            .css("pointer-events", "auto")
+                            .css("opacity", "0.8");
+                    } else {
+                        $(".listItemPath.carouselButton")
+                            .css("pointer-events", "none")
+                            .css("opacity", "0.8");
+                    }
+                    if (msgData.message[0]?.component?.payload?.template_type == 'dropdownTemplate') {
+                        $(".selectTemplateDropdowm")
+                            .css("pointer-events", "auto")
+                            .css("opacity", "0.8");
+                    } else {
+                        $(".selectTemplateDropdowm")
+                            .css("pointer-events", "none")
+                            .css("opacity", "0.8");
+                    }
+                    if (msgData.message[0]?.component?.payload?.template_type == 'checkBoxesTemplate') {
+                        $(".checkbox-group, .checkbox-primary, .checkInput, .styledDropdown,.checkboxButtons, .checkboxBtn")
+                            .css("pointer-events", "auto")
+                    } else {
+                        $(".checkbox-group, .checkbox-primary, .checkInput, .styledDropdown,.checkboxButtons, .checkboxBtn")
+                            .css("pointer-events", "none")
+                            .css("filter", "grayscale(50%) brightness(1)");
+                            $(".checkInput, .checkboxBtn, .styledDropdown").prop("disabled", true);
+                    };
+                    if (msgData.message[0]?.component?.payload?.template_type == 'healthAddonTemplate') {
+                        $(".checkbox-group, .checkbox-primary, .checkInput, .styledDropdown,.checkboxButtons, .checkboxBtn")
+                            .css("pointer-events", "auto")
+                    } else {
+                        $(".checkbox-group, .checkbox-primary, .checkInput, .styledDropdown,.checkboxButtons, .checkboxBtn")
+                            .css("pointer-events", "none")
+                            .css("filter", "grayscale(50%) brightness(1)");
+                            $(".checkInput, .checkboxBtn, .styledDropdown").prop("disabled", true);
+                    }
+		    //pallavi disable quickreply 04/03/2025
+			
                     if(msgData.message[0]?.component?.payload?.template_type == 'table'){
                         let plainObj=JSON.stringify(msgData.message[0].component.payload.elements);
                         plainObj = plainObj.replaceAll(null,'""');
