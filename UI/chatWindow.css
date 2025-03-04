@@ -1318,7 +1318,7 @@
     padding: 10px;
     margin: 0 !important;
     width: 100%;
-    display: flex !important;
+    /* display: flex !important; */ /* Pallavi for dropdown checkbox spacing commented 04_03_2025*/
     /* min-height: 80px;           kore customiztion for spacing */
 }
 
