@@ -5078,6 +5078,13 @@
                                             	$('.chatInputBox').text('Softcopy');
                                             	me.sendMessage($('.chatInputBox'));
                                         }
+					if(noSpaceStr == "Self-Helplink")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Self-Help link');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
 					// Pallavi Pay Now 05_03_2025
 
 		                        // Disable the clicked button
