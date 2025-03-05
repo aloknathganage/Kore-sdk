@@ -5042,6 +5042,43 @@
 	                                	me.sendMessage($('.chatInputBox'));
 	                            	}
 					// Manasi Pay Now 26_02_2025
+					// Pallavi Pay Now 05_03_2025
+					if(noSpaceStr == "GetGaragelisthere")
+                                        {
+                                        	console.log("manasi softcopy");
+                                            	const me = window.chatContainerConfig;
+                                            	$('.chatInputBox').text('Get Garage list here');
+                                            	me.sendMessage($('.chatInputBox'));
+                                        }
+                                    	if(noSpaceStr == "LocateHospitalHere")
+                                        {
+                                            	console.log("manasi softcopy");
+                                            	const me = window.chatContainerConfig;
+                                            	$('.chatInputBox').text('Locate Hospital Here');
+                                            	me.sendMessage($('.chatInputBox'));
+                                        }
+                                    	if(noSpaceStr == "LocateBranchHere")
+                                        {
+                                            	console.log("manasi softcopy");
+                                            	const me = window.chatContainerConfig;
+                                            	$('.chatInputBox').text('Locate Branch Here');
+                                            	me.sendMessage($('.chatInputBox'));
+                                        }
+                                    	if(noSpaceStr == "GetTPdetailshere")
+                                        {
+                                            	console.log("manasi softcopy");
+                                            	const me = window.chatContainerConfig;
+                                            	$('.chatInputBox').text('Get TP details here');
+                                            	me.sendMessage($('.chatInputBox'));
+                                        }
+                                    	if(noSpaceStr == "Softcopy")
+                                        {
+                                            	console.log("manasi softcopy");
+                                            	const me = window.chatContainerConfig;
+                                            	$('.chatInputBox').text('Softcopy');
+                                            	me.sendMessage($('.chatInputBox'));
+                                        }
+					// Pallavi Pay Now 05_03_2025
 
 		                        // Disable the clicked button
 		                        button.style.pointerEvents = 'none';
