@@ -3388,6 +3388,21 @@
                             $(".checkInput, .checkboxBtn, .styledDropdown").prop("disabled", true);
                     }
 		    //pallavi disable quickreply 04/03/2025
+		    //pallavi disable quickreply 05/03/2025
+		    if (msgData.message[0]?.component?.payload?.template_type == 'calendarDropdown') {
+                        $(".dateRangePicker, .startDate, .input.startDate")
+                            .prop("disabled", false) // Enable input
+                            .css("pointer-events", "auto")
+                            .css("opacity", "0.8");
+                            $(".startDate, .input.startDate").prop("disabled", false);
+                    } else {
+                        $(".dateRangePicker, .startDate, .input.startDate")
+                            .prop("disabled", true) // Disable input
+                            .css("pointer-events", "none")
+                            .css("opacity", "0.8");
+                            $(".startDate, .input.startDate").prop("disabled", true);
+                    }
+		    //pallavi disable quickreply 05/03/2025
 			
                     if(msgData.message[0]?.component?.payload?.template_type == 'table'){
                         let plainObj=JSON.stringify(msgData.message[0].component.payload.elements);
