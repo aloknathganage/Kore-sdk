@@ -3401,6 +3401,19 @@
                             .css("pointer-events", "none")
                             .css("opacity", "0.8");
                             $(".startDate, .input.startDate").prop("disabled", true);
+                    };
+		    if (msgData.message[0]?.component?.payload?.template_type == 'countryDropdownTemplate') {
+                        $(".multiSelectContainer, .searchInput, .dropdownTemplatesValues, .doneBtn")
+                            .prop("disabled", false) // Enable elements
+                            .css("pointer-events", "auto")
+                            .css("opacity", "0.8");
+                        $(".dropdownTemplatesValues, .doneBtn").prop("disabled", false);
+                    } else {
+                        $(".multiSelectContainer, .searchInput, .dropdownTemplatesValues, .doneBtn")
+                            .prop("disabled", true) // Disable elements
+                            .css("pointer-events", "none")
+                            .css("opacity", "0.8");
+                        $(".multiSelectContainer, .searchInput, .dropdownTemplatesValues, .doneBtn").prop("disabled", true);
                     }
 		    //pallavi disable quickreply 05/03/2025
 			
