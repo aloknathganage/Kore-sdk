@@ -266,7 +266,11 @@
                         "Please click on below button to proceed",
                         "We apologize for the delay and appreciate your patience",
                         "Dear Customer, transferring your chat to our customer service executive",
-                        "It looks like you haven’t responded for a while, so I’ll be closing this chat"
+                        "It looks like you haven’t responded for a while, so I’ll be closing this chat",
+                        "Please click on the button and fill the form manually",
+                        "Please select the options manually",
+                        "Please select the value manually",
+                        "Please fill out the form manually"
                     ];
                     
                     // If firsttextt does not include all the required sentences, set manual to false
