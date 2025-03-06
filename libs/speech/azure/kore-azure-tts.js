@@ -166,10 +166,10 @@
         if (firsttextt.includes("Please reach out to us if you need any assistance again")) {
             manual = true;
         }
-        if (firsttextt.includes("You're welcome! Have a great day!")) {
+        if (firsttextt.includes("You're welcome! Have a great day")) {
             manual = true;
         }
-        if (firsttextt.includes("thank you for reaching out to us. I hope I assisted you well. Have a great day!")) {
+        if (firsttextt.includes("thank you for reaching out to us. I hope I assisted you well. Have a great day")) {
             manual = true;
         }
         if (firsttextt.includes("but we couldn't retrieve the information you're looking for at the moment")) {
@@ -178,13 +178,15 @@
         if (firsttextt.includes("Please click on below button to proceed")) {
             manual = true;
         }
-        if (firsttextt.includes("We apologize for the delay and appreciate your patience.")) {
+        if (firsttextt.includes("We apologize for the delay and appreciate your patience")) {
             manual = true;
         }
-        if (firsttextt.includes("Dear Customer, transferring your chat to our customer service executive.")) {
+        if (firsttextt.includes("Dear Customer, transferring your chat to our customer service executive")) {
             manual = true;
         }
-        
+        if (firsttextt.includes("It looks like you haven’t responded for a while, so I’ll be closing this chat")) {
+            manual = true;
+        }
         
         // miccccc
         // pallavi form
