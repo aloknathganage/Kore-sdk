@@ -217,6 +217,9 @@
                     bufferSource.connect(audioContext.destination);
                     bufferSource.start(0);
                     bufferSource.onended = () => {
+                        if (firsttextt.includes("May I have your name to assist you better")) {
+                            isPlaying = true;
+                        };
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
                             speakMsgs();
@@ -225,11 +228,6 @@
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
                         }else{
-                            if (firsttextt.includes("May I have your name to assist you better")) {
-                                isPlaying = false;
-                                console.log("TTS finished, activating STT..."); //pallavi-mic
-                                window.recognizeSpeechWithAzure(); //pallavi-mic
-                            };
                             isPlaying = false;
                             console.log("manual isPlaying in else", manual, isPlaying);
                         };
