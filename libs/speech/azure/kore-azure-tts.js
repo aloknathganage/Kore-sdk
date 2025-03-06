@@ -305,7 +305,7 @@
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
                             console.log("manual isPlaying", manual, isPlaying);
-                            manual = false; // Reset manual if more messages are coming
+                            manual = false; // Pallavi 06_03_2025
                             console.log("manual isPlaying", manual, isPlaying);
                             speakMsgs();
                         } else if(isPlaying && !manual) {
