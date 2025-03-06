@@ -222,6 +222,7 @@
                             speakMsgs();
                         } else if(isPlaying && !manual) {
                             isPlaying = false;
+                            manual = false; // pallavi
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
                         }else{
