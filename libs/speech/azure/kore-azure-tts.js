@@ -217,6 +217,7 @@
                     bufferSource.connect(audioContext.destination);
                     bufferSource.start(0);
                     bufferSource.onended = () => {
+                        //pallavi 06_03_2025
                         console.log("firsttextt pallu",firsttextt);
                         if (firsttextt.includes("May I have your name to assist you better")) {
                             console.log("manual isPlaying pallu", manual, isPlaying );
@@ -224,6 +225,7 @@
                             manual = false;
                             console.log("manual isPlaying pallu after", manual, isPlaying );
                         };
+                        //pallavi 06_03_2025
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
                             speakMsgs();
