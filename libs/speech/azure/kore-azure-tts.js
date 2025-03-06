@@ -239,6 +239,41 @@
                 audioContext.decodeAudioData(result.audioData, (buffer) => {
                     bufferSource = audioContext.createBufferSource();
                     console.log("bufferSource", bufferSource);
+                    // pallavi 06_03_2025
+                    console.log("manual isPlaying", manual, isPlaying);
+                    // Check if firsttextt includes all the given sentences where manual is true
+                    let allSentences = [
+                        "You're verified",
+                        "Based on your selection, here’s the premium",
+                        "Please wait for a moment",
+                        "It seems like there are no agents that can help you at this time.",
+                        "Please hold while I find the right customer service executive for you",
+                        "Ready to elevate your experience? Choose your preferred plan",
+                        "We're thrilled! Here’s the proposal summary",
+                        "Ready to proceed",
+                        "That's okay. Let's work together to find the best coverage for you",
+                        "Please wait, we are currently awaiting your payment confirmation status",
+                        "Oops! Your payment is still not through. Please Pay Now to proceed",
+                        "You can also download it here",
+                        "Please complete your payment process using the link below. Thank you",
+                        "Please click the button below to download your policy soft copy",
+                        "Thank you for your valuable feedback! Please feel free to reach out if you need any further assistance",
+                        "Thank you for waiting",
+                        "Please reach out to us if you need any assistance again",
+                        "You're welcome! Have a great day",
+                        "thank you for reaching out to us. I hope I assisted you well. Have a great day",
+                        "but we couldn't retrieve the information you're looking for at the moment",
+                        "Please click on below button to proceed",
+                        "We apologize for the delay and appreciate your patience",
+                        "Dear Customer, transferring your chat to our customer service executive",
+                        "It looks like you haven’t responded for a while, so I’ll be closing this chat"
+                    ];
+                    
+                    // If firsttextt does not include all the required sentences, set manual to false
+                    if (!allSentences.every(sentence => firsttextt.includes(sentence))) {
+                        manual = false;
+                    }
+                    // pallavi 06_03_2025
                     console.log("manual isPlaying", manual, isPlaying);
                     bufferSource.buffer = buffer;
                     bufferSource.connect(audioContext.destination);
