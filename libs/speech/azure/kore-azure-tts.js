@@ -184,6 +184,9 @@
         if (firsttextt.includes("Dear Customer, transferring your chat to our customer service executive.")) {
             manual = true;
         }
+        if (firsttextt.includes("May I have your name to assist you better?")) {
+            manual = false;
+        }
         
         
         // miccccc
@@ -222,7 +225,7 @@
                             speakMsgs();
                         } else if(isPlaying && !manual) {
                             isPlaying = false;
-                            manual = false; // pallavi
+                            // manual = false; // pallavi
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
                         }else{
