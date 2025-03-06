@@ -239,10 +239,11 @@
                 audioContext.decodeAudioData(result.audioData, (buffer) => {
                     bufferSource = audioContext.createBufferSource();
                     console.log("bufferSource", bufferSource);
+
                     // pallavi 06_03_2025
                     console.log("manual isPlaying", manual, isPlaying);
-                    // Check if firsttextt includes all the given sentences where manual is true
-                    let allSentences = [
+                    // Check if all expected sentences are present in audioMessages
+                    const expectedSentences = [
                         "You're verified",
                         "Based on your selection, here’s the premium",
                         "Please wait for a moment",
@@ -273,31 +274,33 @@
                         "Please fill out the form manually"
                     ];
                     
-                    // If firsttextt does not include all the required sentences, set manual to false
-                    if (!allSentences.every(sentence => firsttextt.includes(sentence))) {
+                    // If audioMessages does not contain all expected sentences, set manual = false
+                    if (!expectedSentences.every(sentence => audioMessages.includes(sentence))) {
                         manual = false;
-                    }
+                        console.log("Not all expected sentences are in audioMessages, setting manual to false.");
+                    }                  
                     // pallavi 06_03_2025
+
                     console.log("manual isPlaying", manual, isPlaying);
                     bufferSource.buffer = buffer;
                     bufferSource.connect(audioContext.destination);
                     bufferSource.start(0);
                     bufferSource.onended = () => {
                         //pallavi 06_03_2025
-                        console.log("firsttextt pallu",firsttextt);
-                        if (firsttextt.includes("May I have your name to assist you better")) {
-                            console.log("manual isPlaying pallu", manual, isPlaying );
-                            isPlaying = true;
-                            manual = false;
-                            console.log("manual isPlaying pallu after", manual, isPlaying );
-                        };
-                        if (firsttextt.includes("Please provide your PAN details for KYC verification")) {
-                            console.log("manual isPlaying pallu", manual, isPlaying );
-                            isPlaying = true;
-                            manual = false;
-                            console.log("manual isPlaying pallu after", manual, isPlaying );
-                        };
-                        console.log("manual isPlaying", manual, isPlaying);
+                        // console.log("firsttextt pallu",firsttextt);
+                        // if (firsttextt.includes("May I have your name to assist you better")) {
+                        //     console.log("manual isPlaying pallu", manual, isPlaying );
+                        //     isPlaying = true;
+                        //     manual = false;
+                        //     console.log("manual isPlaying pallu after", manual, isPlaying );
+                        // };
+                        // if (firsttextt.includes("Please provide your PAN details for KYC verification")) {
+                        //     console.log("manual isPlaying pallu", manual, isPlaying );
+                        //     isPlaying = true;
+                        //     manual = false;
+                        //     console.log("manual isPlaying pallu after", manual, isPlaying );
+                        // };
+                        // console.log("manual isPlaying", manual, isPlaying);
                         //pallavi 06_03_2025
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
