@@ -227,6 +227,12 @@
                             manual = false;
                             console.log("manual isPlaying pallu after", manual, isPlaying );
                         };
+                        if (firsttextt.includes("Please provide your PAN details for KYC verification")) {
+                            console.log("manual isPlaying pallu", manual, isPlaying );
+                            isPlaying = true;
+                            manual = false;
+                            console.log("manual isPlaying pallu after", manual, isPlaying );
+                        };
                         //pallavi 06_03_2025
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
