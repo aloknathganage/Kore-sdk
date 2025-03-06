@@ -230,6 +230,7 @@
                             window.recognizeSpeechWithAzure(); //pallavi-mic
                         }else{
                             isPlaying = false;
+                            console.log("manual isPlaying in else", manual, isPlaying);
                         };
 
                         manual = false;
