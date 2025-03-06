@@ -178,6 +178,13 @@
         if (firsttextt.includes("Please click on below button to proceed")) {
             manual = true;
         }
+        if (firsttextt.includes("We apologize for the delay and appreciate your patience.")) {
+            manual = true;
+        }
+        if (firsttextt.includes("Dear Customer, transferring your chat to our customer service executive.")) {
+            manual = true;
+        }
+        
         
         // miccccc
         // pallavi form
