@@ -91,6 +91,7 @@
 
     function speakMsgs() {
         //pallavi new
+        console.log("Starting manual false");
         var manual = false;
         console.log("msgData", msgData);
         // listAllAvailableVoices();  //pallavi new for now commented
@@ -117,75 +118,98 @@
         // micccc
         if (firsttextt.includes("You're verified")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Based on your selection, here’s the premium")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Please wait for a moment")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("It seems like there are no agents that can help you at this time.")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Please hold while I find the right customer service executive for you")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Ready to elevate your experience? Choose your preferred plan")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("We're thrilled! Here’s the proposal summary")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Ready to proceed")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("That's okay. Let's work together to find the best coverage for you")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Please wait, we are currently awaiting your payment confirmation status")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Oops! Your payment is still not through. Please Pay Now to proceed")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("You can also download it here")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Please complete your payment process using the link below. Thank you")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Please click the button below to download your policy soft copy")) {
             manual = true;
         }
         if (firsttextt.includes("Thank you for your valuable feedback! Please feel free to reach out if you need any further assistance")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Thank you for waiting")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Please reach out to us if you need any assistance again")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("You're welcome! Have a great day")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("thank you for reaching out to us. I hope I assisted you well. Have a great day")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("but we couldn't retrieve the information you're looking for at the moment")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Please click on below button to proceed")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("We apologize for the delay and appreciate your patience")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("Dear Customer, transferring your chat to our customer service executive")) {
             manual = true;
+            console.log("Starting manual true");
         }
         if (firsttextt.includes("It looks like you haven’t responded for a while, so I’ll be closing this chat")) {
             manual = true;
+            console.log("Starting manual true");
         }
         
         // miccccc
@@ -198,6 +222,7 @@
         //pallavi new
 
         console.log("In function speakMsgs");
+        console.log("Doing isplaying true");
         isPlaying = true;
         console.log("In audiomsgs", audioMessages);
         synthesizer.speakTextAsync(
@@ -233,11 +258,14 @@
                             manual = false;
                             console.log("manual isPlaying pallu after", manual, isPlaying );
                         };
+                        console.log("manual isPlaying", manual, isPlaying);
                         //pallavi 06_03_2025
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
+                            console.log("manual isPlaying", manual, isPlaying);
                             speakMsgs();
                         } else if(isPlaying && !manual) {
+                            console.log("manual isPlaying", manual, isPlaying);
                             isPlaying = false;
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
