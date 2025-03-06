@@ -92,7 +92,6 @@
     function speakMsgs() {
         //pallavi new
         var manual = false;
-        var manual2 = false;
         console.log("msgData", msgData);
         // listAllAvailableVoices();  //pallavi new for now commented
         let firsttextt = msgData.message[0].cInfo.body;
@@ -185,9 +184,6 @@
         if (firsttextt.includes("Dear Customer, transferring your chat to our customer service executive.")) {
             manual = true;
         }
-        if (firsttextt.includes("May I have your name to assist you better?")) {
-            manual2 = true;
-        }
         
         
         // miccccc
@@ -224,7 +220,7 @@
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
                             speakMsgs();
-                        } else if((isPlaying && !manual) || !manual2) {
+                        } else if(isPlaying && !manual) {
                             isPlaying = false;
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
