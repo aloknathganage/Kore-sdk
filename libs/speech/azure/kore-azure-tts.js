@@ -186,6 +186,8 @@
         }
         if (firsttextt.includes("May I have your name to assist you better?")) {
             manual = false;
+            console.log("🎤 Activating Mic: Message requires user response.");
+            window.recognizeSpeechWithAzure(); // Explicitly turn on the mic
         }
         
         
