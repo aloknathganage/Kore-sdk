@@ -205,7 +205,7 @@
             audioMessages.shift(),
             result => {
                 console.log("In function speechSynthesisVoice",speechConfig.speechSynthesisVoice);
-                console.log("In function speakTextAsync");
+                console.log("In function speakTextAsync audioMessages", audioMessages);
                 if (result) {
                     console.log("In if result");
                     console.log("Speech synthesis succeeded for audiomessages:", audioMessages);
@@ -225,7 +225,6 @@
                             speakMsgs();
                         } else if(isPlaying && !manual) {
                             isPlaying = false;
-                            // manual = false; // pallavi
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
                         }else{
