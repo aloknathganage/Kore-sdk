@@ -225,6 +225,11 @@
                             console.log("TTS finished, activating STT..."); //pallavi-mic
                             window.recognizeSpeechWithAzure(); //pallavi-mic
                         }else{
+                            if (firsttextt.includes("May I have your name to assist you better")) {
+                                isPlaying = false;
+                                console.log("TTS finished, activating STT..."); //pallavi-mic
+                                window.recognizeSpeechWithAzure(); //pallavi-mic
+                            };
                             isPlaying = false;
                             console.log("manual isPlaying in else", manual, isPlaying);
                         };
