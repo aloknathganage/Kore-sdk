@@ -219,9 +219,10 @@
                     bufferSource.onended = () => {
                         console.log("firsttextt pallu",firsttextt);
                         if (firsttextt.includes("May I have your name to assist you better")) {
-                            console.log("isPlaying pallu",isPlaying );
+                            console.log("manual isPlaying pallu", manual, isPlaying );
                             isPlaying = true;
-                            console.log("Making isplaying true");
+                            manual = false;
+                            console.log("manual isPlaying pallu after", manual, isPlaying );
                         };
                         if (audioMessages.length > 0) {
                             console.log("Hitting speakmsg in audiomsgs.length");
