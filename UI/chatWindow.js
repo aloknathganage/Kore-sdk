@@ -668,6 +668,9 @@
 		if (text.includes("Does any of the insured member/members have an existing illness or health condition")) {
                     text = "Does any of the insured member or members have an existing illness or health condition";
                 }
+		if (text.includes("Please provide the accident date in DD/MM/YY format")) {
+                    text = "Please provide the accident date in in day, month, year format";
+                }
                 // pallavi azure 13_02_2025
 		// Remove bold formatting markers
                 text = text.replace(/<\/?b>/g, '');  // Remove <b> and </b> tags
@@ -5092,6 +5095,13 @@
                                             console.log("manasi softcopy");
                                             const me = window.chatContainerConfig;
                                             $('.chatInputBox').text('Self-Help link');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "DownloadNow")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Download Now');
                                             me.sendMessage($('.chatInputBox'));
                                         }
 					// Pallavi Pay Now 05_03_2025
