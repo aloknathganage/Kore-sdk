@@ -676,6 +676,9 @@
 		if (text.includes("Please provide the date of admission in DD/MM/YY format")) {
                     text = "Please provide the date of admission in day, month, year format";
                 }
+		if (text.includes("I'm sorry, I am unable to recognize the date you entered. Please enter the date again, in the YYYY-MM-DD or MM-DD-YYYY form.")) {
+                    text = "I'm sorry, I am unable to recognize the date you entered. Please enter the date again, in the yesr, month, day or month, day, year format.";
+                }
 		
                 // pallavi azure 13_02_2025
 		// Remove bold formatting markers
