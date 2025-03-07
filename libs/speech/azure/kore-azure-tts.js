@@ -215,7 +215,10 @@
             manual = true;
             console.log("Starting manual true");
         }
-        
+        if (firsttextt.includes("Please give me a moment while I fetch all your details")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
