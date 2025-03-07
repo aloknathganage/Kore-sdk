@@ -255,6 +255,19 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("It seems the claim number you provided is incorrect. Could you please provide the correct claim number so we can assist you further")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
+        if (firsttextt.includes("Thanks! Allow me sometime while I quickly get your Claim Details")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
+        if (firsttextt.includes("Oops! I could not find any Claim with the details you just entered")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
+        
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
