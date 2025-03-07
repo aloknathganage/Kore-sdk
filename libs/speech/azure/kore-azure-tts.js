@@ -249,7 +249,8 @@
                     let enableMicPhrases = [
                         "Please provide your PAN details for KYC verification.",
                         "Thanks! Now, please share your Date of Birth (DD-MM-YYYY) to complete the KYC.",
-                        "Thanks! Now, please share your Date of Birth in day, month, year format to complete the KYC"
+                        "Thanks! Now, please share your Date of Birth in day, month, year format to complete the KYC",
+                        "May I have your name to assist you better"
                     ];
                     
                     if (enableMicPhrases.some(phrase => firsttextt.includes(phrase))) {
