@@ -250,7 +250,8 @@
                         "Please provide your PAN details for KYC verification.",
                         "Thanks! Now, please share your Date of Birth (DD-MM-YYYY) to complete the KYC.",
                         "Thanks! Now, please share your Date of Birth in day, month, year format to complete the KYC",
-                        "May I have your name to assist you better"
+                        "May I have your name to assist you better",
+                        "I'm sorry, I am unable to recognize your input. Please enter a valid input"
                     ];
                     
                     if (enableMicPhrases.some(phrase => firsttextt.includes(phrase))) {
