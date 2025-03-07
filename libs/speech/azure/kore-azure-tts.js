@@ -239,6 +239,10 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("Please click on below button to check Garage List")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
