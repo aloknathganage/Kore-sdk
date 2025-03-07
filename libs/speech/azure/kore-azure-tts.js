@@ -235,6 +235,10 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("Dear user as we are unable to fetch the Reliance connected hospital based on your pincode, please check reliance connected hospitals here")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
