@@ -656,6 +656,9 @@
                 if (text.includes("please provide your 10-digit registered mobile number in the following format")) {
                     text = "Dear customer, please provide your 10-digit registered mobile number in given format";
                 }
+		if (text.includes("PAN - XXXXXXXXXX is not valid and not found in the records")) {
+                    text = "Your enter PAN is not valid and not found in the records";
+                }
 		if (text.includes("please share your Date of Birth (DD-MM-YYYY) to complete the KYC")) {
                     text = "Thanks! Now, please share your Date of Birth in day, month, year format to complete the KYC";
                 }
