@@ -659,6 +659,9 @@
 		if (text.includes("PAN - XXXXXXXXXX is not valid and not found in the records")) {
                     text = "Your enter PAN is not valid and not found in the records";
                 }
+		if (text.includes("Cancer / Leukemia / Malignant Tumor, Cardiac ailments, COPD, HIV /AIDS, Insulin Dependent Diabetes, Kidney Ailment, Liver Disease, Neurological Disorder / Stroke /Paralysis, Thalassemia")) {
+                    text = "Is any of the traveller suffering from any of following critical pre-existing medical conditions? [Cancer or Leukemia or Malignant Tumor, Cardiac ailments, COPD, HIV or AIDS, Insulin Dependent Diabetes, Kidney Ailment, Liver Disease, Neurological Disorder or Stroke or Paralysis, Thalassemia]";
+                }
 		if (text.includes("please share your Date of Birth (DD-MM-YYYY) to complete the KYC")) {
                     text = "Thanks! Now, please share your Date of Birth in day, month, year format to complete the KYC";
                 }
