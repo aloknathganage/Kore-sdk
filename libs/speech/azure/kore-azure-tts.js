@@ -243,6 +243,18 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("Thank you! I can assist you with updating your vehicle model or variant details")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
+        if (firsttextt.includes("It appears that the vehicle details you provided are invalid. Please double-check and enter the correct details")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
+        if (firsttextt.includes("It seems the Pincode you entered is not valid. Could you please check and provide a valid Pincode")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
