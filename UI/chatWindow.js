@@ -676,9 +676,7 @@
 		if (text.includes("Please provide the date of admission in DD/MM/YY format")) {
                     text = "Please provide the date of admission in day, month, year format";
                 }
-		if (text.includes("Dear User, We are unable to find your details via your phone number/policy number")) {
-                    text = "Dear User, We are unable to find your details via your phone number or policy number. You can avail the mentioned services below";
-                }
+		
                 // pallavi azure 13_02_2025
 		// Remove bold formatting markers
                 text = text.replace(/<\/?b>/g, '');  // Remove <b> and </b> tags
@@ -690,6 +688,7 @@
     		text = text.replace(/\b2nd\b/g, "second").replace(/\b3rd\b/g, "third");
     		// Convert "DD/MM/YYYY" to "day, month, year"
     		text = text.replace(/\bDD\/MM\/YYYY\b/g, "day, month, year");
+		text = text.replace(/\b(\w+)\/(\w+)\b/g, "$1 OR $2");
 		// pallavi 07_03_2025
 		    
                 //hoonartek kore customization for mic on off new
