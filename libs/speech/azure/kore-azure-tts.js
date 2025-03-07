@@ -219,7 +219,7 @@
             manual = true;
             console.log("Starting manual true");
         }
-        if (firsttextt.includes("Please click on the Self-Help link below to continue")) {
+        if (firsttextt.includes("Please click on the *Self-Help* link below to continue")) {
             manual = true;
             console.log("Starting manual true");
         }
