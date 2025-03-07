@@ -659,6 +659,9 @@
 		if (text.includes("please share your Date of Birth (DD-MM-YYYY) to complete the KYC")) {
                     text = "Thanks! Now, please share your Date of Birth in day, month, year format to complete the KYC";
                 }
+		if (text.includes("Does any of the insured member/members have an existing illness or health condition")) {
+                    text = "Does any of the insured member or members have an existing illness or health condition";
+                }
                 // pallavi azure 13_02_2025
 		// Remove bold formatting markers
                 text = text.replace(/<\/?b>/g, '');  // Remove <b> and </b> tags
@@ -672,7 +675,7 @@
                         // text = text.replace(/\b\d{6,7}\b/g, match => readDigitsSeparately(match));
 		    	text = text.replace(/\b\d{6,7}\b|\b\d{10}\b/g, match => readDigitsSeparately(match)); //phone number reading seperately 19_02_2025
                         text = text.replace(/\b\d{18}\b/g, match => readDigitsSeparately(match)); //policy number read sep
-		    	text = text.replace(/[🧑‍🤝‍🧑⬅️😄😊✈️🚗]/g, '', match => readDigitsSeparately(match)); //for emoji prompt
+		    	text = text.replace(/[✅🧑‍🤝‍🧑⬅️😄😊✈️🚗]/g, '', match => readDigitsSeparately(match)); //for emoji prompt
                 text = text.replace(/\//g, ' '); // pallavi azure 13_02_2025
                 text = text.replace(/\be\.g\./gi, 'Example'); // pallavi azure 13_02_2025
 		text = text.replace(/\bno\.\b/gi, 'number'); // pallavi no. number 19_02_2025
