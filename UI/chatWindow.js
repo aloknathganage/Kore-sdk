@@ -676,6 +676,9 @@
 		if (text.includes("Please provide the date of admission in DD/MM/YY format")) {
                     text = "Please provide the date of admission in day, month, year format";
                 }
+		if (text.includes("Dear User, We are unable to find your details via your phone number/policy number")) {
+                    text = "Dear User, We are unable to find your details via your phone number or policy number. You can avail the mentioned services below";
+                }
                 // pallavi azure 13_02_2025
 		// Remove bold formatting markers
                 text = text.replace(/<\/?b>/g, '');  // Remove <b> and </b> tags
