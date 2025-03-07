@@ -243,7 +243,9 @@
                     // pallavi 06_03_2025
                     // List of phrases where the mic should turn ON
                     let enableMicPhrases = [
-                        "Please provide your PAN details for KYC verification."
+                        "Please provide your PAN details for KYC verification.",
+                        "Thanks! Now, please share your Date of Birth (DD-MM-YYYY) to complete the KYC.",
+                        "Thanks! Now, please share your Date of Birth in day, month, year format to complete the KYC"
                     ];
                     
                     if (enableMicPhrases.some(phrase => firsttextt.includes(phrase))) {
