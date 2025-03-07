@@ -231,6 +231,10 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("Please find the link to the Branch Locator for the complete list of branches")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
