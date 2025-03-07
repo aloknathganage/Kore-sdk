@@ -669,7 +669,10 @@
                     text = "Does any of the insured member or members have an existing illness or health condition";
                 }
 		if (text.includes("Please provide the accident date in DD/MM/YY format")) {
-                    text = "Please provide the accident date in in day, month, year format";
+                    text = "Please provide the accident date in day, month, year format";
+                }
+		if (text.includes("Please provide the date of admission in DD/MM/YY format")) {
+                    text = "Please provide the date of admission in day, month, year format";
                 }
                 // pallavi azure 13_02_2025
 		// Remove bold formatting markers
