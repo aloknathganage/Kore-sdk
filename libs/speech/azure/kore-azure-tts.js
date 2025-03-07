@@ -219,6 +219,10 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("Please click on the Self-Help link below to continue")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
