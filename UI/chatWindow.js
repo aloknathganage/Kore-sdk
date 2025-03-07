@@ -592,11 +592,13 @@
                 }
                 else{
 		//hoonartek kore customization for mic on off - enter pan card manually
-                    const pancard = "PAN for KYC purpose"
-                    // const words = text.split(/\s+/); // Split by spaces
-                    if(text.includes(pancard)){
-                        text = 'Please enter the Pan Card Number Manually'
-                    }
+		    // pallavi pan commented 07_03_2025
+                    // const pancard = "PAN for KYC purpose"
+                    // // const words = text.split(/\s+/); // Split by spaces
+                    // if(text.includes(pancard)){
+                    //     text = 'Please enter the Pan Card Number Manually'
+                    // }
+		    // pallavi pan commented 07_03_2025
                     console.log("This is text ")
                 }
 		// pallavi date 20_02_2025
