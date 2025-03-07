@@ -223,6 +223,10 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("I’m sorry, all our live agents are currently offline. Our working hours are Monday to Friday from 9am to 5pm IST")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         // miccccc
         // pallavi form
         if (disableMicTemplates.includes(templateType) || window.formvalue) {
