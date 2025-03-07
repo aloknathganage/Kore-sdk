@@ -211,6 +211,10 @@
             manual = true;
             console.log("Starting manual true");
         }
+        if (firsttextt.includes("Please complete your payment process here")) {
+            manual = true;
+            console.log("Starting manual true");
+        }
         
         // miccccc
         // pallavi form
