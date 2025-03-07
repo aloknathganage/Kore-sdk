@@ -679,6 +679,13 @@
                 text = text.replace(/<\/?b>/g, '');  // Remove <b> and </b> tags
                 text = text.replace(/\*\*(.*?)\*\*/g, '$1'); // Remove double asterisks (bold markdown)
                 text = text.replace(/\*(.*?)\*/g, '$1'); // Remove single asterisk (italic markdown)
+
+		// pallavi 07_03_2025
+		// Convert "2nd" to "second" and "3rd" to "third"
+    		text = text.replace(/\b2nd\b/g, "second").replace(/\b3rd\b/g, "third");
+    		// Convert "DD/MM/YYYY" to "day, month, year"
+    		text = text.replace(/\bDD\/MM\/YYYY\b/g, "day, month, year");
+		// pallavi 07_03_2025
 		    
                 //hoonartek kore customization for mic on off new
                 text = text.replace(/₹\s?(\d{1,3}(?:,\s?\d{3})*)\/-/g, (match, p1) => { 	// for rupees
