@@ -5122,6 +5122,79 @@
                                             me.sendMessage($('.chatInputBox'));
                                         }
 					// Pallavi Pay Now 05_03_2025
+					// Pallavi Pay Now 08_03_2025
+					if(noSpaceStr == "MotorClaimForm")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Motor Claim Form');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "HealthClaimForm")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Health Claim Form');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "HealthClaim(TPA)FormA")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Health Claim (TPA) Form A');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "HealthClaim(TPA)FormB")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Health Claim (TPA) Form B');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "HealthClaim(TPA)FormC")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Health Claim (TPA) Form C');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "TravelClaimFormMain")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Travel Claim Form Main');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "TravelClaimForm-D")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Travel Claim Form-D');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "TravelClaimForm-C")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Travel Claim Form-C');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "TravelClaimForm-B")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Travel Claim Form-B');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					if(noSpaceStr == "TravelClaimForm-A")
+                                        {
+                                            console.log("manasi softcopy");
+                                            const me = window.chatContainerConfig;
+                                            $('.chatInputBox').text('Travel Claim Form-A');
+                                            me.sendMessage($('.chatInputBox'));
+                                        }
+					
+					// Pallavi Pay Now 08_03_2025
 
 		                        // Disable the clicked button
 		                        button.style.pointerEvents = 'none';
